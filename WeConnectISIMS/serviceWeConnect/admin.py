@@ -3,7 +3,8 @@ from .models import *
 admin.site.register(Club)
 admin.site.register(Event)
 admin.site.register(Membre)
-admin.site.register(Clandrier)
+admin.site.register(ClandrierClub)
+admin.site.register(ClandrierMembre)
 admin.site.register(Notification)
 
 

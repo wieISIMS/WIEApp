@@ -6,3 +6,4 @@ urlpatterns = [
     path('message/',views.getMessage,name='getMessage'),
     path('addCal/<events>/',views.addCal,name='addCal')
     ]
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 
