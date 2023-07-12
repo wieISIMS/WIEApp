@@ -24,7 +24,7 @@ class Event(models.Model):
     description = models.CharField(max_length=500)
     nbparticipant = models.IntegerField()
     nbLike = models.IntegerField(blank=True)
-    photo = models.ImageField(upload_to="images/clubs/")
+    photo = models.ImageField(upload_to="images/events/")
     dateEvent = models.DateTimeField()
     heureEvent = models.TimeField()
     rate = models.IntegerField(blank=True)
