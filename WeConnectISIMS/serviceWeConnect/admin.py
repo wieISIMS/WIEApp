@@ -1,5 +1,10 @@
 from django.contrib import admin
 from .models import *
-admin.site.register(Calandrier)
-# Register your models here.
+admin.site.register(Club)
+admin.site.register(Event)
+admin.site.register(Membre)
+admin.site.register(Clandrier)
+admin.site.register(Notification)
+
+
 
