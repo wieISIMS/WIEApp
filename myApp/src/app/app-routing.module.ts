@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'sign',
     loadChildren: () => import('./sign/sign.module').then( m => m.SignPageModule)
+  },  {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
   },
+
 ];
 
 @NgModule({
