@@ -26,6 +26,34 @@ const routes: Routes = [
     path: 'calendar',
     loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
   },
+  {
+    path: 'event',
+    loadChildren: () => import('./event/event.module').then( m => m.EventPageModule)
+  },
+  {
+    path: 'club',
+    loadChildren: () => import('./club/club.module').then( m => m.ClubPageModule)
+  },
+  {
+    path: 'sign2',
+    loadChildren: () => import('./sign2/sign2.module').then( m => m.Sign2PageModule)
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'update-info',
+    loadChildren: () => import('./update-info/update-info.module').then( m => m.UpdateInfoPageModule)
+  },
+  {
+    path: 'about-us',
+    loadChildren: () => import('./about-us/about-us.module').then( m => m.AboutUsPageModule)
+  },
 
 ];
 
