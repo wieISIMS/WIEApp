@@ -3,25 +3,26 @@
         flex-direction: column; /* Aligne les éléments verticalement */
         align-items: left; /* Centre les éléments horizontalement */ 
         height: 80px; 
-        padding-left: 20px;
-        margin-top: 30px;
+        margin-left: 20px;
+        margin-top: 18px;
         margin-left: 15px;
         margin-right: 15px;
+        top:20px;
 }
 .line1,
 .line2 {
 width: 100%;
 text-align: left;
-  
+color: black;
+font-weight: bold;
+font-size: 20px;
+font-family: Roboto;
 }
-.line1{
-    color: black;
-}
+
 .imag{
     width: 180px;
     height:180px;
     margin: 0 auto;
-    margin-top: 50px;
     position: relative;
 
 }
@@ -36,13 +37,21 @@ text-align: left;
     z-index: 1;
 }
 ::ng-deep.button-native{
-    width: 300px;
-    height:40px;
-    margin-top: 25px;
+    width: 316px;
+    height:51px;
+    margin-top: 55px;
     color:white; 
     font-size: larger;
     --border-radius: 50px;
     --background:#CEBBFA;
     position: relative;
-    left: 63px;
+    left: 60px;
+    font-weight: bold;
+    font-size: 20px;
+   font-family: Poppins;
+}
+.flash{
+    margin-top:15px;
+    margin-left: 15px;
+    font-size: 30px;
 }
