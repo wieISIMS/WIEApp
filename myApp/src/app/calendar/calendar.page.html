@@ -1,13 +1,35 @@
-<ion-header [translucent]="true">
+<!-- 
+  <ion-header>
   <ion-toolbar>
-    <ion-title>calendar</ion-title>
+    <ion-title>
+      Calendar
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">calendar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="today-container">
+    <div class="today">
+      <div class="date">{{ today | date:'mediumDate' }}</div>
+      <div class="label">Today</div>
+    </div>
+  </div>
+
+  <div class="days-container">
+    <div class="day" *ngFor="let day of days">
+      <ion-button (click)="onDayButtonClick(day.date)">{{ day.label }}</ion-button>
+    </div>
+  </div>
+
+  <div class="event-widgets"> 
+  -->
+    <!-- Assuming you have imported the required 'mwl-calendar-month-view' component correctly -->
+    <!--
+    <mwl-calendar-month-view
+      [viewDate]="today"
+      [events]="events"
+      (eventClicked)="onEventClick($event)">
+    </mwl-calendar-month-view>
+  </div>
 </ion-content>
+-->

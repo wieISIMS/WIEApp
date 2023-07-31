@@ -8,12 +8,15 @@ import { CalendarPageRoutingModule } from './calendar-routing.module';
 
 import { CalendarPage } from './calendar.page';
 
+//import { CalendarModule } from 'angular-calendar'; // Import the CalendarModule
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     CalendarPageRoutingModule
+    //CalendarModule
   ],
   declarations: [CalendarPage]
 })
