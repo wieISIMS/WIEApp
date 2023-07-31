@@ -9,8 +9,11 @@ import { Router } from '@angular/router';
 export class LoginPage {
   emailmsg!: string;
   passwordmsg!: string;
+
   @ViewChild('emailInput', { static: false }) emailInput!: ElementRef;
   @ViewChild('passwordInput', { static: false }) passwordInput!: ElementRef;
+
+  passwordVisible = false;
 
   constructor(private router: Router) {}
 
@@ -36,4 +39,10 @@ export class LoginPage {
     //login logic
     this.router.navigate(['/tablinks']);
 }
-}}
+}
+
+togglePasswordVisibility() {
+  this.passwordVisible = !this.passwordVisible;
+}
+
+}
