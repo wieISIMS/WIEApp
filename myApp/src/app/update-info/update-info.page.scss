@@ -39,7 +39,6 @@ font-family: Roboto;
 ::ng-deep.button-native{
     width: 316px;
     height:51px;
-    margin-top: 55px;
     color:white; 
     font-size: larger;
     --border-radius: 50px;
@@ -49,6 +48,9 @@ font-family: Roboto;
     font-weight: bold;
     font-size: 20px;
    font-family: Poppins;
+   margin: 0 auto;
+   position: relative;
+   top:50px;
 }
 .flash{
     margin-top:15px;
