@@ -1,13 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Sign</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  
+  <label >Email</label><br>
+  <div class="formGroup">
+    <input #emailInput type="text" class="formControl" placeholder="eyamaazoun@gmail.com"  required>
+    <div *ngIf="emailmsg" class="error-message" class="msg">{{ emailmsg }}</div>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Sign</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <label >Password</label><br>
+  <div class="formGroup">
+    <input #passwordInput type="password" class="formControl" placeholder="*************************" required>
+    <div *ngIf="passwordmsg" class="error-message" class="msg">{{ passwordmsg }}</div>
+  </div>
+
+  <label >Confirm Your Password</label><br>
+  <div class="formGroup">
+    <input #confirmPasswordInput type="password" class="confirmPassword" placeholder="*************************"  required>
+    <div *ngIf="passwordmsg" class="error-message" class="msg">{{ confpasswordmsg }}</div>
+  </div>
+    
+    
+    <ion-row>
+      <ion-col>
+        <input type="submit" class="btnPrimary" expand="block"(click)="onSign()" value="Next">
+        <div *ngIf="errorMessage" class="error-message" class="msg">{{ errorMessage }}</div>
+      </ion-col>
+    </ion-row>
+
+  <ion-row>
+      <ion-col>
+        <div class="gmailLoginButton">
+          <!-- Use the routerLink directive to navigate to the Gmail login component or page -->
+          <button class="btnGoogle">Login with Gmail</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <div class="redirectToLogin">
+      <span>Have an account?<span class="redirect" routerLink="/login"> Login</span></span>
+    </div>
 </ion-content>
