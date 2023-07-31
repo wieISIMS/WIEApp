@@ -1,13 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/previous-page"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Login</ion-title>
+      <ion-title size="large">login</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content>
+    
+  <div class="displayTableCell">
+    <div class="authBlock">
+
+      <div class="formGroup">
+        <label >Email</label><br>
+        <input #emailInput type="text" class="formControl" placeholder="eyamaazoun@gmail.com"  required>
+        <div *ngIf="emailmsg" class="error-message" class="msg">{{ emailmsg }}</div>
+      </div>
+
+      <div class="formGroup">
+        <label >Password</label><br>
+        <input #passwordInput type="password" class="formControl" placeholder="*************************"  required>
+        <div *ngIf="passwordmsg" class="error-message" class="msg">{{ passwordmsg }}</div>
+      </div>
+
+      <div class="forgotPassword">
+        <span routerLink="/forgot-password">Forgot your Password?</span>
+      </div>
+      
+      <input type="button" class="btnPrimary" value="Log in" (click)="login()">
+    
+    </div>
+    <div class="redirectToLogin">
+      <span>Don't have an account?<span class="redirect" routerLink="/signup"> Sign Up</span></span>
+    </div>
+  </div>
 </ion-content>
