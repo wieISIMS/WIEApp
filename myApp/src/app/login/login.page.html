@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Login</ion-title>
+      <ion-title size="large">login</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content>
+    
+  <div class="displayTableCell">
+    <div class="authBlock">
+      <label >Email</label><br>
+      <div class="formGroup">
+        <input #emailInput type="text" class="formControl" placeholder="eyamaazoun@gmail.com"  required>
+        <div *ngIf="emailmsg" class="error-message" class="msg">{{ emailmsg }}</div>
+      </div>
+
+      <label>Password</label><br>
+      <div class="formGroup">
+        <input #passwordInput [type]="passwordVisible ? 'text' : 'password'"
+                              class="formControl"
+                              placeholder="*************************"
+                              required>
+        <ion-icon name="eye" class="eye-icon" (click)="togglePasswordVisibility()"></ion-icon>
+        <div *ngIf="passwordmsg" class="error-message">{{ passwordmsg }}</div>
+      </div>
+
+      <div class="forgotPassword">
+        <span routerLink="/forgot-password">Forgot your Password?</span>
+      </div>
+      
+      <input type="button" class="btnPrimary" value="Log in" (click)="login()">
+      <div class="gmailLoginButton">
+        <!-- Use the routerLink directive to navigate to the Gmail login component or page -->
+        <button class="btnGoogle">Login with Gmail</button>
+      </div>
+    </div>
+    <div class="redirectToLogin">
+      <span>Don't have an account?<span class="redirect" routerLink="/signup"> Sign Up</span></span>
+    </div>
+  </div>
 </ion-content>

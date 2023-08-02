@@ -1,0 +1,50 @@
+.im{
+    width: 70px;
+    height: 70px;
+    position: relative;
+    bottom: 10px;
+    font-size: 200px;
+}
+.fl{
+    font-size: 40px;
+    position: relative;
+    bottom: 10px;
+}
+.ic{
+    border-radius: 18px; height: 100px; width: 380px;
+    margin: 0 auto;
+    margin-top: 17px;
+    
+}
+.flash{
+    position: relative;
+    top: 10px;
+    left:5px;
+    width: 20%;
+}
+.title{
+   color: #150B3D; 
+   font-weight: bolder;
+   font-family: Poppins;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 10px;
+}
+.footer{
+    position: fixed;
+  bottom: 0;
+  width: 100%; 
+
+}
+.div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Ajuster la hauteur de la toolbar selon vos besoins */
+    height: 50px;
+}
+.buts{
+    display: flex;
+    justify-content: center;
+}

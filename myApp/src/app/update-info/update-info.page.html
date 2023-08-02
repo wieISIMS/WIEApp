@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>update-info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" style="--background: white;">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">update-info</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-icon class="flash" name="arrow-back-outline"></ion-icon>
+  <ion-avatar class="imag">
+  <ion-img  src="../assets/img/ang.jpeg"></ion-img>
+  <ion-icon class="ic" name="camera-outline"></ion-icon>
+</ion-avatar>
+<ion-chip class="ion-padding">
+    <label class="line1" >Name</label>
+    <label class="line2" ><ion-input type="text" placeholder="Your Name"></ion-input></label>
+  </ion-chip>
+  <ion-chip class="ion-padding">
+    <label class="line1" >Email</label>
+    <label class="line2" ><ion-input type="Email" placeholder="Your Email"></ion-input></label>
+  </ion-chip>
+  <ion-chip class="ion-padding">
+    <label class="line1" >Phone Number</label>
+    <label class="line2" ><ion-input type="Number" placeholder="Your Number"></ion-input></label>
+  </ion-chip>
+  <ion-chip class="ion-padding">
+    <label class="line1" >Password</label>
+    <label class="line2" ><ion-input type="Password" placeholder="*******"></ion-input></label>
+  </ion-chip>
+  <ion-chip class="ion-padding">
+    <label class="line1" >Confirm your Password</label>
+    <label class="line2" ><ion-input type="Password" placeholder="*******"></ion-input></label>
+  </ion-chip>
+  <ion-button class="button-native" (click)="onUpdateInfoClick()">Update</ion-button>
+</ion-content>
