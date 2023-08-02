@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notifications.page.scss'],
 })
 export class NotificationsPage implements OnInit {
-
+  notificationsList: any[] = [1,0]; 
   constructor() { }
 
   ngOnInit() {

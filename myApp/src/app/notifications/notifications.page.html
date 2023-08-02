@@ -4,12 +4,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">notifications</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" >
+  <ng-container *ngIf="notificationsList.length > 0; else noNotifications">
   <ion-back-button defaultHref="/previous-page" class="flash" ></ion-back-button>
   <h1 class="title">Notifications</h1>
   <ion-card class="ic">
@@ -131,4 +127,12 @@
       </ion-item>
     </ion-card-content>
   </ion-card> 
+</ng-container>
+<ng-template #noNotifications>
+  <ion-card>
+    <ion-card-content>
+      <p>Pas de notifications pour le moment.</p>
+    </ion-card-content>
+  </ion-card>
+</ng-template>
 </ion-content>
