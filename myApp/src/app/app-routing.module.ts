@@ -34,10 +34,6 @@ const routes: Routes = [
   },
   
   {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-  },
-  {
     path: 'update-info',
     loadChildren: () => import('./update-info/update-info.module').then( m => m.UpdateInfoPageModule)
   },
@@ -46,6 +42,11 @@ const routes: Routes = [
     path: 'tablinks',
     loadChildren: () => import('./tablinks/tablinks.module').then( m => m.TablinksPageModule)
   },
+  {
+    path: 'activities',
+    loadChildren: () => import('./activities/activities.module').then( m => m.ActivitiesPageModule)
+  },
+
 
 ];
 
