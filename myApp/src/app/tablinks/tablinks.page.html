@@ -1,0 +1,19 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" [class.active]="isActive('home')" (click)="onTabClicked('home')">
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="calendar" [class.active]="isActive('calendar')" (click)="onTabClicked('calendar')">
+      <ion-icon name="calendar-clear-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="notifications" [class.active]="isActive('notifications')" (click)="onTabClicked('notifications')">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="about-us" [class.active]="isActive('about-us')" (click)="onTabClicked('about-us')">
+      <ion-icon name="information-circle-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
