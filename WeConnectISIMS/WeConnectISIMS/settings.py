@@ -71,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'WeConnectISIMS.wsgi.application'
-
+APPEND_SLASH = False
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
