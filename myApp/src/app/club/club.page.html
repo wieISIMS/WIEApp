@@ -1,13 +1,99 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>club</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-buttons slot="start">
+  <ion-back-button defaultHref="/previous-page"></ion-back-button>
+</ion-buttons>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">club</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="fixed">
+  <div class="header">
+    <ion-avatar class="img">
+      <ion-img src="../../assets/Wie.jpg"></ion-img>
+    </ion-avatar>
+    <div class="info">
+      <h3>IEEE WIE Affinity Group</h3>
+      <ion-icon name="logo-facebook"></ion-icon>
+      <ion-icon name="logo-instagram"></ion-icon>
+    </div>
+  </div>
+  
+  
+  <div class="stats">
+    <div>
+      <h3>25</h3>
+      <p>Members</p>
+    </div>
+    <div>
+      <h3>30</h3>
+      <p>Events</p>
+    </div>
+  </div>
+</div>
+  <div class="events">
+    <h4>Best Events</h4>
+    <div class="horizontal-scroll">
+
+    <ion-card class="card1">
+      <div class="img-container">
+          <img src="../../assets/Picnic.jpg" />
+      </div>
+      <ion-label>
+        <h1>Cleaning day</h1>
+        <div class="likes">
+          <ion-icon name="heart"></ion-icon>
+          <p>200</p>
+        </div>
+      </ion-label>
+    </ion-card>
+
+    <ion-card class="card1">
+      <div class="img-container">
+          <img src="../../assets/Picnic.jpg" />
+      </div>
+      <ion-label>
+        <h1>Cleaning day</h1>
+        <div class="likes">
+          <ion-icon name="heart"></ion-icon>
+          <p>200</p>
+        </div>
+      </ion-label>
+    </ion-card>
+
+  </div>
+    <h4>Latest</h4>
+    <ion-card class="card2">
+      <div class="img-container">
+          <img src="../../assets/Picnic.jpg" />
+      </div>
+      <ion-label>
+        <div>
+        <h1>Cleaning day</h1>
+        <p class="upcoming-events">Upcoming Event</p>
+        </div>
+        <div class="likes">
+          <ion-icon name="heart"></ion-icon>
+          <p>200</p>
+        </div>
+        
+      </ion-label>
+    </ion-card>
+
+
+    <ion-card class="card2">
+      <div class="img-container">
+          <img src="../../assets/Picnic.jpg" />
+      </div>
+      <ion-label>
+        <div>
+        <h1>Cleaning day</h1>
+        <p class="upcoming-events">Upcoming Event</p>
+        </div>
+        <div class="likes">
+          <ion-icon name="heart"></ion-icon>
+          <p>200</p>
+        </div>
+        
+      </ion-label>
+    </ion-card>
+
+
+  </div>
 </ion-content>

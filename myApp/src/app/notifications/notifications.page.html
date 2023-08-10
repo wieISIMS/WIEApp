@@ -1,8 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>notifications</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true" >
   <ng-container *ngIf="notificationsList.length > 0; else noNotifications">
@@ -14,13 +10,15 @@
           <ion-avatar class="im" slot="start" size="large">
             <ion-img  src="../assets/img/wie.png"></ion-img>
           </ion-avatar>
-            <ion-icon name="close-outline" slot="end" class="fl"></ion-icon>
         <ion-label class="ion-text-wrap" >
         <h3 style=" color:#150B3D; font-weight: bold;">IEEE WIE Affinity Group</h3>
         <h1 aria-disabled="false" style="height: 8px;"></h1>
         <h4 style="color: gray; font-weight: normal; font-size: small;">New event</h4>
         <h1 aria-disabled="false" style="height: 8px;"></h1>
+        <div>
         <h6 style="color: gray; font-weight:lighter; font-size: 11px;">45 minutes ago</h6>
+        <h6 style="color: gray; font-weight:lighter; font-size: 11px;">Delete</h6>
+      </div>
         </ion-label>
       </ion-item>
     </ion-card-content>
@@ -129,10 +127,10 @@
   </ion-card> 
 </ng-container>
 <ng-template #noNotifications>
-  <ion-card>
-    <ion-card-content>
-      <p>Pas de notifications pour le moment.</p>
-    </ion-card-content>
-  </ion-card>
+  <ion-back-button defaultHref="/previous-page" class="flash" ></ion-back-button>
+  <h1 class="title1">No Notifications</h1>
+  <h6 style="color:gray;font-weight:lighter; font-size: 12px;">You have no notifications at this time</h6>
+  <h6 style="color:gray;font-weight:lighter; font-size: 12px;">thank you</h6>
+  <ion-icon class="no" name="notifications-circle-outline"></ion-icon>
 </ng-template>
 </ion-content>

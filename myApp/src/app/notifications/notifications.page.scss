@@ -3,48 +3,56 @@
     height: 70px;
     position: relative;
     bottom: 10px;
-    font-size: 200px;
 }
 .fl{
-    font-size: 40px;
+    font-size: 27px;
     position: relative;
-    bottom: 10px;
+    bottom: 25px;
 }
 .ic{
-    border-radius: 18px; height: 100px; width: 380px;
+    border-radius: 18px; height: 105px; width: 380px;
     margin: 0 auto;
     margin-top: 17px;
     
 }
 .flash{
     position: relative;
-    top: 10px;
-    left:5px;
+    top: 17px;
     width: 20%;
 }
 .title{
    color: #150B3D; 
-   font-weight: bolder;
-   font-family: Poppins;
+   font-weight: bold;
    display: flex;
    justify-content: center;
    align-items: center;
    margin-top: 10px;
 }
-.footer{
-    position: fixed;
-  bottom: 0;
-  width: 100%; 
 
-}
-.div{
+div{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    /* Ajuster la hauteur de la toolbar selon vos besoins */
-    height: 50px;
 }
-.buts{
+.title1{
+    color: #150B3D; 
+    font-weight: bold;
     display: flex;
     justify-content: center;
-}
+    align-items: center;
+    margin-top: 150px;
+    font-size: 30px;
+ }
+ h6{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -5px; 
+ }
+ .no{
+    width: 150px;
+    height: 150px;
+    margin-top: 70px;
+    color: #3847e5;
+
+    margin-left: 150px;
+ }
