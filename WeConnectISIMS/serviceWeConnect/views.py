@@ -6,6 +6,7 @@ from .models import *
 import base64
 from django.core.files.base import ContentFile   
 import uuid
+import datetime
 @api_view(['POST'])
 def inscriptionClub(request):
         name=request.data['name']
@@ -45,3 +46,32 @@ def authenticateClub(request):
                 "message": "Authentication failed"
             })
             return HttpResponse(data, content_type='application/json')
+@api_view(['POST'])
+def addevent(request):
+     title=request.data.get('title')
+     description=request.data.get('description')
+     nbParticipant=request.data.get('nbParticipant')
+     photo=request.data.get('photo')
+     if photo:
+            format, imgstr = photo.split(';base64,')
+            ext = format.split('/')[-1]
+            image_data = base64.b64decode(imgstr)
+            img = ContentFile(image_data, name=title + '.' + ext)
+     dateEvent=request.data.get('dateEvent')
+     if dateEvent:
+          date = datetime.strptime(dateEvent, '%Y-%M-%D')
+     heureEvent=request.data.get('heureEvent')
+     if heureEvent:
+          heure=datetime.strptime(heureEvent, '%H:%M:%S')
+     club=request.data.get('club')
+     try:
+        club = Club.objects.get(name=club)  
+     except Club.DoesNotExist:
+        data=json.dumps({'message':'club not found.'})
+        return HttpResponse(data,content_type='application/json')
+     new_event = Event.objects.create(title=title,description=description,nbParticipant=nbParticipant,photo=img,dateEvent=dateEvent,heureEvent=heureEvent,club=club)
+     new_event.full_clean()  
+     new_event.save()
+     data=json.dumps({'message':'event added successfully'})
+     return HttpResponse(data,content_type='application/json')
+     
