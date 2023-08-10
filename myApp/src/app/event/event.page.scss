@@ -4,14 +4,14 @@ $blue:#273747;
 $white:#FAFCFF;
 $gris:#8B8B8B;
 
-
-.ion-title{
-  font-size: 150%;
-  font-weight: bold;
-  text-align: center;
-
-}
-
+ion-content {
+    --background: linear-gradient(to left bottom, #c092fa, #c59dfa, #caa8fa, #d0b3fa, #d5bef9, #dcc2f6, #e2c6f3, #e7caf0, #ecc9ea, #f1c9e4, #f3c9de, #f5c9d9);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+   
 
 .subtitle{
     margin-left: 5%;
@@ -36,6 +36,7 @@ $gris:#8B8B8B;
     flex-direction: row;
     margin-left: 5%;
     margin-bottom: 8%;
+    margin-top: 5%;
 }
 .text{
     color: $gris;
@@ -56,11 +57,15 @@ $gris:#8B8B8B;
     font-size: 120%;
     font-style: normal;
     text-align: center;
-    line-height: normal;
+    line-height: 180%;
+ 
 }
   .participate{
+    width: 40%;
+  
     margin-right: 5%;
-    margin-left: 20%;
+    margin-left: 8%;
+    text-align: center;
     flex-shrink: 0;
     border-radius: 50px;
     background: #FFF;
@@ -69,13 +74,14 @@ $gris:#8B8B8B;
     font-size: 120%;
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
+    line-height: 180%;
+
   }
   .class{
     display: flex;
     align-items: center;
     margin-top: 3%;
-
+    
 
   }
 
@@ -111,3 +117,4 @@ $gris:#8B8B8B;
  
 }
 
+}
