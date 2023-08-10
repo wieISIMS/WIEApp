@@ -1,13 +1,46 @@
-<ion-header [translucent]="true">
+
   <ion-toolbar>
-    <ion-title>event</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/previous-page"> 
+      </ion-back-button>
+      <ion-title class="title">Event</ion-title>
+    </ion-buttons>
+  
   </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">event</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="head">
+  <ion-img [src]="'assets/img/default.png'" class="img"></ion-img>
+  <div class="header-text">
+    IEEE ISIMS Student Branch
+  </div>
+  </div>
+  <div class="subtitle" >IAS Tunisia Annual Meeting
+  </div>
+
+  <div class="class">
+  <div class="up">upcoming event
+  </div>
+  <div class="participate">Participate</div>
+</div>
+  
+    <div>
+      <p class="Date">Date :  12 aout 2022  </p>
+    </div>
+  <div>
+    <ion-img [src]="'assets/img/flutter.png'" class="imgE"></ion-img>
+  </div>
+  <div class="parag">
+    <p>We are excited to announce a two-session Flutter workshop that will be taking place at the Djagora FabLab. This workshop is designed for anyone who wants to learn more about Flutter which is one of the best solutions for Android and IOS app development.
+      The 7 Hours workshop will be divided into two sessions. The first session will be on Saturday, February 25th from 2pm to 5pm, and the second session will be on Sunday, February 26th from 9am to 1pm.
+      Our esteemed Trainer for this workshop is Mohamed Amin Bouaziz and with his expertise, you'll be sure to learn the best practices in mobile app development using Flutter.
+      Don't miss out on this opportunity and register now to secure your spot at the workshop link below.
+      Limited places
+      PS : the fees will be 10 dt for IEEE members and 15 dt for non-IEEE members
+      Registration link : https://forms.gle/8yHRFwW3AQZLtgMHA
+      We can't wait to see you all for this exciting Flutter workshop!
+      #IEEE_ISIMS_SB
+      #Great_Storie_Begin_Here</p>
+  </div>
 </ion-content>
