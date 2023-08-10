@@ -1,48 +1,57 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router' ;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss', '../app.component.scss'],
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
-  emailmsg!: string;
-  passwordmsg!: string;
+export class LoginPage implements OnInit {
+  email: string = '';
+  password: string = '';
+  emailPattern : string = '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;'
+  errormessage: string ='';
+  errormessage1: string ='';
+  errormailmessage: string ='';
+  
+  
 
-  @ViewChild('emailInput', { static: false }) emailInput!: ElementRef;
-  @ViewChild('passwordInput', { static: false }) passwordInput!: ElementRef;
 
-  passwordVisible = false;
+  constructor(private router: Router) { }
+   //is email valid
+   isValidEmail(email: string) : boolean {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+  }
+  login(){
+    
+     //check email OR password
+     if((this.email=='' )||(this.password=='')){
+      this.errormessage = 'Please check your email or password! ';
+      console.log('Please check your email or password!')
+      return;
+  }
 
-  constructor(private router: Router) {}
-
-  login() {
-    const emailValue = this.emailInput.nativeElement.value;
-    const passwordValue = this.passwordInput.nativeElement.value;
-    console.log(emailValue);
-    this.emailmsg = '';
-    this.passwordmsg = '';
-
-    // Email validation
-    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-    if (!emailPattern.test(emailValue) || emailValue === '') {
-      this.emailmsg = 'Please provide a properly formatted email address';
+     //valid email
+  if (!this.isValidEmail(this.email) ) {
+    console.log('Invalid email address.');
+    this.errormailmessage = 'Please enter a valid email address! ';
+    return;
+  }
+  
+    //check email and password
+    if(this.email=='' && this.password ==''){
+      this.errormessage1='Please enter valid email and password!';
+      console.log('Please enter valid email and password!');
+      return; 
     }
+    this.router.navigate(['/home'])
+   
+  }
 
-    if (passwordValue === '') {
-      this.passwordmsg = 'Please provide a password';
-    }
-
-    //if (passwordValue !== 'password') {this.passwordmsg = 'Please provide a password';}
-    else{
-    //login logic
-    this.router.navigate(['/tablinks']);
-}
-}
-
-togglePasswordVisibility() {
-  this.passwordVisible = !this.passwordVisible;
-}
-
+  ngOnInit() {
+  }
+  
+ 
+  
 }

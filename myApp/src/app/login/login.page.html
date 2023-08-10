@@ -1,41 +1,39 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content class="bakc" [fullscreen]="true">
+  <ion-list>
+    <div class="input">
+      <ion-label class="user">Username</ion-label>
+      <ion-input type="email" placeholder="sahnounemna@gmail.com" [(ngModel)]="email" #emailInput="ngModel" required></ion-input>
+    </div>
+    <div *ngIf="errormailmessage" class="errorMessage" >{{errormailmessage}}</div>
+    <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
     
-  <div class="displayTableCell">
-    <div class="authBlock">
-      <label >Email</label><br>
-      <div class="formGroup">
-        <input #emailInput type="text" class="formControl" placeholder="eyamaazoun@gmail.com"  required>
-        <div *ngIf="emailmsg" class="error-message" class="msg">{{ emailmsg }}</div>
-      </div>
-
-      <label>Password</label><br>
-      <div class="formGroup">
-        <input #passwordInput [type]="passwordVisible ? 'text' : 'password'"
-                              class="formControl"
-                              placeholder="*************************"
-                              required>
-        <ion-icon name="eye" class="eye-icon" (click)="togglePasswordVisibility()"></ion-icon>
-        <div *ngIf="passwordmsg" class="error-message">{{ passwordmsg }}</div>
-      </div>
-
-      <div class="forgotPassword">
-        <span routerLink="/forgot-password">Forgot your Password?</span>
-      </div>
-      
-      <input type="button" class="btnPrimary" value="Log in" (click)="login()">
-      <div class="gmailLoginButton">
-        <!-- Use the routerLink directive to navigate to the Gmail login component or page -->
-        <button class="btnGoogle">Login with Gmail</button>
-      </div>
+    <div class="input">
+      <ion-label>password</ion-label>
+      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
     </div>
-    <div class="redirectToLogin">
-      <span>Don't have an account?<span class="redirect" routerLink="/signup"> Sign Up</span></span>
-    </div>
-  </div>
+
+    <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+    <div *ngIf="errormessage1" class="errorMessage" >{{errormessage1}}</div>
+    <button class="button" (click)="login()"  >Login</button>
+    <button class="gmail-button">
+   
+      <svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 48 48">
+        <path fill="#4caf50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"></path>
+        <path fill="#1e88e5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"></path>
+        <polygon fill="#e53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"></polygon>
+        <path fill="#c62828" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"></path>
+        <path fill="#fbc02d" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"></path>
+        </svg>
+      Sign in with Gmail
+    </button>
+    
+  
+  
+  
+  
+    <p class="Account">Don't have an account?<a  [routerLink]="['/sign']" class="signup" >Sign up</a></p>
+  </ion-list>
 </ion-content>
