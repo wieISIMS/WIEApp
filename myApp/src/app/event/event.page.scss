@@ -1,0 +1,120 @@
+//colors
+$jaune:#FFD150;
+$blue:#273747;
+$white:#FAFCFF;
+$gris:#8B8B8B;
+
+ion-content {
+    --background: linear-gradient(to left bottom, #c092fa, #c59dfa, #caa8fa, #d0b3fa, #d5bef9, #dcc2f6, #e2c6f3, #e7caf0, #ecc9ea, #f1c9e4, #f3c9de, #f5c9d9);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+   
+
+.subtitle{
+    margin-left: 5%;
+    color: #2A3F58;
+    font-weight: bold;
+    font-size: 150%;
+    margin-right: 5%;
+
+  }
+.img{
+    float:left;
+    height: 30%;
+    width: 30%;
+    border-radius: 250%;
+    overflow: hidden; 
+    
+}
+
+.head{ 
+    display: flex;
+    align-items: center; 
+    flex-direction: row;
+    margin-left: 5%;
+    margin-bottom: 8%;
+    margin-top: 5%;
+}
+.text{
+    color: $gris;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.up{
+
+    width: 40%;
+    margin-left: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: rgba(255, 114, 182, 0.20);
+    color: #FF72B6;
+    font-family: Roboto;
+    font-size: 120%;
+    font-style: normal;
+    text-align: center;
+    line-height: 180%;
+ 
+}
+  .participate{
+    width: 40%;
+  
+    margin-right: 5%;
+    margin-left: 8%;
+    text-align: center;
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: #FFF;
+    color: #1E1E1E;
+    font-family: Roboto;
+    font-size: 120%;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 180%;
+
+  }
+  .class{
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+    
+
+  }
+
+    .Date{
+        font-family: Inter;
+    font-size: 135%;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 9%;
+    }
+.imgE{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+}
+.parag{
+    margin-top: 9%;
+    margin-left: 8%;
+    margin-right: 5%;
+    color: #2A3F58;
+    line-height: 170%;
+}
+.header-text{
+ 
+    text-align: center; 
+   
+    margin-right: 5%;
+    margin-left: 5%;
+    font-size: 150%;
+    font-weight: bold;
+    color: #2A3F58;
+ 
+}
+
+}
