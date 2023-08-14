@@ -101,5 +101,32 @@ def addLikeEvent(request,idEvent):
      else:
           data=json.dumps({'event not found'})
      return HttpResponse(data, content_type='application/json')
-          
+@api_view(['POST'])
+def addevent(request):
+     title=request.data.get('title')
+     description=request.data.get('description')
+     nbparticipant=request.data.get('nbparticipant')
+     photo=request.data.get('photo')
+     img=''
+     if photo:
+            format, imgstr = photo.split(';base64,')
+            ext = format.split('/')[-1]
+            image_data = base64.b64decode(imgstr)
+            img = ContentFile(image_data, name=title + '.' + ext)
+     dateEvent=request.data.get('dateEvent')
+     if dateEvent:
+          date = datetime.strptime(dateEvent, '%y-%m-%D')
+     heureEvent=request.data.get('heureEvent')
+     if heureEvent:
+          heure=datetime.strptime(heureEvent, '%H:%M:%S')
+     club=request.data.get('club')
+     existing_club = Club.objects.filter(name=club).first()
+     if existing_club:
+        new_event = Event.objects.create(title=title,description=description,nbparticipant=nbparticipant,photo=img,dateEvent=dateEvent,heureEvent=heureEvent,club=club)
+        new_event.full_clean()  
+        new_event.save()
+        data=json.dumps({'message':'event added successfully'})
+     else:
+        data=json.dumps({'message':'A club does not exist'})
+     return HttpResponse(data,content_type='application/json')
     
