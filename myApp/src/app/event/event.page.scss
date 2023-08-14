@@ -52,7 +52,7 @@ ion-content {
     flex-shrink: 0;
     border-radius: 5px;
     background: rgba(255, 114, 182, 0.20);
-    color: #FF72B6;
+    
     font-family: Roboto;
     font-size: 120%;
     font-style: normal;
@@ -60,6 +60,15 @@ ion-content {
     line-height: 180%;
  
 }
+.upcoming-events {
+    color: #FF72B6;
+    background: rgba(255, 114, 182, 0.20);
+    border-radius: 4px; // Ajoutez la border radius désirée
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5%;
+    display: inline-block; // Pour que la taille s'adapte au contenu
+  }
   .participate{
     width: 40%;
   
@@ -116,5 +125,6 @@ ion-content {
     color: #2A3F58;
  
 }
+
 
 }
