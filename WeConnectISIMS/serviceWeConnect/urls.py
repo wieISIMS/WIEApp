@@ -8,6 +8,8 @@ urlpatterns = [
     path('createClub/',views.inscriptionClub, name='createClub'),
     path('clubs/',views.OurClubs, name='OurClubs'),
     path('lastEvent/',views.getLastEvents, name='lastEvent'),
-    path('EventDetails/',views.getEventDetails, name='EventDetails')
+    path('EventDetails/<int:idEvent>',views.getEventDetails, name='EventDetails'),
+    path('AddLike/<int:idEvent>',views.addLikeEvent, name='AddLike')
+
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 

@@ -73,8 +73,8 @@ def getLastEvents(request):
      return HttpResponse(json.dumps(latest_events) ,content_type='application/json')
 
 @api_view(['GET'])
-def getEventDetails(request):
-     idEvent=request.data.get('idEvent')
+def getEventDetails(request,idEvent):
+    #  idEvent=request.data.get('idEvent')
      try:
         event = Event.objects.get(idEvent=idEvent)
      except Event.DoesNotExist:
@@ -84,10 +84,22 @@ def getEventDetails(request):
         'description':event.description,
         'nbparticipant': event.nbparticipant,
         'nbLike': event.nbLike,
-        'photo': event.photo,
-        'dateEvent': event.dateEvent,
-        'heureEvent': event.heureEvent,
+        #'dateEvent': event.timestamp,
+        #'heureEvent': event.heureEvent,
         'rate': event.rate,
         'nbRate': event.nbRate,
-        'club': event.club  }
+        'club': event.club.name  }
      return HttpResponse(json.dumps(event_data), content_type='application/json')
+
+@api_view(['GET'])
+def addLikeEvent(request,idEvent):
+     event= Event.objects.get(idEvent=idEvent)
+     if event : 
+          event.nbLike+=1
+          event.save()
+          data=json.dumps({'likes':event.nbLike})
+     else:
+          data=json.dumps({'event not found'})
+     return HttpResponse(data, content_type='application/json')
+          
+    
