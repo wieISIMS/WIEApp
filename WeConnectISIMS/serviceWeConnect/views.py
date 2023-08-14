@@ -6,6 +6,7 @@ from .models import *
 import base64
 from django.core.files.base import ContentFile   
 import uuid
+import datetime
 @api_view(['POST'])
 def inscriptionClub(request):
         name=request.data['name']
@@ -45,53 +46,3 @@ def authenticateClub(request):
                 "message": "Authentication failed"
             })
             return HttpResponse(data, content_type='application/json')
-@api_view(['GET'])
-def OurClubs(request):
-    clubs = Club.objects.all()  
-    club_list = []
-    for club in clubs:
-        club_data = {
-            'name': club.name }
-        club_list.append(club_data)
-    return HttpResponse(json.dumps(club_list) ,content_type='application/json')
-
-
-
-
-@api_view(['GET'])
-def getLastEvents(request):
-     events = Event.objects.all() 
-     sorted_events = sorted(events, key=lambda event: event.timestamp, reverse=True)
-     latest_events = []
-     for event in sorted_events:
-         event_data = {
-             'title': event.title }
-         latest_events.append(event_data)     
-     return HttpResponse(json.dumps(latest_events) ,content_type='application/json')
-
-@api_view(['GET'])
-def getEventDetails(request):
-     idEvent=request.data.get('idEvent')
-     try:
-        event = Event.objects.get(idEvent=idEvent)
-     except Event.DoesNotExist:
-        return HttpResponse(json.dumps({'error': 'Event not found'}), content_type='application/json')
-     event_data = {
-        'title': event.title,
-        'description':event.description,
-        'nbparticipant': event.nbparticipant,
-        'nbLike': event.nbLike,
-        'photo': event.photo,
-        'dateEvent': event.dateEvent,
-        'heureEvent': event.heureEvent,
-        'rate': event.rate,
-        'nbRate': event.nbRate,
-        'club': event.club  }
-     return HttpResponse(json.dumps(event_data), content_type='application/json')
-
-    
-
-
-
-
-

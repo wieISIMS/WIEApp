@@ -20,7 +20,7 @@ class Event(models.Model):
     nbparticipant = models.IntegerField(null=True)
     nbLike = models.IntegerField(blank=True, null=True)
     photo = models.ImageField(upload_to="images/events/", null=True)
-    dateEvent = models.DateTimeField(null=True)
+    dateEvent = models.DateField(null=True)
     heureEvent = models.TimeField(null=True)
     rate = models.IntegerField(blank=True, null=True)
     nbRate = models.IntegerField(blank=True, null=True)
