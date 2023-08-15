@@ -1,22 +1,23 @@
-<ion-header [translucent]="true">
-</ion-header>
 
 <ion-content class="bakc" [fullscreen]="true">
-  <ion-list>
+<div class="container">
+  <ion-label class="user">Username</ion-label>
     <div class="input">
-      <ion-label class="user">Username</ion-label>
       <ion-input type="email" placeholder="sahnounemna@gmail.com" [(ngModel)]="email" #emailInput="ngModel" required></ion-input>
-    </div>
-    <div *ngIf="errormailmessage" class="errorMessage" >{{errormailmessage}}</div>
-    <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
-    
-    <div class="input">
-      <ion-label>password</ion-label>
-      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errormailmessage" class="errorMessage" >{{errormailmessage}}</div>
+      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
     </div>
 
-    <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
-    <div *ngIf="errormessage1" class="errorMessage" >{{errormessage1}}</div>
+    
+    <ion-label>password</ion-label>
+    <div class="input">
+      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+      <div *ngIf="errormessage1" class="errorMessage" >{{errormessage1}}</div>
+    </div>
+
+    
+  </div>
     <button class="button" (click)="login()"  >Login</button>
     <button class="gmail-button">
    
@@ -30,10 +31,5 @@
       Sign in with Gmail
     </button>
     
-  
-  
-  
-  
-    <p class="Account">Don't have an account?<a  [routerLink]="['/sign']" class="signup" >Sign up</a></p>
-  </ion-list>
+   <p class="Account">Don't have an account?<a  [routerLink]="['/sign']" class="signup" >Sign up</a></p>
 </ion-content>

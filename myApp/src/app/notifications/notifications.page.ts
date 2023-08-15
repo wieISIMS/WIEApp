@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationsPage implements OnInit {
   notificationsList: any[] = []; 
+  //notificationsList: any[] = [1,2,3]; 
+
   constructor() { }
 
   ngOnInit() {
