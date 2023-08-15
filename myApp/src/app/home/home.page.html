@@ -1,20 +1,104 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-buttons slot="start">
+  <ion-back-button defaultHref="/previous-page"></ion-back-button>
+</ion-buttons>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="fixed">
+  <div class="header">
+    
+    <div class="info">
+      <h3>Hello Anis!</h3>
+      <ion-avatar class="img">
+        <ion-img src="../../assets/anis.JPG"></ion-img>
+      </ion-avatar>
+    </div>
+    
+  </div>
+  <div>
+    <ion-searchbar placeholder="Search events" class="custom-searchbar"></ion-searchbar>
+  </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+</div>
+  <div class="events">
+    <h4>Last Events</h4>
+    <div class="horizontal-scroll">
+
+    <ion-card class="card1">
+      <div class="img-container">
+          <img src="../../assets/Ras.jpg" />
+      </div>
+      <ion-label>
+        <h1>TSYP X</h1>
+      </ion-label>
+      <div class="card-description">
+        <p>10Th IEEE Tunisian Students and Young Professionals TSYP Congress organized by IEEE Esprit Student Branch.</p>
+      </div>
+
+    </ion-card>
+
+    <ion-card class="card1">
+      <div class="img-container">
+          <img src="../../assets/Picnic.jpg" />
+      </div>
+      <ion-label>
+        <h1>Cleaning day</h1>
+        <div class="likes">
+          <ion-icon name="heart"></ion-icon>
+          <p>200</p>
+        </div>
+      </ion-label>
+    </ion-card>
+
+    <ion-card class="card1">
+      <div class="img-container">
+          <img src="../../assets/Picnic.jpg" />
+      </div>
+      <ion-label>
+        <h1>Cleaning day</h1>
+        <div class="likes">
+          <ion-icon name="heart"></ion-icon>
+          <p>200</p>
+        </div>
+      </ion-label>
+    </ion-card>
+
+  </div>
+    <h4>Latest</h4>
+    <ion-card class="card2">
+      <div class="img-container">
+          <img src="../../assets/Picnic.jpg" />
+      </div>
+      <ion-label>
+        <div>
+        <h1>Cleaning day</h1>
+        <p class="upcoming-events">Upcoming Event</p>
+        </div>
+        <div class="likes">
+          <ion-icon name="heart"></ion-icon>
+          <p>200</p>
+        </div>
+        
+      </ion-label>
+    </ion-card>
+
+
+    <ion-card class="card2">
+      <div class="img-container">
+          <img src="../../assets/Picnic.jpg" />
+      </div>
+      <ion-label>
+        <div>
+        <h1>Cleaning day</h1>
+        <p class="upcoming-events">Upcoming Event</p>
+        </div>
+        <div class="likes">
+          <ion-icon name="heart"></ion-icon>
+          <p>200</p>
+        </div>
+        
+      </ion-label>
+    </ion-card>
+
+
   </div>
 </ion-content>
