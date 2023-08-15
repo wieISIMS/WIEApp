@@ -13,10 +13,11 @@
   <!--main_buttons-->
   <h3>Mariem Mnif</h3>
 <div class="btnp">
-  <ion-button (click)="showEvents()" fill="clear" [ngClass]="{'active-button': showEventsPage, 'button-with-margin': true}">events</ion-button>
-  <ion-button (click)="showClubs()" fill="clear" [ngClass]="{'active-button': showClubsPage, 'button-with-margin': true}">clubs</ion-button>
+  <div class="btnp">
+    <ion-button (click)="showEvents()" fill="clear" [ngClass]="{'active-button': showEventsPage, 'button-with-margin': true, 'underline-on-click': showEventsPage}">events</ion-button>
+    <ion-button (click)="showClubs()" fill="clear" [ngClass]="{'active-button': showClubsPage, 'button-with-margin': true, 'underline-on-click': showClubsPage}">clubs</ion-button>
+  </div>   
 </div>
- 
   <!--events-->
   <div class="cards_container" *ngIf="showEventsPage">
     <div class="text">
@@ -88,7 +89,7 @@
 </div>
 </div>
 <!--clubs-->
-<div class="cards_container2" *ngIf="showClubsPage">
+<div class="cards_container" *ngIf="showClubsPage">
   <div class="text">
     <h5>clubs</h5>
   </div>
