@@ -3,8 +3,15 @@
   <ion-icon name="arrow-back"></ion-icon>
 </ion-buttons>
 <ion-buttons class="icon2">
-  <ion-icon name="settings"></ion-icon>
+  <ion-icon name="settings" (click)="toggleSettingsMenu()"></ion-icon>
 </ion-buttons>
+
+<div id="settings-menu" [ngClass]="{ 'hidden': !isSettingsMenuOpen }">
+  <ion-list>
+    <ion-item  (click)="openSettings()">Settings</ion-item>
+    <ion-item (click)="signOut()">Sign Out</ion-item>
+  </ion-list>
+</div>
 <!--Avatar-->
 <ion-content [fullscreen]="true">
   <ion-avatar class="avatar">

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ActivitiesPage implements OnInit {
   showEventsPage: boolean = true;
   showClubsPage: boolean = false;
+  isSettingsMenuOpen = false;
 
   constructor() { }
 
@@ -24,5 +25,16 @@ export class ActivitiesPage implements OnInit {
     this.showClubsPage = true;
   }
 
+  toggleSettingsMenu() {
+    this.isSettingsMenuOpen = !this.isSettingsMenuOpen;
+  }
 
+  openSettings() {
+    // Code pour ouvrir les paramètres
+  }
+
+  signOut() {
+    // Code pour déconnecter l'utilisateur
+  }
 }
+
