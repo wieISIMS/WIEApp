@@ -1,3 +1,8 @@
+ion-content {
+  --background: linear-gradient(to left bottom, #c092fa, #c59dfa, #caa8fa, #d0b3fa, #d5bef9, #dcc2f6, #e2c6f3, #e7caf0, #ecc9ea, #f1c9e4, #f3c9de, white);
+  background: var(--background);
+}
+
 .avatar{
     margin-left: auto;
     margin-right: auto;
@@ -14,6 +19,7 @@ h3{
 .text{
     position: relative; /* Positionner le conteneur absolument */
     left: 18px; /* Ajuster la position horizontale selon vos besoins */
+    color: #000000;
 }
 .btnp{
     display: flex;
@@ -37,7 +43,7 @@ h4{
     margin-bottom: 0;
 }
 .cards_container{
-    background-color: rgb(244, 186, 224);
+    background-color: rgb(255, 255, 255);
     padding-top: 3%;
     border-radius: 20px 20px 0 0; /* Paramètres du border radius (arrondi en haut) */
   overflow: hidden; /* Pour masquer le contenu dépassant de la bordure arrondie */

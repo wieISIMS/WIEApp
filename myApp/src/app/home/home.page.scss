@@ -157,6 +157,29 @@ ion-content {
           overflow-y: hidden;
       }
     }
-    
+  .card{
+      display: flex;
+      align-items: center;
+      border-radius: 10px;
+      padding: 4%;
+      background-color: rgba(208, 203, 203, 0.901);
+      margin: 10px;
+      margin-bottom: 20px;
+  }
+  .img-container{
+    margin-right: 5%;
+    position: relative;
+}
+.images{
+  width: 100px; 
+  border-radius: 20%;
+}
+.icon3{
+  font-size: 25px; 
+}
+.align{
+  display: flex; 
+  align-items: center;
+}
     
 }
