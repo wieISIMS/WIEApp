@@ -7,6 +7,7 @@ import base64
 from django.core.files.base import ContentFile   
 import uuid
 import datetime
+from .serializers import EventSerializer
 @api_view(['POST'])
 def inscriptionClub(request):
         name=request.data['name']
@@ -114,19 +115,23 @@ def addevent(request):
             image_data = base64.b64decode(imgstr)
             img = ContentFile(image_data, name=title + '.' + ext)
      dateEvent=request.data.get('dateEvent')
-     if dateEvent:
-          date = datetime.strptime(dateEvent, '%y-%m-%D')
+    # if dateEvent:
+          #date = datetime.strptime(dateEvent, '%y-%m-%d')
      heureEvent=request.data.get('heureEvent')
-     if heureEvent:
-          heure=datetime.strptime(heureEvent, '%H:%M:%S')
-     club=request.data.get('club')
-     existing_club = Club.objects.filter(name=club).first()
+     #if heureEvent:
+          #heure=datetime.strptime(heureEvent, '%H:%M:%S')
+     idclub=request.data.get('club')
+     existing_club = Club.objects.filter(idClub=idclub).first()
      if existing_club:
-        new_event = Event.objects.create(title=title,description=description,nbparticipant=nbparticipant,photo=img,dateEvent=dateEvent,heureEvent=heureEvent,club=club)
+        new_event = Event.objects.create(title=title,description=description,nbparticipant=nbparticipant,photo=img,dateEvent=dateEvent,heureEvent=heureEvent,club=existing_club)
         new_event.full_clean()  
         new_event.save()
         data=json.dumps({'message':'event added successfully'})
      else:
         data=json.dumps({'message':'A club does not exist'})
      return HttpResponse(data,content_type='application/json')
-    
+@api_view(['GET'])
+def searchEvent(request,title):
+     events = Event.objects.filter(title__icontains=title)
+     serializer = EventSerializer(events, many=True)
+     return HttpResponse(serializer.data,content_type='application/json')
