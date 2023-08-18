@@ -1,4 +1,16 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+interface CardEvent {
+  idE: any;
+  name:any;
+  desc:any
+}
+
+interface CardClub {
+  idC: any;
+  nameC:any;
+  nbMembers:any
+}
 
 @Component({
   selector: 'app-home',
@@ -7,6 +19,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  profile() {
+    this.router.navigate(['/activities']);
+  }
+
 
 }
