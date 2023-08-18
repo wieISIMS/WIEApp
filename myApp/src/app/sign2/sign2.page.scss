@@ -2,18 +2,21 @@ ion-content {
   --background: linear-gradient(to left bottom, #e6d4ff, #ebd8ff, #f0dcff, #f5e0ff, #f4e0ff, #f9e1ff, #fee3ff, #ffe5ff);
 }
 .container{
-  margin-top: 20%;
+  margin-top: 40%;
   max-width: 95%;
   margin-left: auto;
   margin-right: auto;
+  align-items: center;
 }
 .photo{
-  
+  text-align: center;
   margin: 20px;
+
 }
 ion-label{
   font-family: "Poppins", sans-serif;
-  font-size: 15px;
+  margin-bottom: 25px;
+  font-size: 140%;
   font-weight: bolder;
   color: black;
   margin-left: 10px;
@@ -66,7 +69,7 @@ ion-input {
 .button{
   background-color: #c092fa!important;
   font-family: "Poppins", sans-serif;
-  font-size: 20px;
+  font-size: 140%;
   font-weight: bolder;
   border-radius: 25px;
   width:95%;
@@ -75,7 +78,7 @@ ion-input {
   display: block;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin-top: 10px;
+  margin-top: 40px;
 }
 .gmail-icon {
   margin-right: 7px;
@@ -92,14 +95,14 @@ ion-input {
   margin-right: auto;
   padding-top: 10px;
   padding-bottom: 15px;
-  margin-top: 8px;
+  margin-top: 15px;
 
   cursor: pointer;
 
   text-align: center;
   color: #838383;
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  font-size: 130%;
   font-weight: bold;
 }
 
@@ -110,21 +113,15 @@ ion-input {
     color:#c092fa ;
     margin-left: 2px;
     text-decoration: none;
+    font-size: 1rem;
   }
 
   .Account {
     text-align: center;
     font-family: "Poppins", sans-serif;
-    font-size: 0.75rem;
+    font-size: 1rem;
     line-height: 1rem;
     color: #838383;
+    margin-top: 25px;
   }
   
-
-
-
-
-
-
-
-
