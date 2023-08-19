@@ -17,6 +17,7 @@ ion-label{
   font-size: 140%;
 }
 ion-input {
+
   // Remove default border and box shadow
   --border-width: 0;
   --padding-start: 0;
@@ -47,7 +48,7 @@ ion-input {
 .input{
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
+  margin-bottom: 12%;
   margin-top: 5px;
   border: none;
   border-radius: 13px;
@@ -74,7 +75,7 @@ ion-input {
   display: block;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin-top: 40px;
+  margin-top: 20%;
 
 }
 
@@ -93,7 +94,7 @@ ion-input {
   margin-right: auto;
   padding-top: 10px;
   padding-bottom: 15px;
-  margin-top: 15px;
+  margin-top: 5%;
 
   cursor: pointer;
 
@@ -102,6 +103,7 @@ ion-input {
   font-family: "Poppins", sans-serif;
   font-size: 130%;
   font-weight: bold;
+  margin-bottom: 25%;
 }
 
 
@@ -120,7 +122,8 @@ ion-input {
     font-size: 1rem;
     line-height: 1rem;
     color: #838383;
-    margin-top: 25px;
+    
+
   }
   
     
