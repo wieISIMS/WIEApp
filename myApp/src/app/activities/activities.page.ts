@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-activities',
@@ -10,8 +11,14 @@ export class ActivitiesPage implements OnInit {
   showClubsPage: boolean = false;
   isSettingsMenuOpen = false;
 
-
-    constructor(private router: Router) {}
+    
+  constructor(
+    private navCtrl: NavController,
+    private router: Router
+  ) {}
+  goBack() {
+    this.navCtrl.back(); // Cette ligne effectue le retour à la page précédente
+  }
 
     update() {
       this.router.navigate(['/update-info']);
