@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-activities',
   templateUrl: './activities.page.html',
@@ -10,7 +10,13 @@ export class ActivitiesPage implements OnInit {
   showClubsPage: boolean = false;
   isSettingsMenuOpen = false;
 
-  constructor() { }
+
+    constructor(private router: Router) {}
+
+    update() {
+      this.router.navigate(['/update-info']);
+    
+   }
 
   ngOnInit() {
   }

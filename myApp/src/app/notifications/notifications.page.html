@@ -2,7 +2,6 @@
 
 <ion-content [fullscreen]="true" >
   <ng-container *ngIf="notificationsList.length > 0; else noNotifications">
-  <ion-back-button defaultHref="/previous-page" class="flash" ></ion-back-button>
   <h1 class="title">Notifications</h1>
   <ion-card class="ic">
     <ion-card-content>
@@ -127,7 +126,6 @@
   </ion-card> 
 </ng-container>
 <ng-template #noNotifications>
-  <ion-back-button defaultHref="/previous-page" class="flash" ></ion-back-button>
   <h1 class="title1">No Notifications</h1>
   <h6 style="color:gray;font-weight:lighter; font-size: 12px;">You have no notifications at this time</h6>
   <img src="../../assets/notif.png" />
