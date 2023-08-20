@@ -1,31 +1,33 @@
-<ion-buttons slot="start">
-      <ion-back-button defaultHref="/previous-page"> 
-      </ion-back-button>
-      <ion-title class="title" style="text-align: center; font-size: 150%;
-      font-weight: bold;">Events</ion-title>
+<ion-buttons class="icon1" slot="start">
+  <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
 </ion-buttons>
-<ion-content [fullscreen]="true">
 
+<ion-content [fullscreen]="true">
+  
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>
+
+ 
   <div class="head">
   <ion-img [src]="'assets/img/default.png'" class="img"></ion-img>
   <div class="header-text">
-    IEEE ISIMS Student Branch
+    {{group.club}}
   </div>
-  </div>
-  <div class="subtitle" >IAS Tunisia Annual Meeting
   </div>
 
+
+  <div class="subtitle" >IAS Tunisia Annual Meeting</div>
   <div class="class">
-  <p class="upcoming-events">upcoming event</p>
-  <div class="participate">Participate</div>
-</div>
-  
-    <div>
-      <p class="Date">Date :  12 aout 2022  </p>
-    </div>
-  <div>
-    <ion-img [src]="'assets/img/flutter.png'" class="imgE"></ion-img>
+    <p class="upcoming-events">upcoming event</p>
+    <div class="participate">Participate</div>
   </div>
+  <p class="Date">Date :  12 aout 2022  </p>
+
+  <ion-img [src]="'assets/img/flutter.png'" class="imgE"></ion-img>
+  
   <div class="parag">
     <p>We are excited to announce a two-session Flutter workshop that will be taking place at the Djagora FabLab. This workshop is designed for anyone who wants to learn more about Flutter which is one of the best solutions for Android and IOS app development.
       The 7 Hours workshop will be divided into two sessions. The first session will be on Saturday, February 25th from 2pm to 5pm, and the second session will be on Sunday, February 26th from 9am to 1pm.
