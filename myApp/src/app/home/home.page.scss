@@ -190,8 +190,106 @@ ion-content {
 }
     
 }
+
 .cards2{
   display: inline;
   
+
+}
+
+.horizontal-scroll{
+  /* Background styles */
+  margin: 5px;
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: -1;
+}
+
+.element {
+  flex-shrink: 0;
+  position: absolute;
+  filter: blur(100px);
+}
+
+.element-2 {
+  width: 990px;
+  height: 703px;
+  background: conic-gradient(from 180deg at 50% 50%, rgba(255, 114, 182, 0.40) 51.97910249233246deg, rgba(245, 201, 217, 0.00) 136.35732650756836deg, rgba(221, 204, 248, 0.40) 172.19358086585999deg, rgba(192, 146, 250, 0.40) 336.5046429634094deg);
+  left: -218px;
+  top: -92px;
+}
+
+.element-1 {
+  width: 563.833px;
+  height: 670.723px;
+  background: conic-gradient(from 180deg at 45.26% 41.97%, rgba(168, 228, 255, 0.50) 110.62499642372131deg, rgba(229, 220, 252, 0.52) 191.21399402618408deg, #E6DCFC 191.25deg, rgba(249, 227, 235, 0.49) 307.5000071525574deg);
+  left: -48.68px;
+  top: 569px;
+}
+
+.element-3 {
+  width: 345px;
+  height: 202px;
+  border-radius: 345px;
+  background: #CEBBFA;
+  left: 178px;
+  top: -67px;
+}
+
+/* Avatar styles */
+.im {
+  width: 70px;
+  height: 70px;
+}
+
+/* Card styles */
+.ic {
+  flex: 0 0 auto;
+  display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+  border-radius: 18px;
+  height: 105px;
+  width: 250px;
+  margin: 5px;
+  margin-top: 17px;
+  background-color: white;
+}
+
+/* Title styles */
+.title {
+  color: #000000;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.title1 {
+  color: #000000;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+  font-size: 30px;
+}
+
+/* General styling for labels */
+div {
+  display: flex;
+  margin-top: 2px;
+}
+
+ion-label {
+  margin-left: 15px;
+}
 
 }
