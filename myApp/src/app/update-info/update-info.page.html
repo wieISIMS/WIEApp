@@ -1,30 +1,25 @@
 
-
+<ion-buttons class="icon1" slot="start">
+  <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+</ion-buttons>
 <ion-content [fullscreen]="true" >
-  <ion-back-button defaultHref="/previous-page" class="flash" ></ion-back-button>
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>  
   <ion-avatar class="imag">
   <ion-img  src="../assets/img/ang.jpeg"></ion-img>
-  <ion-icon class="ic" name="camera-outline"></ion-icon>
 </ion-avatar>
-<ion-chip class="ion-padding">
-    <label class="line1" >Name</label>
-    <label class="line2" ><ion-input type="text" placeholder="Your Name"></ion-input></label>
-  </ion-chip>
-  <ion-chip class="ion-padding">
-    <label class="line1" >Email</label>
-    <label class="line2" ><ion-input type="Email" placeholder="Your Email"></ion-input></label>
-  </ion-chip>
-  <ion-chip class="ion-padding">
-    <label class="line1" >Phone Number</label>
-    <label class="line2" ><ion-input type="Number" placeholder="Your Number"></ion-input></label>
-  </ion-chip>
-  <ion-chip class="ion-padding">
-    <label class="line1" >Password</label>
-    <label class="line2" ><ion-input type="Password" placeholder="*******"></ion-input></label>
-  </ion-chip>
-  <ion-chip class="ion-padding">
-    <label class="line1" >Confirm your Password</label>
-    <label class="line2" ><ion-input type="Password" placeholder="*******"></ion-input></label>
-  </ion-chip>
-  <ion-button class="button-native" (click)="onUpdateInfoClick()">Update</ion-button>
+<p class="changePic" (click)="changePic()" >Change Picture</p>
+
+
+<div class="container">
+    <div class="input">
+      <ion-label>Password</ion-label>
+      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+    </div>
+  </div>
+  <button class="button" (click)="onUpdateInfoClick()">Update</button>
 </ion-content>
