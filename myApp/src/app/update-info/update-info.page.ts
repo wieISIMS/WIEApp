@@ -10,7 +10,8 @@ import { NavController } from '@ionic/angular';
 export class UpdateInfoPage implements OnInit {
   errormessage: string ='';
   password: string = '';
-
+  confirmPassword: string = '';
+  phoneNumber: string = '';
   constructor(    
     private navCtrl: NavController,
     private alertController: AlertController) { }

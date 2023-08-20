@@ -8,17 +8,22 @@
 
 <div id="settings-menu" [ngClass]="{ 'hidden': !isSettingsMenuOpen }">
   <ion-list>
-    <ion-item  (click)="update()">Profile</ion-item>
-    <ion-item (click)="signOut()">Sign Out</ion-item>
+    <ion-item class="options" (click)="update()">Profile</ion-item>
+    <ion-item class="options" (click)="signOut()">Sign Out</ion-item>
   </ion-list>
 </div>
 <!--Avatar-->
 <ion-content [fullscreen]="true">
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>
   <ion-avatar class="avatar">
     <ion-img  src="../../assets/mimi.jpg"></ion-img>
   </ion-avatar>
   <!--main_buttons-->
-  <h3>Mariem Mnif</h3>
+  <h3 class="user">Mariem Mnif</h3>
 <div class="btnp">
   <div class="btnp">
     <ion-button (click)="showEvents()" fill="clear" [ngClass]="{'active-button': showEventsPage, 'button-with-margin': true, 'underline-on-click': showEventsPage}">events</ion-button>
@@ -28,7 +33,7 @@
   <!--events-->
   <div class="cards_container" *ngIf="showEventsPage">
     <div class="text">
-      <h5>events</h5>
+      <h5>Events</h5>
     </div>
     <div class="scrollable-cards">
       <!--card1-->
@@ -57,48 +62,13 @@
       </h2>
     </ion-label>
 </ion-card>
-<!--card3-->
-<ion-card  class="card">
-  <div class="img-container">
-     <ion-thumbnail slot="start">
-      <img src="../../assets/Picnic.jpg"  class="images" />
-    </ion-thumbnail>
-  </div>
-    <ion-label>
-      <p>IEEE Wie Chapter</p>
-      <h2>Our affinity group organize a cleaning day this Sunday in our institute</h2>
-    </ion-label>
-</ion-card> 
-<!--card4-->
-<ion-card  class="card">
-  <div class="img-container">
-     <ion-thumbnail slot="start">
-      <img src="../../assets/Picnic.jpg"  class="images" />
-    </ion-thumbnail>
-  </div>
-    <ion-label>
-      <p>IEEE Wie Chapter</p>
-      <h2>Our affinity group organize a cleaning day this Sunday in our institute</h2>
-    </ion-label>
-</ion-card>
-<!--card5-->
-<ion-card  class="card">
-  <div class="img-container">
-     <ion-thumbnail slot="start">
-      <img src="../../assets/Picnic.jpg"  class="images" />
-    </ion-thumbnail>
-  </div>
-    <ion-label>
-      <p>IEEE Wie Chapter</p>
-      <h2>Our affinity group organize a cleaning day this Sunday in our institute</h2>
-    </ion-label>
-</ion-card> 
+
 </div>
 </div>
 <!--clubs-->
 <div class="cards_container" *ngIf="showClubsPage">
   <div class="text">
-    <h5>clubs</h5>
+    <h5>Clubs</h5>
   </div>
    <!--card1-->
    <ion-card  class="card">
