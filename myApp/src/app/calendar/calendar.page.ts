@@ -7,40 +7,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarPage implements OnInit {
 
-  today!: Date;
-  days!: any[]; // Replace 'any' with a specific type if available
-  events!: any[]; // Replace 'any' with a specific type if available
+  currentDate: Date = new Date();
+  selectedDate: Date = new Date();
+  events: string[] = [];
+  weekdays: { name: string; date: Date }[] = [];
 
-  constructor() { }
+  constructor() {
+    this.initializeWeekdays();
+  }
 
   ngOnInit() {
-    // Initialize the 'today' variable with the current date
-    this.today = new Date();
+  }
+  private initializeWeekdays() {
+    const today = new Date(this.currentDate);
+    const dayOfWeek = today.getDay();
+    const sunday = new Date(today);
+    sunday.setDate(today.getDate() - dayOfWeek);
+  
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(sunday);
+      date.setDate(sunday.getDate() + i);
+      const dayName = date.toLocaleDateString('en-US', { weekday: 'short' }).charAt(0);
+      this.weekdays.push({ name: dayName, date: date });
+    }
+  }
 
-    // Initialize the 'days' variable with an array of day objects
-    // You need to define the 'days' array content according to your requirements
-    this.days = [
-      { date: new Date(), label: 'Day 1' },
-      { date: new Date(), label: 'Day 2' },
-      // Add more day objects as needed
-    ];
-
-    // Initialize the 'events' variable with an array of event objects
-    // You need to define the 'events' array content according to your requirements
+  getEventsForDay(day: { name: string; date: Date }) {
+    // Mocking events for demonstration purposes.
     this.events = [
-      { title: 'Event 1', start: new Date(), end: new Date() },
-      { title: 'Event 2', start: new Date(), end: new Date() },
-      // Add more event objects as needed
+      `Event 1 on ${day.date.toDateString()}`,
+      `Event 2 on ${day.date.toDateString()}`,
+      `Event 3 on ${day.date.toDateString()}`,
     ];
+    this.selectedDate = day.date;
   }
 
-  onDayButtonClick(date: Date) {
-    // Implement the functionality for when a day button is clicked
-    console.log('Day button clicked:', date);
-  }
-
-  onEventClick(event: any) {
-    // Implement the functionality for when an event is clicked
-    console.log('Event clicked:', event);
-  }
 }
