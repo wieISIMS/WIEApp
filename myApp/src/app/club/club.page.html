@@ -1,8 +1,12 @@
-<ion-buttons slot="start">
-  <ion-back-button defaultHref="/previous-page"></ion-back-button>
+<ion-buttons class="icon1" slot="start">
+  <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
 </ion-buttons>
-
 <ion-content [fullscreen]="true">
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>
   <div class="fixed">
   <div class="header">
     <ion-avatar class="log">
@@ -18,65 +22,47 @@
   
   <div class="stats">
     <div>
-      <h3>25</h3>
+      <h3>{{nbMembers}}</h3>
       <p>Members</p>
     </div>
     <div>
-      <h3>30</h3>
+      <h3>{{nbEvents}}</h3>
       <p>Events</p>
     </div>
   </div>
 </div>
   <div class="events">
     <h4>Best Events</h4>
+
     <div class="horizontal-scroll">
-
-    <ion-card class="card1">
+    <ion-card class="card1" *ngFor="let group of BestEventList" (click)="goToEvent(group)">
       <div class="img-container">
-          <img src="../../assets/Picnic.jpg" />
+          <img src="{{group.image}}" />
       </div>
       <ion-label>
-        <h1>Cleaning day</h1>
+        <h1>{{group.title}}</h1>
       </ion-label>
     </ion-card>
-
-    <ion-card class="card1">
-      <div class="img-container">
-          <img src="../../assets/Picnic.jpg" />
-      </div>
-      <ion-label>
-        <h1>Cleaning day</h1>
-      </ion-label>
-    </ion-card>
-
   </div>
+
     <h4>Latest</h4>
-    <ion-card class="card2">
+    <ion-card class="card2" *ngFor="let group of LatestEventList" (click)="goToEvent(group)">
       <div class="img-container">
-          <img src="../../assets/Picnic.jpg" />
+          <img src="{{group.image}}" />
       </div>
       <ion-label>
         <div>
-        <h1>Cleaning day</h1>
-        <p class="upcoming-events">Upcoming Event</p>
+        <h1>{{group.title}}</h1>
+        <p class="upcoming-events" *ngIf="isUpcomingEvent(group.date); else finished">Upcoming Event</p>
+    <ng-template #finished>
+      <p class="finished-events">Finished Event</p>
+    </ng-template>
         </div>
         
       </ion-label>
     </ion-card>
 
 
-    <ion-card class="card2">
-      <div class="img-container">
-          <img src="../../assets/Picnic.jpg" />
-      </div>
-      <ion-label>
-        <div>
-        <h1>Cleaning day</h1>
-        <p class="upcoming-events">Upcoming Event</p>
-        </div>
-        
-      </ion-label>
-    </ion-card>
 
 
   </div>
