@@ -155,6 +155,56 @@ def getLatestNews(request):
      return HttpResponse(event_list,content_type='application/json')
 
 @api_view(['GET'])
+def login(request,username,password):
+     try:
+        member=Membre.objects.get(userName=username,password=password)
+        if member is not None:
+            data = {
+                    'id': member.idMember,
+                    'firstName': member.firstName,
+                    'photo': member.photo.url if member.photo else None
+                }
+     except Membre.DoesNotExist:
+                data=json.dumps({'message':'member not found'})
+     return HttpResponse(data,content_type='application/json')
+
+@api_view(['GET'])
+def getAllNotif(request,idMember):
+    try:
+        member = Membre.objects.get(idMember=idMember)
+        print(member.idMember)
+        clubs = member.clubs.all()
+        if clubs is not None:
+            club_data = []
+            for club in clubs:
+                club_notifications = Notification.objects.filter(club=club)
+            
+                notifications_data = []
+                for notification in club_notifications:
+                    if (notification.timestamp.hour)>0:
+                         duree=str(notification.timestamp.hour)+' heures'
+                    else:
+                         if(notification.timestamp.min)>0:
+                            duree=str(notification.timestamp.min)+' min'
+                         else:
+                              duree=str(notification.timestamp.second)+' secondes'
+                    notifications_data.append({
+                    'title':notification.titre,
+                    'timestamp': duree
+                        })
+                if notifications_data:
+                    club_data.append({
+                        'nameclub': club.name,
+                        'photo': club.photo.url if member.photo else None,
+                        'notifications': notifications_data
+                    })
+            data=club_data
+    except Membre.DoesNotExist:
+        data=json.dumps({'message':'member not found'})
+    return HttpResponse(data,content_type='application/json')
+    
+
+@api_view(['GET'])
 def verifParticipate(request,idEvent,idMember):
      return HttpResponse(content_type='application/json')
 

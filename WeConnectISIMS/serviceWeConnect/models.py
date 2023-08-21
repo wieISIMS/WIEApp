@@ -45,17 +45,20 @@ class ClandrierClub(models.Model):
 
 
 class Membre(models.Model):
-    idMembre = models.AutoField(primary_key=True, unique=True, blank=True)
-    clubs = models.ManyToManyField("Club")
+    idMember = models.AutoField(primary_key=True, unique=True, blank=True)
     email= models.CharField(max_length=100, null=True)
     userName = models.CharField(max_length=100,null=True)
     firstName = models.CharField(max_length=100,null=True)
     familyName = models.CharField(max_length=100,null=True)
     photo = models.ImageField(upload_to="images/clubs/")
-    password = models.CharField(max_length=500)
+    password = models.CharField(max_length=500,null=True)
+    clubs = models.ForeignKey(Club, on_delete=models.CASCADE, blank=True, null=True)
     idCland = models.ForeignKey(Calandrier, on_delete=models.CASCADE, blank=True, null=True)
+    def set_empty_clubs(sender, instance, **kwargs):
+        if kwargs['created']:
+            instance.clubs.clear()
     def __str__(self):
-        return str(self.name)
+        return str(self.userName)
 
 
 class ClandrierMembre(models.Model):
