@@ -1,12 +1,20 @@
 from django.db import models
 
 
+class Calandrier(models.Model):
+    idCland = models.AutoField(primary_key=True, unique=True, blank=True)
+    events = models.ManyToManyField("Event")
+    def __str__(self):
+        return str(self.idCland)
 class Club(models.Model):
     idClub = models.AutoField(primary_key=True, unique=True, blank=True)
     name = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=500, null=True)
     password = models.CharField(max_length=500, null=True)
     photo = models.ImageField(upload_to="images/clubs/", null=True)
+    nbEvents=models.IntegerField(null=True)
+    nbMembers=models.IntegerField(null=True)
+    idCland = models.ForeignKey(Calandrier, on_delete=models.CASCADE, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -18,12 +26,9 @@ class Event(models.Model):
     title = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=500, null=True)
     nbparticipant = models.IntegerField(null=True)
-    nbLike = models.IntegerField(blank=True, null=True)
     photo = models.ImageField(upload_to="images/events/", null=True)
     dateEvent = models.DateField(null=True)
     heureEvent = models.TimeField(null=True)
-    rate = models.IntegerField(blank=True, null=True)
-    nbRate = models.IntegerField(blank=True, null=True)
     club = models.ForeignKey(Club, on_delete=models.CASCADE, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -35,7 +40,6 @@ class ClandrierClub(models.Model):
     idCland = models.AutoField(primary_key=True, unique=True, blank=True)
     events = models.ManyToManyField("Event", blank=True)
     club = models.ForeignKey(Club, on_delete=models.CASCADE, blank=True, null=True)
-
     def __str__(self):
         return str(self.idCland)
 
@@ -43,10 +47,13 @@ class ClandrierClub(models.Model):
 class Membre(models.Model):
     idMembre = models.AutoField(primary_key=True, unique=True, blank=True)
     clubs = models.ManyToManyField("Club")
-    name = models.CharField(max_length=100)
+    email= models.CharField(max_length=100, null=True)
+    userName = models.CharField(max_length=100,null=True)
+    firstName = models.CharField(max_length=100,null=True)
+    familyName = models.CharField(max_length=100,null=True)
     photo = models.ImageField(upload_to="images/clubs/")
     password = models.CharField(max_length=500)
-
+    idCland = models.ForeignKey(Calandrier, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return str(self.name)
 
@@ -55,7 +62,6 @@ class ClandrierMembre(models.Model):
     idCland = models.AutoField(primary_key=True, unique=True, blank=True)
     events = models.ManyToManyField("Event", blank=True)
     membre = models.ForeignKey(Membre, on_delete=models.CASCADE, blank=True, null=True)
-
     def __str__(self):
         return str(self.idCland)
 
@@ -63,9 +69,12 @@ class ClandrierMembre(models.Model):
 class Notification(models.Model):
     idNotification = models.AutoField(primary_key=True, unique=True, blank=True)
     titre = models.CharField(max_length=100)
-    membre = models.ForeignKey(Membre, on_delete=models.CASCADE)
+    club = models.ForeignKey(Club, on_delete=models.CASCADE, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    categorie = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.titre)
+ 
+
+
+

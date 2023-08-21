@@ -6,8 +6,7 @@ from .models import *
 import base64
 from django.core.files.base import ContentFile   
 import uuid
-import datetime
-from .serializers import EventSerializer
+from datetime import datetime
 @api_view(['POST'])
 def inscriptionClub(request):
         name=request.data['name']
@@ -92,16 +91,6 @@ def getEventDetails(request,idEvent):
         'club': event.club.name  }
      return HttpResponse(json.dumps(event_data), content_type='application/json')
 
-@api_view(['GET'])
-def addLikeEvent(request,idEvent):
-     event= Event.objects.get(idEvent=idEvent)
-     if event : 
-          event.nbLike+=1
-          event.save()
-          data=json.dumps({'likes':event.nbLike})
-     else:
-          data=json.dumps({'event not found'})
-     return HttpResponse(data, content_type='application/json')
 @api_view(['POST'])
 def addevent(request):
      title=request.data.get('title')
@@ -130,8 +119,45 @@ def addevent(request):
      else:
         data=json.dumps({'message':'A club does not exist'})
      return HttpResponse(data,content_type='application/json')
+
+
 @api_view(['GET'])
 def searchEvent(request,title):
-     events = Event.objects.filter(title__icontains=title)
-     serializer = EventSerializer(events, many=True)
-     return HttpResponse(serializer.data,content_type='application/json')
+     events = Event.objects.filter(title=title) if title else []
+     event_list = []
+     for event in events:
+        event_data = {
+            'id': event.idEvent,
+            'nom': event.title,
+            'description': event.description,
+            'nbParticipant': event.nbparticipant,
+            'nom_du_club': event.club.name,
+            'photo': event.photo.url,  
+            'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
+            'heureEvent':event.heureEvent.strftime('%H:%M:%S')
+        }
+        event_list.append(event_data)
+     return HttpResponse(event_list,content_type='application/json')
+ 
+@api_view(['POST'])
+def getLatestNews(request):
+     upcoming_events = Event.objects.filter(dateEvent__gte=datetime.now()).order_by('dateEvent')[:5]
+     event_list = []
+     for event in upcoming_events:
+        event_data = {
+            'id': event.idEvent,
+            'nom': event.title,
+            'nom_du_club': event.club.name, 
+            'photo': event.photo.url,  
+            'description': event.description
+        }
+        event_list.append(event_data)
+     return HttpResponse(event_list,content_type='application/json')
+
+@api_view(['GET'])
+def verifParticipate(request,idEvent,idMember):
+     return HttpResponse(content_type='application/json')
+
+@api_view(['GET'])
+def participateEvent(request,idEvent):
+     return HttpResponse(content_type='application/json')

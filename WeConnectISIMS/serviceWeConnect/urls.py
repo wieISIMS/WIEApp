@@ -9,8 +9,8 @@ urlpatterns = [
     path('clubs/',views.OurClubs, name='OurClubs'),
     path('lastEvent/',views.getLastEvents, name='lastEvent'),
     path('EventDetails/<int:idEvent>',views.getEventDetails, name='EventDetails'),
-    path('AddLike/<int:idEvent>',views.addLikeEvent, name='AddLike'),
     path('addEvent/',views.addevent,name='addEvent'),
-    path('searchE/<slug:title>',views.searchEvent,name='searchE')
+    path('searchE/<slug:title>',views.searchEvent,name='searchE'),
+    path('latestNews/',views.getLatestNews,name='latestNews')
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 
