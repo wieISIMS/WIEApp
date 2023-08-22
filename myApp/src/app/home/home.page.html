@@ -25,32 +25,16 @@
     <h4>Last Events</h4>
     <div class="horizontal-scroll">
 
-    <ion-card class="card1">
+    <ion-card class="card1" *ngFor="let group of LastEvents" (click)="goToEvent(group)">
       <div class="img-container">
-          <img src="../../assets/Ras.jpg"/>
+          <img src="{{group.image}}"/>
       </div>
       <div class="card-content">
         <ion-label>
-          <h1>TSYP X</h1>
+          <h1>{{group.title}}</h1>
         </ion-label>
         <div class="card-description1">
-          <p>10Th IEEE Tunisian Students and Young Professionals TSYP Congress organized by IEEE Esprit Student Branch.</p>
-        </div>
-      </div>
-     
-
-    </ion-card>
-
-    <ion-card class="card1">
-      <div class="img-container">
-          <img src="../../assets/ias-tam.jpg"/>
-      </div>
-      <div class="card-content">
-        <ion-label>
-          <h1>IAS TAM 3.0</h1>
-        </ion-label>
-        <div class="card-description1">
-          <p>IEEE Industry Applications Society Tunisia Annual Meeting organized by IEEE ENETCOM Student Branch.</p>
+          <p>{{group.desc}}</p>
         </div>
       </div>
     </ion-card>
@@ -59,51 +43,22 @@
 
     <h4>Our Clubs</h4>
     <div class="horizontal-scroll">
-    <!--card1-->
-   <ion-card  class="card2">
+    
+   <ion-card  class="card2" *ngFor="let c of club" (click)="goToClub(c)">
     <div class="img-container2">
        <ion-thumbnail slot="start">
-        <img src="../../assets/Wie.jpg" class="images" />
+        <img src="{{c.logo}}" class="images" />
       </ion-thumbnail>
     </div>
       <ion-label >
-        <h2>IEEE WIE AF</h2>
+        <h2>{{c.nameC}}</h2>
         <div class="align">
         <ion-icon name="people-outline" class="icon3"></ion-icon>
-        <h5>120</h5>
+        <h5>{{c.nbMembers}}</h5>
        </div>
       </ion-label>
   </ion-card>
-  <!--card2-->
-  <ion-card  class="card2">
-    <div class="img-container2">
-       <ion-thumbnail slot="start">
-        <img src="../../assets/microsoft.jpg"  class="images"/>
-      </ion-thumbnail>
-    </div>
-    <ion-label >
-        <h2>Microsoft Tech Club</h2>
-        <div class="align">
-        <ion-icon name="people-outline" class="icon3"></ion-icon>
-        <h5>361</h5>
-      </div>
-      </ion-label>
-  </ion-card>
-  <!--card3-->
-  <ion-card  class="card2">
-    <div class="img-container2">
-       <ion-thumbnail slot="start">
-        <img src="../../assets/Wie.jpg" class="images" />
-      </ion-thumbnail>
-    </div>
-      <ion-label >
-        <h2>IEEE WIE AF</h2>
-        <div class="align">
-        <ion-icon name="people-outline" class="icon3"></ion-icon>
-        <h5>120</h5>
-       </div>
-      </ion-label>
-  </ion-card>
+  
   </div>
 
 

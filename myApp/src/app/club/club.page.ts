@@ -15,8 +15,6 @@ interface event {
   styleUrls: ['./club.page.scss'],
 })
 export class ClubPage implements OnInit {
-  nbMembers: number = 100; // Example value for nbMembers
-  nbEvents: number = 50;   // Example value for nbEvents
   BestEventList: event[] = [
     {
     idEvent:1,
@@ -74,9 +72,12 @@ export class ClubPage implements OnInit {
     // Compare 'eventDateObj' with 'currentDate'
     return eventDateObj > this.currentDate;
   }
-  
+
+  club:any;
   ngOnInit() {
+    this.club = history.state.club;
   }
+
   goBack() {
     this.navCtrl.back(); // Cette ligne effectue le retour à la page précédente
   }

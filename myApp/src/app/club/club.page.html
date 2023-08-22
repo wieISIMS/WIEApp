@@ -10,10 +10,10 @@
   <div class="fixed">
   <div class="header">
     <ion-avatar class="log">
-      <ion-img src="../../assets/Wie.jpg"></ion-img>
+      <ion-img src="{{club.logo}}"></ion-img>
     </ion-avatar>
     <div class="info">
-      <h3 class="name">IEEE WIE Affinity Group</h3>
+      <h3 class="name">{{club.nameC}}</h3>
       <ion-icon name="logo-facebook"></ion-icon>
       <ion-icon name="logo-instagram"></ion-icon>
     </div>
@@ -22,11 +22,11 @@
   
   <div class="stats">
     <div>
-      <h3>{{nbMembers}}</h3>
+      <h3>{{club.nbMembers}}</h3>
       <p>Members</p>
     </div>
     <div>
-      <h3>{{nbEvents}}</h3>
+      <h3>{{club.nbEvents}}</h3>
       <p>Events</p>
     </div>
   </div>
