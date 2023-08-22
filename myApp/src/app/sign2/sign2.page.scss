@@ -2,17 +2,32 @@ ion-content {
   --background: linear-gradient(to left bottom, #e6d4ff, #ebd8ff, #f0dcff, #f5e0ff, #f4e0ff, #f9e1ff, #fee3ff, #ffe5ff);
 }
 .container{
-  margin-top: 40%;
+  margin-top: 25%;
   max-width: 95%;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
 }
-.photo{
+.photo {
+  position: relative;
   text-align: center;
-  margin: 20px;
-
+  margin-top: -15%;
 }
+
+.person {
+  font-size: 1000%;
+  color: #838383;
+}
+
+.add {
+  font-size: 500%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%, -80% , 20% , 10%);
+  color: #0D2841;
+}
+
 ion-label{
   font-family: "Poppins", sans-serif;
   margin-bottom: 25px;
@@ -52,19 +67,23 @@ ion-input {
 .input{
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
+  margin-bottom: 6%;
   margin-top: 5px;
   border: none;
   border-radius: 13px;
   background-color:white;
   height: 40px;
   padding-left: 10px;
+
 }   
 .errorMessage{
   color: red;
   font-size: 14px;
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;}
+  transition: opacity 0.5s ease-in-out;
+  margin-top: -10px;
+  margin-bottom: 5%;
+}
 
 .button{
   background-color: #c092fa!important;
@@ -78,32 +97,8 @@ ion-input {
   display: block;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin-top: 40px;
-}
-.gmail-icon {
-  margin-right: 7px;
-  fill: #fff;
-}
-.gmail-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border-radius: 25px;
-  width:95%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 10px;
-  padding-bottom: 15px;
-  margin-top: 15px;
-
-  cursor: pointer;
-
-  text-align: center;
-  color: #838383;
-  font-family: "Poppins", sans-serif;
-  font-size: 130%;
-  font-weight: bold;
+  margin-top: 20%;
+  margin-bottom: 25%;
 }
 
 
@@ -113,15 +108,25 @@ ion-input {
     color:#c092fa ;
     margin-left: 2px;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .Account {
     text-align: center;
     font-family: "Poppins", sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1rem;
     color: #838383;
-    margin-top: 25px;
+
   }
-  
+  .check{
+    margin-left: 5%;
+    margin-top: 15%;
+    margin-bottom: -15%;
+    color: var(--gris, #838383);
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }

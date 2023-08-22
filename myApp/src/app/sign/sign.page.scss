@@ -43,24 +43,29 @@ ion-input {
   --placeholder-color:#838383 ;
   --placeholder-font-style: normal;
 
+
 }
 
 .input{
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
+  margin-bottom: 6%;
   margin-top: 5px;
   border: none;
   border-radius: 13px;
   background-color:white;
   height: 40px;
   padding-left: 10px;
+
 }   
 .errorMessage{
   color: red;
   font-size: 14px;
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;}
+  transition: opacity 0.5s ease-in-out;
+  margin-top: -10px;
+  margin-bottom: 5%;
+}
 
 .button{
   background-color: #c092fa!important;
@@ -74,7 +79,7 @@ ion-input {
   display: block;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin-top: 40px;
+  margin-top: 20%;
 }
 .gmail-icon {
   margin-right: 7px;
@@ -91,7 +96,7 @@ ion-input {
   margin-right: auto;
   padding-top: 10px;
   padding-bottom: 15px;
-  margin-top: 15px;
+  margin-top: 5%;
 
   cursor: pointer;
 
@@ -100,6 +105,7 @@ ion-input {
   font-family: "Poppins", sans-serif;
   font-size: 130%;
   font-weight: bold;
+  margin-bottom: 25%;
 }
 
 
@@ -109,14 +115,14 @@ ion-input {
     color:#c092fa ;
     margin-left: 2px;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .Account {
     text-align: center;
     font-family: "Poppins", sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1rem;
     color: #838383;
-    margin-top: 25px;
+
   }

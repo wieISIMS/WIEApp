@@ -1,10 +1,10 @@
 <ion-content [fullscreen]="true">
     <div class="container">
-    <ion-label>Username</ion-label>
+    <ion-label>Email Adress</ion-label>
     <div class="input">
       <ion-input type="email" placeholder="sahnounemna@gmail.com" [(ngModel)]="email" #emailInput="ngModel" required></ion-input>
       <div *ngIf="errormailmessage" class="errorMessage" >{{errormailmessage}}</div>
-      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+
     </div>
     
 
@@ -12,15 +12,14 @@
     <div class="input">
       <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
       <div *ngIf="errorpassmessage" class="errorMessage" >{{errorpassmessage}}</div>
-      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+
     </div>
     
     
     <ion-label>Confirm password</ion-label>
     <div class="input">
       <ion-input type="password" placeholder="********" [(ngModel)]="confirmPassword" #passwordInput="ngModel" required></ion-input>
-      <div *ngIf="errormatchmessage" class="errorMessage" >{{errormatchmessage}}</div>
-      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>  
+      <div *ngIf="errorpassmessage" class="errorMessage" >{{errorpassmessage}}</div> 
     </div>
     
 

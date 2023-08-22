@@ -7,11 +7,13 @@ import { Router } from '@angular/router' ;
   styleUrls: ['./sign2.page.scss'],
 })
 export class Sign2Page implements OnInit {
+  isChecked: boolean = false;
   phoneNumber: string='';
-  userName: string='';
+  firstName: string='';
+  familyName:string='';
   errormessage: string ='';
   errormessagename: string ='';
-
+  errormessagefname:string='';
   constructor(private router: Router) {}
 
   isValidPhoneNumber(phoneNumber: string): boolean {
@@ -19,26 +21,23 @@ export class Sign2Page implements OnInit {
     return phonePattern.test(phoneNumber);
   }
 
-  isValidUsername(userName: string): boolean {
-    const usernamePattern = /^[a-zA-Z0-9_]+$/;
-    return usernamePattern.test(userName);
-  }
   
   confirm(){
-    if (this.userName==''){
-      this.errormessagename = 'Please enter a valid user name! ';
+    if (this.firstName==''){
+      this.errormessagename = 'Please enter a valid  name! ';
     }
-    else  if (!this.isValidUsername(this.userName)) {
-      console.log('Invalid username.');
-      this.errormessagename = 'Invalid username ';
-      return;
+    
+    //familyname
+    if (this.familyName==''){
+      this.errormessagefname = 'Please enter a valid family name ! ';
     }
+   
     if (this.phoneNumber==''){
-      this.errormessage = 'Please enter a valid phone number! ';
+      this.errormessage = 'Please enter a valid phone number ! ';
     }
     else if (!this.isValidPhoneNumber(this.phoneNumber)) {
       console.log('Invalid phone number.');
-      this.errormessage='Invalid phone number.';
+      this.errormessage='Invalid phone number !';
       return;
     }
          
@@ -52,6 +51,25 @@ export class Sign2Page implements OnInit {
   
 
   ngOnInit() {
+  }
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (file) {
+      // Traitez le fichier sélectionné, par exemple :
+      // - Téléchargez le fichier
+      // - Affichez un aperçu de l'image
+      // - Faites autre chose en fonction de vos besoins
+    }
+  }
+
+  openFileSelector() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*'; // Accepte uniquement les fichiers d'image
+    input.addEventListener('change', this.onFileSelected.bind(this));
+    input.click();
   }
   
 }

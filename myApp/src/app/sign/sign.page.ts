@@ -9,14 +9,13 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./sign.page.scss'],
 })
 export class SignPage implements OnInit {
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '' ;
- 
-  errormessage: string ='';
-  errorpassmessage: string ='';
-  errormailmessage: string ='';
-  errormatchmessage: string = '';
+  email!: string ;
+  password!: string;
+  confirmPassword!: string;
+
+  errorpassmessage!: string;
+  errormailmessage!: string;
+
 
   constructor(private router: Router) { }
 
@@ -28,10 +27,15 @@ export class SignPage implements OnInit {
     return emailPattern.test(email);
   }
   sign(){
-
+    
+  
+    this.errorpassmessage='';
+    this.errormailmessage='';
     //check email AND password
   if(this.email=='' && this.password=='' && this.confirmPassword==''){
-    this.errormessage = 'Please check your email or password! ';
+    this.errorpassmessage = 'Please check your password! ';
+    this.errormailmessage = 'Please check your email! ';
+
     console.log('Please check your email or password!')
     return;
   }
@@ -53,7 +57,12 @@ export class SignPage implements OnInit {
 
   //check email OR password
   if(this.email=='' || this.password==''){
-    this.errormessage = 'Please check your email or password! ';
+    if (this.email==''){
+      this.errormailmessage = 'Please check your email ! ';
+    }
+    else{
+      this.errorpassmessage= 'Please check your password! ! ';
+    }
     console.log('Please check your email or password!')
     return;
   }
@@ -61,7 +70,7 @@ export class SignPage implements OnInit {
    //check password kifkif
   if (this.password !== this.confirmPassword) {
     console.log('Passwords do not match.');
-    this.errormatchmessage = 'Passwords do not match!';
+    this.errorpassmessage = 'Passwords do not match!';
     return;
 }
  
