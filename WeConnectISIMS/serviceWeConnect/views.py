@@ -6,7 +6,7 @@ from .models import *
 import base64
 from django.core.files.base import ContentFile   
 import uuid
-from datetime import datetime
+from datetime import datetime,timezone
 @api_view(['POST'])
 def inscriptionClub(request):
         name=request.data['name']
@@ -54,7 +54,12 @@ def OurClubs(request):
     club_list = []
     for club in clubs:
         club_data = {
-            'name': club.name }
+             'idC':club.idClub,
+             'nameC': club.name ,
+             'logo': club.photo.url,
+             'nbMembers':club.nbMembers,
+             'nbEvents':club.nbEvents
+             }
         club_list.append(club_data)
     return HttpResponse(json.dumps(club_list) ,content_type='application/json')
 
@@ -68,7 +73,12 @@ def getLastEvents(request):
      latest_events = []
      for event in sorted_events:
          event_data = {
-             'title': event.title }
+              'idEvent':event.idEvent,
+              'photo': event.photo.url,
+               'club':event.club,
+               'title': event.title,
+               'description':event.description
+              }
          latest_events.append(event_data)     
      return HttpResponse(json.dumps(latest_events) ,content_type='application/json')
 
@@ -172,33 +182,39 @@ def login(request,username,password):
 def getAllNotif(request,idMember):
     try:
         member = Membre.objects.get(idMember=idMember)
-        print(member.idMember)
-        clubs = member.clubs.all()
-        if clubs is not None:
-            club_data = []
-            for club in clubs:
-                club_notifications = Notification.objects.filter(club=club)
-            
-                notifications_data = []
-                for notification in club_notifications:
-                    if (notification.timestamp.hour)>0:
-                         duree=str(notification.timestamp.hour)+' heures'
-                    else:
-                         if(notification.timestamp.min)>0:
-                            duree=str(notification.timestamp.min)+' min'
-                         else:
-                              duree=str(notification.timestamp.second)+' secondes'
-                    notifications_data.append({
-                    'title':notification.titre,
-                    'timestamp': duree
-                        })
-                if notifications_data:
-                    club_data.append({
-                        'nameclub': club.name,
-                        'photo': club.photo.url if member.photo else None,
-                        'notifications': notifications_data
+        if member:
+            clubs = member.clubs.all()
+            print(clubs)
+            if clubs is not None:
+                club_data = []
+                for club in clubs:
+                    club_notifications = Notification.objects.filter(club=club)
+                    notifications_data = []
+                    for notification in club_notifications:
+                        current_time = datetime.now(timezone.utc)
+                        notification_time = notification.timestamp.replace(tzinfo=timezone.utc)
+                        time_difference = current_time - notification_time
+                        hours = time_difference.days * 24 + time_difference.seconds // 3600
+                        minutes = (time_difference.seconds % 3600) // 60
+                        seconds = time_difference.seconds % 60
+                        if hours > 0:
+                            duree = f'{hours} heures'
+                        elif minutes > 0:
+                            duree = f'{minutes} minutes'
+                        else:
+                            duree = f'{seconds} secondes'
+                        notifications_data.append({
+                        'idEvent':notification.event.idEvent,
+                        'title':notification.titre,
+                        'duree': duree
+                            })
+                    if notifications_data:
+                        club_data.append({
+                            'nameclub': club.name,
+                            'photo': club.photo.url if member.photo else None,
+                            'notifications': notifications_data
                     })
-            data=club_data
+                data=club_data
     except Membre.DoesNotExist:
         data=json.dumps({'message':'member not found'})
     return HttpResponse(data,content_type='application/json')

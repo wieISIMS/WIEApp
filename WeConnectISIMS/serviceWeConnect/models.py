@@ -52,7 +52,7 @@ class Membre(models.Model):
     familyName = models.CharField(max_length=100,null=True)
     photo = models.ImageField(upload_to="images/clubs/")
     password = models.CharField(max_length=500,null=True)
-    clubs = models.ForeignKey(Club, on_delete=models.CASCADE, blank=True, null=True)
+    clubs = models.ManyToManyField('Club', blank=True)
     idCland = models.ForeignKey(Calandrier, on_delete=models.CASCADE, blank=True, null=True)
     def set_empty_clubs(sender, instance, **kwargs):
         if kwargs['created']:
@@ -73,6 +73,7 @@ class Notification(models.Model):
     idNotification = models.AutoField(primary_key=True, unique=True, blank=True)
     titre = models.CharField(max_length=100)
     club = models.ForeignKey(Club, on_delete=models.CASCADE, blank=True, null=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE,null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
