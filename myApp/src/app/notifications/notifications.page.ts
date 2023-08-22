@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-interface notif {
-  idEvent:any;
-  image: any;
-  club:any;
-  title:any;
-  time:any
-} 
 
 @Component({
   selector: 'app-notifications',
@@ -16,20 +9,25 @@ interface notif {
 })
 export class NotificationsPage implements OnInit {
   //notificationsList: notif[] = []; 
-  notificationsList: notif[] = [
+  notificationsList: any[] = [
     {
-      idEvent:1,
-    image: 'assets/img/wie.png',
-    club: 'IEEE WIE Affinity Group',
-    title:'New event',
-    time: '45 minutes ago',
+      club: 'IEEE WIE Affinity Group',
+      image: 'assets/Wie.jpg',
+      notification: {
+        idEvent: 1,
+        title: 'New event',
+        time: '45 minutes ago'
+      }
   },
   {
-    idEvent:2,
-    image: 'assets/microsoft.jpg',
     club: 'Microsoft ISIMS',
-    title:'New event',
-    time: '2 hours ago',}
+    image: 'assets/microsoft.jpg',
+    notification: {
+      idEvent: 2,
+      title: 'New event',
+      time: '2 hours ago'
+    }
+    }
   ]; 
   
   constructor(private router: Router) { }
