@@ -1,60 +1,139 @@
-.ion-padding{
-        display: flex;
-        flex-direction: column; /* Aligne les éléments verticalement */
-        align-items: left; /* Centre les éléments horizontalement */ 
-        height: 80px; 
-        margin-left: 20px;
-        margin-top: 18px;
-        margin-left: 15px;
-        margin-right: 15px;
-        top:20px;
-}
-.line1,
-.line2 {
-width: 100%;
-text-align: left;
-color: black;
-font-weight: bold;
-font-size: 20px;
-font-family: Roboto;
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* White background for the entire container */
+    z-index: -1;
 }
 
+.element-2 {
+    width: 990px;
+    height: 703px;
+    flex-shrink: 0;
+    background: conic-gradient(from 180deg at 50% 50%, rgba(255, 114, 182, 0.40) 51.97910249233246deg, rgba(245, 201, 217, 0.00) 136.35732650756836deg, rgba(221, 204, 248, 0.40) 172.19358086585999deg, rgba(192, 146, 250, 0.40) 336.5046429634094deg);
+    filter: blur(125px);
+    position: absolute;
+    left: -218px;
+    top: -92px;
+}
+
+.element-1 {
+    width: 563.833px;
+    height: 670.723px;
+    flex-shrink: 0;
+    background: conic-gradient(from 180deg at 45.26% 41.97%, rgba(168, 228, 255, 0.50) 110.62499642372131deg, rgba(229, 220, 252, 0.52) 191.21399402618408deg, #E6DCFC 191.25deg, rgba(249, 227, 235, 0.49) 307.5000071525574deg);
+    filter: blur(75px);
+    position: absolute;
+    left: -48.68px;
+    top: 569px;
+}
+
+.element-3 {
+    width: 345px;
+    height: 202px;
+    flex-shrink: 0;
+    border-radius: 345px;
+    background: #CEBBFA;
+    filter: blur(100px);
+    position: absolute;
+    left: 178px;
+    top: -67px;
+}
+
+.icon1{
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 20px;  
+    color: black; /* Set the color to black */
+
+ }
+
+ 
 .imag{
-    width: 180px;
-    height:180px;
+    width: 150px;
+    height:150px;
     margin: 0 auto;
     position: relative;
 
 }
-.ic{
-    background-color: aliceblue;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    position: relative;
-    left: 130px;
-    bottom: 40px;
-    z-index: 1;
+.changePic{
+    color: black;
+    display: flex;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: lighter;
+    font-size:large;
 }
-::ng-deep.button-native{
-    width: 316px;
-    height:51px;
-    color:white; 
-    font-size: larger;
-    --border-radius: 50px;
-    --background:#CEBBFA;
-    position: relative;
-    left: 60px;
-    font-weight: bold;
-    font-size: 20px;
-   font-family: Poppins;
-   margin: 0 auto;
-   position: relative;
-   top:50px;
-}
-.flash{
-        position: relative;
-        top: 10px;
-        left:2px;
-        width: 20%;
-}
+.container{
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+ion-label{
+    font-family: "Poppins", sans-serif;
+    font-size:large;
+    font-weight: bolder;
+    color: black;
+  }
+  ion-input {
+    // Remove default border and box shadow
+    --border-width: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+    --box-shadow: none;
+  
+    //default background and text color
+    --background: transparent;
+    --color: black;
+  
+    // Remove default highlight on focus
+    --highlight-color-focused: transparent;
+    --highlight-color-invalid: transparent;
+    --highlight-color-valid: transparent;
+  
+    // Remove default caret color
+    --caret-color: inherit;
+    
+    // Remove default outline on focus
+    --outline: none;
+  
+    // Remove default placeholder styling
+    --placeholder-color:#838383 ;
+    --placeholder-font-style: normal;
+  
+  }
+.input{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 20px;
+    background-color:white;
+    padding-left: 10px;
+
+  }   
+  .errorMessage{
+    color: red;
+    font-size: 14px;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;}
+.button{
+        background-color: #c092fa!important;
+        font-family: "Poppins", sans-serif;
+        font-size: 140%;
+        font-weight: bolder;
+        border-radius: 25px;
+        width:95%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-top: 40px;
+      }
+
+
