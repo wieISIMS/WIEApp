@@ -56,7 +56,7 @@ def OurClubs(request):
         club_data = {
              'idC':club.idClub,
              'nameC': club.name ,
-             'logo': club.photo.url,
+             'logo': club.photo.url if club.photo else [],
              'nbMembers':club.nbMembers,
              'nbEvents':club.nbEvents
              }
@@ -68,19 +68,21 @@ def OurClubs(request):
 
 @api_view(['GET'])
 def getLastEvents(request):
-     events = Event.objects.all() 
-     sorted_events = sorted(events, key=lambda event: event.timestamp, reverse=True)
-     latest_events = []
-     for event in sorted_events:
-         event_data = {
+    past_events = Event.objects.filter(dateEvent__lt=datetime.now()).order_by('-dateEvent')[:5]
+    last_events = []
+    for event in past_events:
+        event_data = {
               'idEvent':event.idEvent,
               'photo': event.photo.url,
-               'club':event.club,
-               'title': event.title,
-               'description':event.description
+              'title': event.title,
+              'dateE':event.dateEvent.strftime('%Y-%m-%d'),
+               'description':event.description,
+               'club':event.club.name,
+               'idClub':event.club.idClub,
+                'photoC':event.club.photo.url
               }
-         latest_events.append(event_data)     
-     return HttpResponse(json.dumps(latest_events) ,content_type='application/json')
+        last_events.append(event_data)     
+    return HttpResponse(last_events ,content_type='application/json')
 
 @api_view(['GET'])
 def getEventDetails(request,idEvent):
@@ -149,7 +151,7 @@ def searchEvent(request,title):
         event_list.append(event_data)
      return HttpResponse(event_list,content_type='application/json')
  
-@api_view(['POST'])
+@api_view(['GET'])
 def getLatestNews(request):
      upcoming_events = Event.objects.filter(dateEvent__gte=datetime.now()).order_by('dateEvent')[:5]
      event_list = []
@@ -157,9 +159,12 @@ def getLatestNews(request):
         event_data = {
             'id': event.idEvent,
             'nom': event.title,
-            'nom_du_club': event.club.name, 
+            'description': event.description,
+            'nbParticipant': event.nbparticipant,
+            'nom_du_club': event.club.name,
             'photo': event.photo.url,  
-            'description': event.description
+            'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
+            'heureEvent':event.heureEvent.strftime('%H:%M:%S')
         }
         event_list.append(event_data)
      return HttpResponse(event_list,content_type='application/json')
@@ -168,14 +173,17 @@ def getLatestNews(request):
 def login(request,username,password):
      try:
         member=Membre.objects.get(userName=username,password=password)
+        data_list=[]
         if member is not None:
             data = {
                     'id': member.idMember,
                     'firstName': member.firstName,
                     'photo': member.photo.url if member.photo else None
-                }
+                 }
+        data_list.append(data)
+        data=data_list  
      except Membre.DoesNotExist:
-                data=json.dumps({'message':'member not found'})
+        data=json.dumps({'message':'member not found'})
      return HttpResponse(data,content_type='application/json')
 
 @api_view(['GET'])
@@ -206,7 +214,7 @@ def getAllNotif(request,idMember):
                         notifications_data.append({
                         'idEvent':notification.event.idEvent,
                         'title':notification.titre,
-                        'duree': duree
+                        'durée': duree
                             })
                     if notifications_data:
                         club_data.append({
