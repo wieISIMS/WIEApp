@@ -5,6 +5,7 @@ admin.site.register(Event)
 admin.site.register(Membre)
 admin.site.register(ClandrierClub)
 admin.site.register(ClandrierMembre)
+admin.site.register(CalandrierEvent)
 admin.site.register(Notification)
 
 

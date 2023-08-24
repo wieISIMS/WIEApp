@@ -14,5 +14,6 @@ urlpatterns = [
     path('latestNews/',views.getLatestNews,name='latestNews'),
     path('login/<slug:username>/<slug:password>',views.login,name='login'),
     path('allNotif/<int:idMember>',views.getAllNotif,name='allNotif'),
+    path('verifPar/<int:idMember>/<int:idEvent>',views.verifParticipate,name='verifPar')
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 

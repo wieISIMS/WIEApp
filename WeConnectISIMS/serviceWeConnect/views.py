@@ -230,7 +230,22 @@ def getAllNotif(request,idMember):
 
 @api_view(['GET'])
 def verifParticipate(request,idEvent,idMember):
-     return HttpResponse(content_type='application/json')
+    try:
+        member = Membre.objects.get(idMember=idMember)
+        idCland=member.idCland.idCland
+        cland = CalandrierEvent.objects.get(idCland=idCland)
+        events=cland.events.all()
+        event=Event.objects.get(idEvent=idEvent)
+        print(event)
+        if event in events:
+            data=json.dumps({'message':'member participates in the event'})
+        else:
+            data=json.dumps({'message':'member does not participate in the event'})
+    except Event.DoesNotExist:
+        data=json.dumps({'message':'event does not exist'})
+    except Membre.DoesNotExist:
+        data=json.dumps({'message':'event does not exist'})
+    return HttpResponse(data,content_type='application/json')
 
 @api_view(['GET'])
 def participateEvent(request,idEvent):

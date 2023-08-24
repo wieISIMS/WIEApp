@@ -1,11 +1,12 @@
 from django.db import models
 
 
-class Calandrier(models.Model):
+class CalandrierEvent(models.Model):
     idCland = models.AutoField(primary_key=True, unique=True, blank=True)
     events = models.ManyToManyField("Event")
     def __str__(self):
         return str(self.idCland)
+
 class Club(models.Model):
     idClub = models.AutoField(primary_key=True, unique=True, blank=True)
     name = models.CharField(max_length=100, null=True)
@@ -14,7 +15,7 @@ class Club(models.Model):
     photo = models.ImageField(upload_to="images/clubs/", null=True)
     nbEvents=models.IntegerField(null=True)
     nbMembers=models.IntegerField(null=True)
-    idCland = models.ForeignKey(Calandrier, on_delete=models.CASCADE, blank=True, null=True)
+    idCland = models.ForeignKey(CalandrierEvent, on_delete=models.CASCADE, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -53,10 +54,7 @@ class Membre(models.Model):
     photo = models.ImageField(upload_to="images/clubs/")
     password = models.CharField(max_length=500,null=True)
     clubs = models.ManyToManyField('Club', blank=True)
-    idCland = models.ForeignKey(Calandrier, on_delete=models.CASCADE, blank=True, null=True)
-    def set_empty_clubs(sender, instance, **kwargs):
-        if kwargs['created']:
-            instance.clubs.clear()
+    idCland = models.ForeignKey(CalandrierEvent, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return str(self.userName)
 
