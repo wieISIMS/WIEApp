@@ -151,8 +151,12 @@ ion-content {
         background-color: rgba(255, 255, 255, 0.4);
         border-radius: 10px;
         width: 220px;
+        height: 69px;
+        padding: 10px;
+        h2{
+          white-space: nowrap; 
+        }
         .images{
-          width: 150px; 
           border-radius: 20%;
         }
         .icon3{
@@ -164,8 +168,11 @@ ion-content {
         }
             
         .img-container2{
-          margin-right: 10px;
+          margin-right: 12px;
           position: relative;
+          align-items: center; /* Ajoutez cette ligne pour centrer verticalement */
+          display: flex; /* Utiliser un affichage flex pour centrer verticalement */
+         justify-content: center; /* Centrer horizontalement */
         }
         
     }
@@ -187,14 +194,23 @@ ion-content {
       p{
         margin-left: 10px;
       }
-      .img-container3{
+      .img-container3 {
         position: relative;
+        display: flex; /* Utiliser un affichage flex pour centrer verticalement */
+        justify-content: center; /* Centrer horizontalement */
+        align-items: center; /* Centrer verticalement */
       }
-      .images3{
-        object-fit: cover; 
+      
+      .images3 {
+        object-fit: cover;
         border-radius: 20%;
-        width:100%;
       }
+      
+      
+      
+      
+      
+      
     }
     
       .horizontal-scroll {
