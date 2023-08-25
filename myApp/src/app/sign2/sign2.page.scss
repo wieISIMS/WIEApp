@@ -20,12 +20,12 @@ ion-content {
 }
 
 .add {
-  font-size: 500%;
+  font-size: 300%;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 60%;
+  left: 57%;
   transform: translate(-80%, -80% , 20% , 10%);
-  color: #0D2841;
+  color: #c092fa;
 }
 
 ion-label{
@@ -48,9 +48,9 @@ ion-input {
   --color: black;
 
   // Remove default highlight on focus
-  --highlight-color-focused: transparent;
-  --highlight-color-invalid: transparent;
-  --highlight-color-valid: transparent;
+  --highlight-color-focused: #c092fa;
+  --highlight-color-invalid: #c092fa;
+  --highlight-color-valid: #c092fa;
 
   // Remove default caret color
   --caret-color: inherit;
@@ -108,13 +108,13 @@ ion-input {
     color:#c092fa ;
     margin-left: 2px;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .Account {
     text-align: center;
     font-family: "Poppins", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 1rem;
     color: #838383;
 

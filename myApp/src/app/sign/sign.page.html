@@ -2,7 +2,7 @@
     <div class="container">
     <ion-label>Email Adress</ion-label>
     <div class="input">
-      <ion-input type="email" placeholder="sahnounemna@gmail.com" [(ngModel)]="email" #emailInput="ngModel" required></ion-input>
+      <ion-input (click)="clearErrorMessage('errormailmessage')" type="email" placeholder="sahnounemna@gmail.com" [(ngModel)]="email" #emailInput="ngModel" required></ion-input>
       <div *ngIf="errormailmessage" class="errorMessage" >{{errormailmessage}}</div>
 
     </div>
@@ -10,16 +10,16 @@
 
     <ion-label>Password</ion-label>
     <div class="input">
-      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
-      <div *ngIf="errorpassmessage" class="errorMessage" >{{errorpassmessage}}</div>
+      <ion-input (click)="clearErrorMessage('errorpassmessage1')" type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errorpassmessage1" class="errorMessage" >{{errorpassmessage1}}</div>
 
     </div>
     
     
     <ion-label>Confirm password</ion-label>
     <div class="input">
-      <ion-input type="password" placeholder="********" [(ngModel)]="confirmPassword" #passwordInput="ngModel" required></ion-input>
-      <div *ngIf="errorpassmessage" class="errorMessage" >{{errorpassmessage}}</div> 
+      <ion-input (click)="clearErrorMessage('errorpassmessage2')" type="password" placeholder="********" [(ngModel)]="confirmPassword" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errorpassmessage2" class="errorMessage" >{{errorpassmessage2}}</div> 
     </div>
     
 

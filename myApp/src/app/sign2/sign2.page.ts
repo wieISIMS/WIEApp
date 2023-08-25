@@ -17,7 +17,7 @@ export class Sign2Page implements OnInit {
   constructor(private router: Router) {}
 
   isValidPhoneNumber(phoneNumber: string): boolean {
-    const phonePattern = /^[1-9]\d{1}[0-9]\d{1}[0-9]\d{4}$/;
+    const phonePattern = /^\[1-9]\d{7}$/;
     return phonePattern.test(phoneNumber);
   }
 
@@ -26,12 +26,10 @@ export class Sign2Page implements OnInit {
     if (this.firstName==''){
       this.errormessagename = 'Please enter a valid  name! ';
     }
-    
     //familyname
     if (this.familyName==''){
       this.errormessagefname = 'Please enter a valid family name ! ';
     }
-   
     if (this.phoneNumber==''){
       this.errormessage = 'Please enter a valid phone number ! ';
     }
@@ -40,15 +38,27 @@ export class Sign2Page implements OnInit {
       this.errormessage='Invalid phone number !';
       return;
     }
-         
+      
+    
+
     if(this.errormessagename==this.errormessage){
+
       this.router.navigate(['/tablinks'])
     }
     
     
   }
   
-  
+  clearErrorMessage(errorVariable: string) {
+    if (errorVariable === 'errormessagename') {
+      this.errormessagename = '';
+    } else if (errorVariable === 'errormessagefname') {
+      this.errormessagefname = '';
+    }
+    else if (errorVariable === 'errormessage') {
+      this.errormessage = '';
+    }
+  }
 
   ngOnInit() {
   }

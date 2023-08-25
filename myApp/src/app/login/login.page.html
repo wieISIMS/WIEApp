@@ -1,19 +1,20 @@
 
 <ion-content class="bakc" [fullscreen]="true">
+  
   <div class="container">
-    <ion-label class="user">Username</ion-label>
+    <ion-label class="user">Email</ion-label>
       <div class="input">
-        <ion-input type="email" placeholder="sahnounemna@gmail.com" [(ngModel)]="email" #emailInput="ngModel" required></ion-input>
-        <div *ngIf="errormailmessage" class="errorMessage" >{{errormailmessage}}</div>
-        <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+        <ion-input     (click)="clearErrorMessage('errormessagemail')"
+        type="email" placeholder="sahnounemna@gmail.com" [(ngModel)]="email" #emailInput="ngModel" required></ion-input>
+        <div *ngIf="errormessagemail" class="errorMessage" >{{errormessagemail}}</div>
       </div>
   
       
-      <ion-label>password</ion-label>
+      <ion-label>Password</ion-label>
       <div class="input">
-        <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
-        <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
-        <div *ngIf="errormessage1" class="errorMessage" >{{errormessage1}}</div>
+        <ion-input     (click)="clearErrorMessage('errormessagePass')"
+        type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+        <div *ngIf="errormessagePass" class="errorMessage" >{{errormessagePass}}</div>
       </div>
   
       

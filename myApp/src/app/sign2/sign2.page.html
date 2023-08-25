@@ -1,4 +1,5 @@
 <ion-content [fullscreen]="true">
+  
   <div class="container">
       <div class="photo">
           <ion-icon name="person-circle" class="person"></ion-icon> 
@@ -7,18 +8,18 @@
   
       <ion-label>First Name</ion-label>
       <div class="input">
-        <ion-input type="text" placeholder="Foulen" [ngModel]="firstName"  required></ion-input>
+        <ion-input (click)="clearErrorMessage('errormessagename')" type="text" placeholder="Foulen" [ngModel]="firstName"  required></ion-input>
         <div *ngIf="errormessagename" class="errorMessage" >{{errormessagename}}</div>
       </div>
       <ion-label>Family Name</ion-label>
       <div class="input">
-        <ion-input type="text" placeholder="Ben Foulen" [ngModel]="familyName"  required></ion-input>
+        <ion-input (click)="clearErrorMessage('errormessagefname')" type="text" placeholder="Ben Foulen" [ngModel]="familyName"  required></ion-input>
         <div *ngIf="errormessagefname" class="errorMessage" >{{errormessagefname}}</div>
       </div>
   
       <ion-label class="user">Phone Number</ion-label>
       <div class="input">
-        <ion-input type="Number" placeholder="99 999 999" [ngModel]="phoneNumber"  required></ion-input>
+        <ion-input (click)="clearErrorMessage('errormessage')" type="Number" placeholder="99 999 999" [ngModel]="phoneNumber"  required></ion-input>
         <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
       </div>
     </div>

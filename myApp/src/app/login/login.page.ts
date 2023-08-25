@@ -10,9 +10,8 @@ export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
   emailPattern : string = '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;'
-  errormessage: string ='';
-  errormessage1: string ='';
-  errormailmessage: string ='';
+  errormessagemail: string ='';
+  errormessagePass: string ='';
   
   
 
@@ -26,32 +25,30 @@ export class LoginPage implements OnInit {
   login(){
     
      //check email OR password
-     if((this.email=='' )||(this.password=='')){
-      this.errormessage = 'Please check your email or password! ';
-      console.log('Please check your email or password!')
-      return;
-  }
-
-     //valid email
-  if (!this.isValidEmail(this.email) ) {
-    console.log('Invalid email address.');
-    this.errormailmessage = 'Please enter a valid email address! ';
-    return;
-  }
-  
-    //check email and password
-    if(this.email=='' && this.password ==''){
-      this.errormessage1='Please enter valid email and password!';
-      console.log('Please enter valid email and password!');
-      return; 
+     
+    if (this.email === '') {
+      this.errormessagemail = 'Email address is required.';
     }
-    this.router.navigate(['/home'])
-   
+    else if (!this.isValidEmail(this.email) ) {
+      this.errormessagemail = 'Please enter a valid email address! ';
+    }
+
+    if (this.password === '') {
+      this.errormessagePass = 'Password is required.';
+    }
+    else if (this.isValidEmail(this.email)) {
+    //fonction login
+    this.router.navigate(['/tablinks'])
+  }
   }
 
   ngOnInit() {
   }
-  
- 
-  
+  clearErrorMessage(errorVariable: string) {
+    if (errorVariable === 'errormessagemail') {
+      this.errormessagemail = '';
+    } else if (errorVariable === 'errormessagePass') {
+      this.errormessagePass = '';
+    }
+  }
 }

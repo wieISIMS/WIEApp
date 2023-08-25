@@ -13,7 +13,8 @@ export class SignPage implements OnInit {
   password!: string;
   confirmPassword!: string;
 
-  errorpassmessage!: string;
+  errorpassmessage1!: string;
+  errorpassmessage2!: string;
   errormailmessage!: string;
 
 
@@ -21,62 +22,64 @@ export class SignPage implements OnInit {
 
   ngOnInit() {
   }
+  
    //is email valid
   isValidEmail(email: string) : boolean {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
   }
   sign(){
-    
-  
-    this.errorpassmessage='';
-    this.errormailmessage='';
     //check email AND password
-  if(this.email=='' && this.password=='' && this.confirmPassword==''){
-    this.errorpassmessage = 'Please check your password! ';
-    this.errormailmessage = 'Please check your email! ';
-
-    console.log('Please check your email or password!')
-    return;
-  }
-  
-  //valid email
-  if (!this.isValidEmail(this.email)) {
-    console.log('Invalid email address.');
-    this.errormailmessage = 'Please enter a valid email adress! ';
-    return;
-  }
-
-    // Validate password length
-    const minLength = 8;
-    if (this.password.length < minLength) {
-      console.log(`Password must be at least ${minLength} characters.`);
-      this.errorpassmessage = 'Your password is too weak!';
-      return;
+    if (!this.email ) {
+      this.errormailmessage = 'Email address is required.';
     }
+    else{ if (!this.isValidEmail(this.email) ) {
+      this.errormailmessage = 'Please enter a valid email address! ';
+    }}
 
-  //check email OR password
-  if(this.email=='' || this.password==''){
-    if (this.email==''){
-      this.errormailmessage = 'Please check your email ! ';
+    if(!this.password&& !this.confirmPassword){
+      this.errorpassmessage1 = 'Password is required.';
+      this.errorpassmessage2 = 'Password is required.';
+      return
     }
     else{
-      this.errorpassmessage= 'Please check your password! ! ';
-    }
-    console.log('Please check your email or password!')
-    return;
+        if (!this.password) {
+          this.errorpassmessage1 = 'Password is required.';
+        }
+        else{
+          // Validate password length
+          const minLength = 6;
+          if (this.password.length < minLength) {
+            this.errorpassmessage1 = 'Your password is too weak!';
+          }
+        }
+        if (!this.confirmPassword) {
+          this.errorpassmessage2 = 'Confirm Password is required.';
+          return
+        }
+        else{
+          //check password kifkif
+          if (this.password !== this.confirmPassword) {
+            this.errorpassmessage2 = 'Passwords do not match!';
+            return;
+        }
+        }
+      }
+      if (this.isValidEmail(this.email)) {
+        this.router.navigate(['/sign2'], { state: { mail:this.email ,password:this.password } })
+      }
   }
 
-   //check password kifkif
-  if (this.password !== this.confirmPassword) {
-    console.log('Passwords do not match.');
-    this.errorpassmessage = 'Passwords do not match!';
-    return;
-}
- 
-  
-this.router.navigate(['/sign2'])
 
+  clearErrorMessage(errorVariable: string) {
+    if (errorVariable === 'errormailmessage') {
+      this.errormailmessage = '';
+    } else if (errorVariable === 'errorpassmessage1') {
+      this.errorpassmessage1 = '';
+    }
+    else if (errorVariable === 'errorpassmessage2') {
+      this.errorpassmessage2 = '';
+    }
   }
 
 }
