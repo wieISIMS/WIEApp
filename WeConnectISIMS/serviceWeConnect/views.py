@@ -301,32 +301,35 @@ def getBestEvents(request,idClub):
  return HttpResponse(data,content_type='application/json')
 @api_view(['GET'])
 def getClubEvents(request,idClub):
-    club=Club.objects.get(idClub=idClub)
-    calendarClub, created= ClandrierClub.objects.get_or_create(club=club)
-    events=calendarClub.events.all()if not created else []
-    upcoming_events=[]
-    finished_events=[]
-    current_datetime = datetime.now()
-    for event in events:
-        event_info = {
-            'id': event.idEvent,
-            'nom': event.title,
-            'description': event.description,
-            'nbParticipant': event.nbparticipant,
-            'nom_du_club': event.club.name,
-            'photo': event.photo.url,  
-            'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
-            'heureEvent':event.heureEvent.strftime('%H:%M:%S')
-         }
-        date=datetime.combine(event.dateEvent, event.heureEvent)
-        if date<= current_datetime:
-          event_info['finished'] = True
-          finished_events.append(event_info)
-        else:
-            event_info['finished'] = False
-            upcoming_events.append(event_info)
+    try:
+        club=Club.objects.get(idClub=idClub)
+        calendarClub, created= ClandrierClub.objects.get_or_create(club=club)
+        events=calendarClub.events.all()if not created else []
+        upcoming_events=[]
+        finished_events=[]
+        current_datetime = datetime.now()
+        for event in events:
+            event_info = {
+                'id': event.idEvent,
+                'nom': event.title,
+                'description': event.description,
+                'nbParticipant': event.nbparticipant,
+                'nom_du_club': event.club.name,
+                'photo': event.photo.url,  
+                'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
+                'heureEvent':event.heureEvent.strftime('%H:%M:%S')
+            }
+            date=datetime.combine(event.dateEvent, event.heureEvent)
+            if date<= current_datetime:
+                event_info['finished'] = True
+                finished_events.append(event_info)
+            else:
+                event_info['finished'] = False
+                upcoming_events.append(event_info)
 
-    data =finished_events+upcoming_events
+        data =finished_events+upcoming_events
+    except:
+       data=json.dumps({'message':'club not found'}) 
     return HttpResponse(data,content_type='application/json')
 @api_view(['POST'])
 def getCalender(request):
@@ -356,3 +359,54 @@ def getCalender(request):
     except:
         data=json.dumps({'message':'member not found'}) 
     return HttpResponse(data,content_type='application/json')
+@api_view(['GET'])
+def getMemberEvents(request,idMember):
+    try:
+        member=Membre.objects.get(idMember=idMember)
+        calendarMember, created= ClandrierMembre.objects.get_or_create(membre=member)
+        events=calendarMember.events.all()if not created else []
+        upcoming_events=[]
+        finished_events=[]
+        current_datetime = datetime.now()
+        for event in events:
+            event_info = {
+                'id': event.idEvent,
+                'nom': event.title,
+                'description': event.description,
+                'nbParticipant': event.nbparticipant,
+                'nom_du_club': event.club.name,
+                'photo': event.photo.url,  
+                'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
+                'heureEvent':event.heureEvent.strftime('%H:%M:%S')
+            }
+            date=datetime.combine(event.dateEvent, event.heureEvent)
+            if date<= current_datetime:
+                event_info['finished'] = True
+                finished_events.append(event_info)
+            else:
+                event_info['finished'] = False
+                upcoming_events.append(event_info)
+        data =finished_events+upcoming_events
+    except:
+       data=json.dumps({'message':'member not found'}) 
+    return HttpResponse(data,content_type='application/json')
+
+@api_view(['GET'])
+def getMemberClubs(request,idMember):
+    try:
+        member=Membre.objects.get(idMember=idMember)
+        member_clubs=member.clubs.all()
+        data=[]
+        for club in member_clubs:
+            club_data = {
+             'idC':club.idClub,
+             'nameC': club.name ,
+             'logo': club.photo.url if club.photo else [],
+             'nbMembers':club.nbMembers,
+             'nbEvents':club.nbEvents
+             }
+        data.append(club_data)
+    except:
+       data=json.dumps({'message':'member not found'})  
+    return HttpResponse(data,content_type='application/json')
+
