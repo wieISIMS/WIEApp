@@ -7,6 +7,7 @@ import base64
 from django.core.files.base import ContentFile   
 import uuid
 from datetime import datetime,timezone
+from django.db.models import F
 @api_view(['POST'])
 def inscriptionClub(request):
         name=request.data['name']
@@ -248,5 +249,110 @@ def verifParticipate(request,idEvent,idMember):
     return HttpResponse(data,content_type='application/json')
 
 @api_view(['GET'])
-def participateEvent(request,idEvent):
-     return HttpResponse(content_type='application/json')
+def participateEvent(request,idEvent,idMember):
+     event=Event.objects.get(idEvent=idEvent)
+     if event:
+         event.nbparticipant+=1
+         event.save()
+     else:
+       data=json.dumps({'message':'event does not exist'})
+     member=Membre.objects.get(idMember=idMember)
+     calendar, created = ClandrierMembre.objects.get_or_create(membre=member)
+     if created:
+        calendar.events.add(event)
+        calendar.save()
+     else:
+        # Le calendrier existe déjà, ajouter simplement l'événement
+        calendar.events.add(event)
+    
+    # Sauvegarder les modifications du calendrier
+     calendar.save()  
+     from django.db.models import F
+     return HttpResponse(data,content_type='application/json')
+@api_view(['GET'])
+def getBestEvents(request,idClub):
+ try:
+    club=Club.objects.get(idClub=idClub)
+    calendarClub, created= ClandrierClub.objects.get_or_create(club=club)
+    events=calendarClub.events.all()if not created else []
+    best_events = sorted(events, key=lambda event: event.nbparticipant, reverse=True)[:5]
+    print(best_events)
+    best_events_info = []
+    if best_events:
+        best_events_info = []
+        for event in best_events:
+            event_info = {
+            'id': event.idEvent,
+            'nom': event.title,
+            'description': event.description,
+            'nbParticipant': event.nbparticipant,
+            'nom_du_club': event.club.name,
+            'photo': event.photo.url,  
+            'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
+            'heureEvent':event.heureEvent.strftime('%H:%M:%S')
+         }
+            best_events_info.append(event_info)
+    data=best_events_info
+    
+    if not data:
+        data=json.dumps({'message':'no events'})
+ except:
+    data=json.dumps({'message':'club not found'})
+ return HttpResponse(data,content_type='application/json')
+@api_view(['GET'])
+def getClubEvents(request,idClub):
+    club=Club.objects.get(idClub=idClub)
+    calendarClub, created= ClandrierClub.objects.get_or_create(club=club)
+    events=calendarClub.events.all()if not created else []
+    upcoming_events=[]
+    finished_events=[]
+    current_datetime = datetime.now()
+    for event in events:
+        event_info = {
+            'id': event.idEvent,
+            'nom': event.title,
+            'description': event.description,
+            'nbParticipant': event.nbparticipant,
+            'nom_du_club': event.club.name,
+            'photo': event.photo.url,  
+            'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
+            'heureEvent':event.heureEvent.strftime('%H:%M:%S')
+         }
+        date=datetime.combine(event.dateEvent, event.heureEvent)
+        if date<= current_datetime:
+          event_info['finished'] = True
+          finished_events.append(event_info)
+        else:
+            event_info['finished'] = False
+            upcoming_events.append(event_info)
+
+    data =finished_events+upcoming_events
+    return HttpResponse(data,content_type='application/json')
+@api_view(['POST'])
+def getCalender(request):
+    idMember=request.data.get('idMember')
+    date=request.data.get('date')
+    try:
+        member = Membre.objects.get(idMember=idMember)
+        print(member)
+        idCland=member.idCland.idCland
+        cland,created = ClandrierMembre.objects.get_or_create(idCland=idCland)
+        events=cland.events.filter(dateEvent=date)if not created else []
+        data=[]
+        for event in events:
+            event_info = {
+                'id': event.idEvent,
+                'nom': event.title,
+                'description': event.description,
+                'nbParticipant': event.nbparticipant,
+                'nom_du_club': event.club.name,
+                'photo': event.photo.url,  
+                'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
+                'heureEvent':event.heureEvent.strftime('%H:%M:%S')
+         }
+            data.append(event_info)
+        if not data:
+            data=json.dumps({'message':'no events in this date'}) 
+    except:
+        data=json.dumps({'message':'member not found'}) 
+    return HttpResponse(data,content_type='application/json')

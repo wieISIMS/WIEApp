@@ -14,6 +14,10 @@ urlpatterns = [
     path('latestNews/',views.getLatestNews,name='latestNews'),
     path('login/<slug:username>/<slug:password>',views.login,name='login'),
     path('allNotif/<int:idMember>',views.getAllNotif,name='allNotif'),
-    path('verifPar/<int:idMember>/<int:idEvent>',views.verifParticipate,name='verifPar')
+    path('verifPar/<int:idMember>/<int:idEvent>',views.verifParticipate,name='verifPar'),
+    path('ParEvent/<int:idEvent>/<int:idMember>',views.participateEvent,name='ParEvent'),
+    path('bestEvents/<int:idClub>',views.getBestEvents,name='bestEvents'),
+    path('clubEvents/<int:idClub>',views.getClubEvents,name='clubEvents'),
+    path('calendEvents/',views.getCalender,name='calendEvents')
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 
