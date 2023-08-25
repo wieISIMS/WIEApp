@@ -1,55 +1,55 @@
 ion-content {
-  .background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white; /* White background for the entire container */
-    z-index: -1;
-}
 
-.element-2 {
-    width: 990px;
-    height: 703px;
-    flex-shrink: 0;
-    background: conic-gradient(from 180deg at 50% 50%, rgba(255, 114, 182, 0.40) 51.97910249233246deg, rgba(245, 201, 217, 0.00) 136.35732650756836deg, rgba(221, 204, 248, 0.40) 172.19358086585999deg, rgba(192, 146, 250, 0.40) 336.5046429634094deg);
-    filter: blur(125px);
-    position: absolute;
-    left: -218px;
-    top: -92px;
-}
-
-.element-1 {
-    width: 563.833px;
-    height: 670.723px;
-    flex-shrink: 0;
-    background: conic-gradient(from 180deg at 45.26% 41.97%, rgba(168, 228, 255, 0.50) 110.62499642372131deg, rgba(229, 220, 252, 0.52) 191.21399402618408deg, #E6DCFC 191.25deg, rgba(249, 227, 235, 0.49) 307.5000071525574deg);
-    filter: blur(75px);
-    position: absolute;
-    left: -48.68px;
-    top: 569px;
-}
-
-.element-3 {
-    width: 345px;
-    height: 202px;
-    flex-shrink: 0;
-    border-radius: 345px;
-    background: #CEBBFA;
-    filter: blur(100px);
-    position: absolute;
-    left: 178px;
-    top: -67px;
-}
  
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  
+}
 
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white; /* White background for the entire container */
+  z-index: -1;
+}
 
+.element-2 {
+  width: 990px;
+  height: 703px;
+  flex-shrink: 0;
+  background: conic-gradient(from 180deg at 50% 50%, rgba(255, 114, 182, 0.40) 51.97910249233246deg, rgba(245, 201, 217, 0.00) 136.35732650756836deg, rgba(221, 204, 248, 0.40) 172.19358086585999deg, rgba(192, 146, 250, 0.40) 336.5046429634094deg);
+  filter: blur(125px);
+  position: absolute;
+  left: -218px;
+  top: -92px;
+}
+
+.element-1 {
+  width: 563.833px;
+  height: 670.723px;
+  flex-shrink: 0;
+  background: conic-gradient(from 180deg at 45.26% 41.97%, rgba(168, 228, 255, 0.50) 110.62499642372131deg, rgba(229, 220, 252, 0.52) 191.21399402618408deg, #E6DCFC 191.25deg, rgba(249, 227, 235, 0.49) 307.5000071525574deg);
+  filter: blur(75px);
+  position: absolute;
+  left: -48.68px;
+  top: 569px;
+}
+
+.element-3 {
+  width: 345px;
+  height: 202px;
+  flex-shrink: 0;
+  border-radius: 345px;
+  background: #CEBBFA;
+  filter: blur(100px);
+  position: absolute;
+  left: 178px;
+  top: -67px;
+}
   div.header {
       display: flex;
       align-items: center;
@@ -88,7 +88,7 @@ ion-content {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     margin-top: 20px;
-    
+  }
     h4 {
         //*********************font-family:sans-serif;
         font-weight: bold;
@@ -212,17 +212,23 @@ ion-content {
       
       
     }
-    
-      .horizontal-scroll {
+    /*.horizontal-scroll {
           display: flex;
           overflow-x: scroll;          
           //padding-right: 10px; // Add some padding to the container
           flex-wrap: nowrap;
           overflow-y: hidden;
-      }
+      }*/
+    .horizontal-scroll {
+      display: flex;
+      overflow-x: auto; /* Utilize auto to show scrollbar when needed */
+      flex-wrap: nowrap;
+      overflow-y: hidden;
+      max-width: 100%; /* Set a maximum width for the container */
+      margin-bottom: 20px; /* Add some bottom margin for spacing */
+    }
       .horizontal-scroll::-webkit-scrollbar {
         width: 0;
         height: 0;
       }
-    }
-}
+    
