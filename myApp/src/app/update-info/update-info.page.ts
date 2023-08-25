@@ -33,6 +33,6 @@ export class UpdateInfoPage implements OnInit {
     this.navCtrl.back(); // Cette ligne effectue le retour à la page précédente
   }
   changePic(){
-    
+   
   }
 }
