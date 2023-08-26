@@ -129,16 +129,13 @@ ion-input {
 
   }
   
-    
-  
 
-
-  
-.forgot{
-  display: flex;
-  justify-content: flex-end;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  color: #3a4d6b;
-  margin: 8px 0 14px 0;
+.forgotPassword{
+  float:right;
+ color:#838383;
+ font-size: 1.1rem;
+    line-height: 1rem;
+ padding-right: 2%;
+ margin-top: 3%;
+ 
 }
