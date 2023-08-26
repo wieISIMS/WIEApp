@@ -221,11 +221,11 @@ ion-content {
       }*/
     .horizontal-scroll {
       display: flex;
-      overflow-x: auto; /* Utilize auto to show scrollbar when needed */
+      overflow-x: scroll; /* Utilize auto to show scrollbar when needed */
       flex-wrap: nowrap;
       overflow-y: hidden;
       max-width: 100%; /* Set a maximum width for the container */
-      margin-bottom: 20px; /* Add some bottom margin for spacing */
+    /* Add some bottom margin for spacing */
     }
       .horizontal-scroll::-webkit-scrollbar {
         width: 0;
