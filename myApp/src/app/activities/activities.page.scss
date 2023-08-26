@@ -44,7 +44,9 @@ ion-content {
 }
 }
 .options{
+  font-family: "Poppins", sans-serif;
   color: black;
+  font-weight: bold;
 }
 .avatar{
     margin-left: auto;
@@ -59,6 +61,7 @@ ion-content {
     position: relative; /* Positionner le conteneur absolument */
     left: 18px; /* Ajuster la position horizontale selon vos besoins */
     color: #000000;
+    font-family: "Poppins", sans-serif;
 }
 .btnp{
     display: flex;
@@ -71,6 +74,7 @@ ion-content {
     --color-activated: black; /* Change the button activated color to black */
     font-size: 16px; /* Adjust the font size as needed */
     font-weight: bold;
+    font-family: "Poppins", sans-serif;
 }
 h2{
   display: -webkit-box;
@@ -181,6 +185,7 @@ font-weight: bold;
   }
   .active-button {
     text-decoration: underline;
+    font-family: "Poppins", sans-serif;
   }
 /* Autres styles */
 
@@ -240,7 +245,15 @@ font-weight: bold;
     border-bottom: none !important;
   }
  
-  
+  .messageVide{
+    color: #000000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+  }
   
   
   

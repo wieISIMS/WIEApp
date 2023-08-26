@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./notifications.page.scss'],
 })
 export class NotificationsPage implements OnInit {
-  //notificationsList: notif[] = []; 
-  notificationsList: any[] = [
+  notificationsList: any[] = []; 
+  /*notificationsList: any[] = [
     {
       club: 'IEEE WIE Affinity Group',
       image: 'assets/Wie.jpg',
@@ -28,7 +28,7 @@ export class NotificationsPage implements OnInit {
       time: '2 hours ago'
     }
     }
-  ]; 
+  ]; */
   
   constructor(private router: Router) { }
 
