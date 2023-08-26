@@ -1,0 +1,234 @@
+ion-content {
+
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white; /* White background for the entire container */
+  z-index: -1;
+}
+
+.element-2 {
+  width: 990px;
+  height: 703px;
+  flex-shrink: 0;
+  background: conic-gradient(from 180deg at 50% 50%, rgba(255, 114, 182, 0.40) 51.97910249233246deg, rgba(245, 201, 217, 0.00) 136.35732650756836deg, rgba(221, 204, 248, 0.40) 172.19358086585999deg, rgba(192, 146, 250, 0.40) 336.5046429634094deg);
+  filter: blur(125px);
+  position: absolute;
+  left: -218px;
+  top: -92px;
+}
+
+.element-1 {
+  width: 563.833px;
+  height: 670.723px;
+  flex-shrink: 0;
+  background: conic-gradient(from 180deg at 45.26% 41.97%, rgba(168, 228, 255, 0.50) 110.62499642372131deg, rgba(229, 220, 252, 0.52) 191.21399402618408deg, #E6DCFC 191.25deg, rgba(249, 227, 235, 0.49) 307.5000071525574deg);
+  filter: blur(75px);
+  position: absolute;
+  left: -48.68px;
+  top: 569px;
+}
+
+.element-3 {
+  width: 345px;
+  height: 202px;
+  flex-shrink: 0;
+  border-radius: 345px;
+  background: #CEBBFA;
+  filter: blur(100px);
+  position: absolute;
+  left: 178px;
+  top: -67px;
+}
+  div.header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      padding:20px 20px 0px 20px;
+      ion-avatar.img {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+      h3 {
+        color: black;
+        font-weight: bold;
+        margin-left: 10px;
+        margin-right: 160px;
+        width:max-content;
+      }
+      .info {
+        display: flex; /* Ajout de la règle pour aligner les éléments horizontalement */
+        align-items: center; /* Aligner les éléments verticalement */
+        justify-content: space-between;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+
+    .custom-searchbar {
+      --background: white; /* Couleur de fond */
+      --placeholder-color: #black; /* Couleur du placeholder */
+      --color: black; /* Couleur du texte saisi */
+      margin: 0px 20px 20px 20px;
+      width: 90%;
+    }
+    
+  .events {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    margin-top: 20px;
+  }
+    h4 {
+        //*********************font-family:sans-serif;
+        font-weight: bold;
+        color: black;
+        margin-top: 5px;
+        margin-left: 10px;
+      }
+    h1 {
+            margin-top: 5px;
+            color: black;
+            font-size:large;
+            font-weight:600;
+            
+          }
+        
+    .card-description1{
+          color: black;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3; /* Affiche seulement les trois premières lignes */
+          line-height: 1.5; /* Hauteur d'une ligne approximative (ajuster selon les besoins) */
+          max-height: 5.5em; /* Hauteur approximative de trois lignes (ligne-height * 3) */
+          overflow: hidden;
+          margin-left: 5px;
+          margin-bottom: 12px;
+
+        }
+      
+    ion-card.card1 {
+        flex: 0 0 auto; /* Make sure the cards don't grow or shrink */
+        width: 250px; /* Adjust the width of each card as needed */
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top:0px;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 10px;
+          ion-label {
+              display: flex;
+              flex-direction: row;
+              margin-left: 5px;
+          }
+          .img-container {
+            width: 100%;
+            height: 150px; // Adjust the desired height
+            overflow: hidden;
+          
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover; // Add this line
+            }
+          }  
+      }
+      .card2{
+        flex: 0 0 auto; /* Make sure the cards don't grow or shrink */
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 10px;
+        width: 220px;
+        height: 69px;
+        padding: 10px;
+        h2{
+          white-space: nowrap; 
+        }
+        .images{
+          border-radius: 20%;
+        }
+        .icon3{
+          font-size: 25px; 
+        }
+        .align{
+          display: flex; 
+          align-items: center;
+        }
+            
+        .img-container2{
+          margin-right: 12px;
+          position: relative;
+          align-items: center; /* Ajoutez cette ligne pour centrer verticalement */
+          display: flex; /* Utiliser un affichage flex pour centrer verticalement */
+         justify-content: center; /* Centrer horizontalement */
+        }
+        
+    }
+    .card3{
+      background-color: transparent;
+      display: flex;
+      box-shadow:none;
+      h2{
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2; /* Affiche seulement les trois premières lignes */
+          line-height: 1.5; /* Hauteur d'une ligne approximative (ajuster selon les besoins) */
+          max-height: 5.5em; /* Hauteur approximative de trois lignes (ligne-height * 3) */
+          overflow: hidden;
+          margin-left: 10px;
+          color: black;
+
+      }
+      p{
+        margin-left: 10px;
+      }
+      .img-container3 {
+        position: relative;
+        display: flex; /* Utiliser un affichage flex pour centrer verticalement */
+        justify-content: center; /* Centrer horizontalement */
+        align-items: center; /* Centrer verticalement */
+      }
+      
+      .images3 {
+        object-fit: cover;
+        border-radius: 20%;
+      }
+      
+      
+      
+      
+      
+      
+    }
+    /*.horizontal-scroll {
+          display: flex;
+          overflow-x: scroll;          
+          //padding-right: 10px; // Add some padding to the container
+          flex-wrap: nowrap;
+          overflow-y: hidden;
+      }*/
+    .horizontal-scroll {
+      display: flex;
+      overflow-x: scroll; /* Utilize auto to show scrollbar when needed */
+      flex-wrap: nowrap;
+      overflow-y: hidden;
+      max-width: 100%; /* Set a maximum width for the container */
+    /* Add some bottom margin for spacing */
+    }
+      .horizontal-scroll::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    

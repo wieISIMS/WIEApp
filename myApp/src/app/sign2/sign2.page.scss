@@ -1,0 +1,132 @@
+ion-content {
+  --background: linear-gradient(to left bottom, #e6d4ff, #ebd8ff, #f0dcff, #f5e0ff, #f4e0ff, #f9e1ff, #fee3ff, #ffe5ff);
+}
+.container{
+  margin-top: 25%;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+.photo {
+  position: relative;
+  text-align: center;
+  margin-top: -15%;
+}
+
+.person {
+  font-size: 1000%;
+  color: #838383;
+}
+
+.add {
+  font-size: 300%;
+  position: absolute;
+  top: 60%;
+  left: 57%;
+  transform: translate(-80%, -80% , 20% , 10%);
+  color: #c092fa;
+}
+
+ion-label{
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 25px;
+  font-size: 140%;
+  font-weight: bolder;
+  color: black;
+  margin-left: 10px;
+}
+ion-input {
+  // Remove default border and box shadow
+  --border-width: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --box-shadow: none;
+
+  //default background and text color
+  --background: transparent;
+  --color: black;
+
+  // Remove default highlight on focus
+  --highlight-color-focused: #c092fa;
+  --highlight-color-invalid: #c092fa;
+  --highlight-color-valid: #c092fa;
+
+  // Remove default caret color
+  --caret-color: inherit;
+  
+  // Remove default outline on focus
+  --outline: none;
+
+  // Remove default placeholder styling
+  --placeholder-color:#838383 ;
+  --placeholder-font-style: normal;
+
+}
+
+.input{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 6%;
+  margin-top: 5px;
+  border: none;
+  border-radius: 13px;
+  background-color:white;
+  height: 40px;
+  padding-left: 10px;
+
+}   
+.errorMessage{
+  color: red;
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  margin-top: -10px;
+  margin-bottom: 5%;
+}
+
+.button{
+  background-color: #c092fa!important;
+  font-family: "Poppins", sans-serif;
+  font-size: 140%;
+  font-weight: bolder;
+  border-radius: 25px;
+  width:95%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 20%;
+  margin-bottom: 25%;
+}
+
+
+  .signup{
+    font-family: "Poppins", sans-serif;
+    font-weight: bolder;
+    color:#c092fa ;
+    margin-left: 2px;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+
+  .Account {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1rem;
+    color: #838383;
+
+  }
+  .check{
+    margin-left: 5%;
+    margin-top: 15%;
+    margin-bottom: -15%;
+    color: var(--gris, #838383);
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }

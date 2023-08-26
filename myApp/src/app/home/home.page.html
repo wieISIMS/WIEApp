@@ -1,0 +1,112 @@
+<ion-content [fullscreen]="true">
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>
+
+  <div class="fixed">
+  <div class="header">
+    
+    <div class="info">
+      <h3>Hello Anis!</h3>
+      <ion-avatar class="img">
+        <ion-img src="../../assets/anis.JPG" (click)="profile()"></ion-img>
+      </ion-avatar>
+    </div>
+    
+  </div>
+  <div>
+    <ion-searchbar placeholder="Search events" class="custom-searchbar"></ion-searchbar>
+  </div>
+
+</div>
+  <div class="events">
+    <h4>Last Events</h4>
+    <div class="horizontal-scroll">
+
+    <ion-card class="card1" *ngFor="let group of LastEvents" (click)="goToEvent(group)">
+      <div class="img-container">
+          <img src="{{group.image}}"/>
+      </div>
+      <div class="card-content">
+        <ion-label>
+          <h1>{{group.title}}</h1>
+        </ion-label>
+        <div class="card-description1">
+          <p>{{group.desc}}</p>
+        </div>
+      </div>
+    </ion-card>
+   
+  </div>
+
+    <h4>Our Clubs</h4>
+    <div class="horizontal-scroll">
+    
+   <ion-card  class="card2" *ngFor="let c of club" (click)="goToClub(c)">
+    <div class="img-container2">
+       <ion-thumbnail slot="start">
+        <img src="{{c.logo}}" class="images" />
+      </ion-thumbnail>
+    </div>
+      <ion-label >
+        <h2>{{c.nameC}}</h2>
+        <div class="align">
+        <ion-icon name="people-outline" class="icon3"></ion-icon>
+        <h5>{{c.nbMembers}}</h5>
+       </div>
+      </ion-label>
+  </ion-card>
+  
+  </div>
+
+
+   
+    <h4>Latest News</h4>
+    <div class="scrollable-cards">
+      <!--card1-->
+<ion-card  class="card3">
+  <div class="img-container3">
+     <ion-thumbnail slot="start">
+      <img src="../../assets/cleaning_day.jpg"  class="images3" />
+    </ion-thumbnail>
+  </div>
+    <ion-label>
+      <p>Cleaning Day - IEEE Wie Chapter</p>
+      <h2>Our affinity group organize a cleaning day this Sunday in our institute</h2>
+    </ion-label>
+</ion-card>
+<!--card2-->
+<ion-card  class="card3">
+  <div class="img-container3">
+     <ion-thumbnail slot="start">
+      <img src="../../assets/Ras.jpg"  class="images3" />
+    </ion-thumbnail>
+  </div>
+    <ion-label>
+      <p>workshop ardouino - IEEE Ras Chapter</p>
+      <h2>Come join as at the Robotic initiation where you can learn 
+        more about the fascinating field of robotics
+      </h2>
+    </ion-label>
+</ion-card>
+<!--card3-->
+<ion-card  class="card3">
+  <div class="img-container3">
+     <ion-thumbnail slot="start">
+      <img src="../../assets/Ras.jpg"  class="images3" />
+    </ion-thumbnail>
+  </div>
+    <ion-label>
+      <p>workshop ardouino - IEEE Ras Chapter</p>
+      <h2>Come join as at the Robotic initiation where you can learn 
+        more about the fascinating field of robotics
+      </h2>
+    </ion-label>
+</ion-card>
+
+</div>
+</div>
+ 
+</ion-content>

@@ -1,0 +1,12 @@
+ion-tab-bar{
+    background-color:#ffffff;
+ }
+ 
+ ion-tab-button {
+   color: #000000ac ; /* Set your desired text color */
+   background: transparent; /* Set the background color of the tab button */
+ }
+ ion-tab-button.active{
+    color: #000 ;  /* Couleur de l'onglet actif */
+    transform: scale(1.2); 
+}
