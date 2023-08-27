@@ -20,6 +20,7 @@ urlpatterns = [
     path('clubEvents/<int:idClub>',views.getClubEvents,name='clubEvents'),
     path('calendEvents/',views.getCalender,name='calendEvents'),
     path('memberEvents/<int:idMember>',views.getMemberEvents,name='memberEvents'),
-    path('memberClubs/<int:idMember>',views.getMemberClubs,name='memberClubs')
+    path('memberClubs/<int:idMember>',views.getMemberClubs,name='memberClubs'),
+    path('signUp/',views.signUp,name='signUp')
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 

@@ -48,15 +48,16 @@ class ClandrierClub(models.Model):
 class Membre(models.Model):
     idMember = models.AutoField(primary_key=True, unique=True, blank=True)
     email= models.CharField(max_length=100, null=True)
-    userName = models.CharField(max_length=100,null=True)
+    userName=models.CharField(max_length=100,null=True)
     firstName = models.CharField(max_length=100,null=True)
     familyName = models.CharField(max_length=100,null=True)
     photo = models.ImageField(upload_to="images/clubs/")
     password = models.CharField(max_length=500,null=True)
+    phoneNumber=models.CharField(max_length=8,null=True)
     clubs = models.ManyToManyField('Club', blank=True)
     idCland = models.ForeignKey(CalandrierEvent, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
-        return str(self.userName)
+        return str(self.firstName)
 
 
 class ClandrierMembre(models.Model):
