@@ -35,21 +35,24 @@ export class LoginPage implements OnInit {
     if (this.email === '') {
       this.errormessagemail = 'Email address is required.';
     }
-    else if (!this.isValidEmail(this.email) ) {
-      this.errormessagemail = 'Please enter a valid email address! ';
-    }
-
     if (this.password === '') {
       this.errormessagePass = 'Password is required.';
     }
-    else if (this.isValidEmail(this.email)) {
-    //fonction login
-    this.router.navigate(['/tablinks'])
+    else{
+    this.service.login(this.email,this.password).subscribe(data=>{
+      console.log(data)
+      localStorage.setItem('token',data.id)
+      //this.router.navigate(['/tablinks'])
+    })
+   
   }
   }
 
   ngOnInit() {
-    this.callService()
+    //this.callService()
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/tablinks'])
+    }
   }
   clearErrorMessage(errorVariable: string) {
     if (errorVariable === 'errormessagemail') {
