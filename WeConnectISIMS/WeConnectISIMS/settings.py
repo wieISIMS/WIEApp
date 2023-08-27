@@ -27,6 +27,14 @@ SECRET_KEY = 'django-insecure-1+kbff1swsftfok2*_^luu99w5r#a355lu&m@5+zt_0_%gbh_1
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CORS_ALLOW_METHODS = [
+'DELETE',
+'GET',
+'OPTIONS',
+'PATCH',
+'POST',
+'PUT',
+]
 CORS_ALLOW_HEADERS = [
    
     'accept',
@@ -68,7 +76,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:8000'
+     'http://localhost:8100'
 ]
 ROOT_URLCONF = 'WeConnectISIMS.urls'
 

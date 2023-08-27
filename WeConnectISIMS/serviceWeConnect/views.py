@@ -170,17 +170,21 @@ def getLatestNews(request):
         event_list.append(event_data)
      return HttpResponse(event_list,content_type='application/json')
 
-@api_view(['GET'])
-def login(request,username,password):
+@api_view(['POST'])
+def login(request):
+     username=request.data['username']
+     password=request.data['password']
      try:
         member=Membre.objects.get(userName=username,password=password)
         data_list=[]
+        token = str(uuid.uuid4())
         if member is not None:
-            data = {
+            data =json.dumps( {
                     'id': member.idMember,
                     'firstName': member.firstName,
-                    'photo': member.photo.url if member.photo else None
-                 }
+                    'photo':member.photo.url if member.photo else None,
+                    'token':token
+                 })
         data_list.append(data)
         data=data_list  
      except Membre.DoesNotExist:
@@ -433,4 +437,14 @@ def getMemberClubs(request,idMember):
     except:
        data=json.dumps({'message':'member not found'})  
     return HttpResponse(data,content_type='application/json')
-
+@api_view(['GET'])
+def getMembreInfo(request,id):
+    try:
+        member=Membre.objects.get(idMember=id)
+        data=json.dumps({
+          'firstName': member.firstName,
+          'photo':member.photo.url if member.photo else None,
+        })
+    except:
+       data=json.dumps({'message':'member not found'})  
+    return HttpResponse(data,content_type='application/json')

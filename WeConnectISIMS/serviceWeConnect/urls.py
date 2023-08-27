@@ -12,7 +12,7 @@ urlpatterns = [
     path('addEvent/',views.addevent,name='addEvent'),
     path('searchE/<slug:title>',views.searchEvent,name='searchE'),
     path('latestNews/',views.getLatestNews,name='latestNews'),
-    path('login/<slug:username>/<slug:password>',views.login,name='login'),
+    path('login/',views.login,name='loginMembre'),
     path('allNotif/<int:idMember>',views.getAllNotif,name='allNotif'),
     path('verifPar/<int:idMember>/<int:idEvent>',views.verifParticipate,name='verifPar'),
     path('ParEvent/<int:idEvent>/<int:idMember>',views.participateEvent,name='ParEvent'),
@@ -21,6 +21,7 @@ urlpatterns = [
     path('calendEvents/',views.getCalender,name='calendEvents'),
     path('memberEvents/<int:idMember>',views.getMemberEvents,name='memberEvents'),
     path('memberClubs/<int:idMember>',views.getMemberClubs,name='memberClubs'),
-    path('signUp/',views.signUp,name='signUp')
+    path('signUp/',views.signUp,name='signUp'),
+    path('infomembre/<id>/',views.getMembreInfo,name='infoMembre')
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 
