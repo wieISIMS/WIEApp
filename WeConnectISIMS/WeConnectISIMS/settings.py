@@ -27,7 +27,22 @@ SECRET_KEY = 'django-insecure-1+kbff1swsftfok2*_^luu99w5r#a355lu&m@5+zt_0_%gbh_1
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CORS_ALLOW_HEADERS = [
+   
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
 
 # Application definition
 
@@ -50,8 +65,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
-
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:8000'
+]
 ROOT_URLCONF = 'WeConnectISIMS.urls'
 
 TEMPLATES = [
