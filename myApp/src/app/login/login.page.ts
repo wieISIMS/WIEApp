@@ -18,11 +18,7 @@ export class LoginPage implements OnInit {
 
 
   constructor(private router: Router, private service:ServicesService) { }
-  callService(){
-    this.service.getOurClub().subscribe(data=>{
-      console.log("ourclub", data);
-    })
-  }
+  
    //is email valid
    isValidEmail(email: string) : boolean {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -49,7 +45,6 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.callService()
     if(localStorage.getItem('token')){
       this.router.navigate(['/tablinks'])
     }

@@ -25,8 +25,14 @@ interface CardClub {
 export class HomePage implements OnInit {
   username='';
   img ='';
+  getOurClub(){
+    this.service.getOurClub().subscribe(data=>{
+      this.club = data;
+      console.log("ourclub", data);
+    })
+  }
   getMemberInfo(){
-    
+    console.log((localStorage.getItem('token')))
     this.service.getMemberInfo(localStorage.getItem('token')).subscribe(data=>{
       this.username=data.firstName;
       this.img="http://127.0.0.1:8000"+data.photo;
@@ -50,23 +56,7 @@ export class HomePage implements OnInit {
     }
   ]; 
 
-  club: CardClub[] = [
-    {
-      idC: 1,
-      nameC:'IEEE WIE AF',
-      logo:'../../assets/Wie.jpg',
-      nbMembers:110,
-      nbEvents:10
-    },
-  {
-      idC: 2,
-      nameC:'Microsoft Tech Club',
-      logo:'../../assets/microsoft.jpg',
-      nbMembers:200,
-      nbEvents:55
-
-  }
-  ]; 
+  club: any[] = []; 
   constructor(private router: Router,private service:ServicesService) {}
 
   profile() {
@@ -80,6 +70,7 @@ export class HomePage implements OnInit {
   }
   ngOnInit(): void {
     this.getMemberInfo()
+    this.getOurClub()
   }
 
 }

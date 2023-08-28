@@ -22,6 +22,7 @@ export class ServicesService {
   }
   getMemberInfo(id:any):Observable<any>{
 
-   return this.http.get<any>(apiUrl+'infomembre/'+id+'/');
+   return this.http.get<any>(apiUrl+'/infomembre/'+id+'/');
 }
+
 }

@@ -9,7 +9,7 @@
   <div class="header">
     
     <div class="info">
-      <h3>Hello {{username}}</h3>
+      <h3>Hello {{username}} !</h3>
       <ion-avatar class="img">
         <ion-img src={{img}} (click)="profile()"></ion-img>
       </ion-avatar>
@@ -47,7 +47,8 @@
    <ion-card  class="card2" *ngFor="let c of club" (click)="goToClub(c)">
     <div class="img-container2">
        <ion-thumbnail slot="start">
-        <img src="{{c.logo}}" class="images" />
+        <img [src]="'http://127.0.0.1:8000' + c.logo" class="images" />
+
       </ion-thumbnail>
     </div>
       <ion-label >
