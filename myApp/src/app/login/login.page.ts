@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
     this.service.login(this.email,this.password).subscribe(data=>{
       console.log(data)
       localStorage.setItem('token',data.id)
-      //this.router.navigate(['/tablinks'])
+      this.router.navigate(['/tablinks'])
     })
    
   }

@@ -20,4 +20,8 @@ export class ServicesService {
     }
     return this.http.post<any>(apiUrl+ '/login/', data)
   }
+  getMemberInfo(id:any):Observable<any>{
+
+   return this.http.get<any>(apiUrl+'infomembre/'+id+'/');
+}
 }
