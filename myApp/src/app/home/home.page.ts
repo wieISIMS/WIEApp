@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
   }
   ionChange(event:any) {
     this.cardsSearched=[];
-    this.searchEvent(event.target.value)
+    this.searchEvent(event.detail.value)
 
 }
   hideSearch() {
