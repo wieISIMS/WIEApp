@@ -83,13 +83,14 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  
 }
 
 .custom-button {
   --background: transparent;
   --box-shadow: none;
   --border-width: 0;
-  --border-radius: 0;
+  border-radius:10px;
   padding: 0;
   ion-icon {
     display: none; /* Hide the default icon if any */
@@ -124,4 +125,106 @@
     text-align: center;
   }
 }
+
+h1{
+  color: black;
+}
+.event-title {
+  font-weight: bold;
+  font-size: 16px;
+
+  font-weight: 600;
+  opacity: 1;
+
+  color: black;
+  
+}
+.trainer{
+  font-weight: bold;
+  font-size: 14px;
+  
+  font-weight: 500;
+  opacity: 1;
+ 
+  color: black;
+}
+.infos{
+  font-weight: bold;
+  font-size: 14px;
+ 
+  font-weight: 400;
+  opacity: 1;
+  
+  color: black;
+}
+
+
+.current-day-card {
+  background-color: rgba(255,255,255,0.5); 
+  width: 275px;
+  height:150px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.current-day-button {
+  background-color: white; }
+  .start-time{
+    color: #212525;
+    font-size: 16px;
+    font-weight: 400;
+    font-weight: bold;
+  }
+  .end-time{
+    color: #838383;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .event-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .event-times {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  
+
+  .time-events-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .time-label,
+  .events-label {
+    font-weight: bold;
+    margin:0;
+    color: #838383;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .line-days{
+    width: 100%;
+    height: 2px;
+    background-color: white; /* Change this to the desired color */
+    margin-top: 5px; 
+  }
+
+
+
+
+
+
 
