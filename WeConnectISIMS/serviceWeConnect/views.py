@@ -1,6 +1,6 @@
 from django.shortcuts import render 
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from rest_framework.decorators import api_view
 from .models import *
 import base64
@@ -73,17 +73,17 @@ def getLastEvents(request):
     last_events = []
     for event in past_events:
         event_data = {
-              'idEvent':event.idEvent,
-              'photo': event.photo.url,
-              'title': event.title,
-              'dateE':event.dateEvent.strftime('%Y-%m-%d'),
-               'description':event.description,
-               'club':event.club.name,
-               'idClub':event.club.idClub,
-                'photoC':event.club.photo.url
-              }
+            'idEvent':event.idEvent,
+            'photo': event.photo.url,
+            'title': event.title,
+            'dateE':event.dateEvent.strftime('%Y-%m-%d'),
+            'description':event.description,
+            'club':event.club.name,
+            'idClub':event.club.idClub,
+            'photoC':event.club.photo.url
+                }
         last_events.append(event_data)     
-    return HttpResponse(last_events ,content_type='application/json')
+    return HttpResponse(json.dumps(last_events) ,content_type='application/json')
 
 @api_view(['GET'])
 def getEventDetails(request,idEvent):
@@ -134,23 +134,28 @@ def addevent(request):
      return HttpResponse(data,content_type='application/json')
 
 
-@api_view(['GET'])
-def searchEvent(request,title):
-     events = Event.objects.filter(title=title) if title else []
-     event_list = []
+
+
+@api_view(['POST'])
+def searchEvent(request):
+     title = request.data.get("title")
+     events = Event.objects.filter(title__icontains=title) if title else []
+     
+     event_list = [] 
      for event in events:
         event_data = {
-            'id': event.idEvent,
-            'nom': event.title,
-            'description': event.description,
-            'nbParticipant': event.nbparticipant,
-            'nom_du_club': event.club.name,
-            'photo': event.photo.url,  
-            'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
-            'heureEvent':event.heureEvent.strftime('%H:%M:%S')
+              'idEvent': event.idEvent,
+              'photo': event.photo.url,
+              'title': event.title,
+              'dateE': event.dateEvent.strftime('%Y-%m-%d'),
+              'description': event.description,
+              'club': event.club.name,
+              'idClub': event.club.idClub,
+              'photoC': event.club.photo.url
         }
-        event_list.append(event_data)
-     return HttpResponse(event_list,content_type='application/json')
+        event_list.append(event_data)  
+
+     return JsonResponse(event_list, safe=False)
  
 @api_view(['GET'])
 def getLatestNews(request):
@@ -168,7 +173,10 @@ def getLatestNews(request):
             'heureEvent':event.heureEvent.strftime('%H:%M:%S')
         }
         event_list.append(event_data)
-     return HttpResponse(event_list,content_type='application/json')
+     data=event_list
+     if not data:
+        data=json.dumps([{'message':'No upcoming events'}]) 
+     return HttpResponse(data,content_type='application/json')
 
 @api_view(['POST'])
 def login(request):
