@@ -24,5 +24,19 @@ export class ServicesService {
 
    return this.http.get<any>(apiUrl+'/infomembre/'+id+'/');
 }
+  getLastEvent():Observable<any[]>{
 
+  return this.http.get<any>(apiUrl+'/lastEvent/');
+}
+getLatestNews():Observable<any[]>{
+
+  return this.http.get<any>(apiUrl+'/latestNews/');
+}
+searchEvent(title:any):Observable<any[]>{
+ let data={
+  
+   "title":title
+ }
+  return this.http.post<any>(apiUrl+'/searchE/',data);
+}
 }

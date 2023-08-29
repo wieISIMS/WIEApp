@@ -1,21 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from '../api/services.service'; 
-interface CardEvent {
-  idEvent:any;
-  image: any;
-  club:any;
-  title:any;
-  desc:any;
-} 
 
-interface CardClub {
-  idC: any;
-  nameC:any;
-  logo:any;
-  nbMembers:any;
-  nbEvents:any;
-}
 
 @Component ({
   selector: 'app-home',
@@ -25,38 +11,56 @@ interface CardClub {
 export class HomePage implements OnInit {
   username='';
   img ='';
+  title = Object
+  clubs: any[] = []; 
+  LastEvents: any[] = []; 
+  LatestNews: any[] = [];
+  cardsSearched: any[] = [];
+  cardsOn=false;
+  searchEvent(title:any){
+    this.service.searchEvent(title).subscribe(data=>{
+      this.cardsSearched=data;
+      this.cardsOn= true;
+      if(title==''){
+        this.cardsOn=false;
+      }
+    })
+  }
+  ionChange(event:any) {
+    this.cardsSearched=[];
+    this.searchEvent(event.target.value)
+
+}
+  hideSearch() {
+   this.cardsOn=false;
+   this.searchEvent('')
+  }
   getOurClub(){
     this.service.getOurClub().subscribe(data=>{
-      this.club = data;
-      console.log("ourclub", data);
+      this.clubs = data;
+   
+    })
+  }
+  getLastEvent(){
+    this.service.getLastEvent().subscribe(data=>{
+      this.LastEvents = data;
+    })
+  }
+  getLatestNews(){
+    this.service.getLatestNews().subscribe(data=>{
+      this.LatestNews = data;
     })
   }
   getMemberInfo(){
-    console.log((localStorage.getItem('token')))
     this.service.getMemberInfo(localStorage.getItem('token')).subscribe(data=>{
       this.username=data.firstName;
       this.img="http://127.0.0.1:8000"+data.photo;
       console.log(data);
     })
   }
-  LastEvents: CardEvent[] = [
-    {
-    idEvent:1,
-    image: '../../assets/Ras.jpg',
-    club: 'IEEE ISIMS SB',
-    title:'TSYP X',
-    desc:'10Th IEEE Tunisian Students and Young Professionals TSYP Congress organized by IEEE Esprit Student Branch.',
-  },
-  {
-    idEvent:2,
-    image: '../../assets/ias-tam.jpg',
-    club: 'Microsoft ISIMS',
-    title:'IAS TAM 3.0',
-    desc:'IEEE Industry Applications Society Tunisia Annual Meeting organized by IEEE ENETCOM Student Branch.',
-    }
-  ]; 
 
-  club: any[] = []; 
+
+
   constructor(private router: Router,private service:ServicesService) {}
 
   profile() {
@@ -71,6 +75,8 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.getMemberInfo()
     this.getOurClub()
+    this.getLastEvent()
+    this.getLatestNews()
   }
 
 }
