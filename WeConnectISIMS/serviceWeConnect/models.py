@@ -27,6 +27,7 @@ class Event(models.Model):
     title = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=500, null=True)
     nbparticipant = models.IntegerField(null=True)
+    nbMax = models.IntegerField(null=True)
     photo = models.ImageField(upload_to="images/events/", null=True)
     dateEvent = models.DateField(null=True)
     heureEvent = models.TimeField(null=True)

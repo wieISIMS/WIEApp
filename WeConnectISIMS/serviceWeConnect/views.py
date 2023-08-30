@@ -310,35 +310,40 @@ def verifParticipate(request,idEvent,idMember):
         event=Event.objects.get(idEvent=idEvent)
         print(event)
         if event in events:
-            data=json.dumps({'message':'member participates in the event'})
+            data=json.dumps({'message':'True'})
         else:
-            data=json.dumps({'message':'member does not participate in the event'})
+            data=json.dumps({'message':'False'})
     except Event.DoesNotExist:
         data=json.dumps({'message':'event does not exist'})
     except Membre.DoesNotExist:
         data=json.dumps({'message':'event does not exist'})
     return HttpResponse(data,content_type='application/json')
 
-@api_view(['GET'])
-def participateEvent(request,idEvent,idMember):
+@api_view(['POST'])
+def participateEvent(request):
+     idEvent=request.data.get('ide')
+     idMember=request.data.get('idm')
      event=Event.objects.get(idEvent=idEvent)
+     print(event.title)
      if event:
-         event.nbparticipant+=1
-         event.save()
+         nb=event.nbparticipant+1
+         if (nb>event.nbMax):
+            data=json.dumps({'message':'False'})
+         else:
+            event.nbparticipant+=1    
+            event.save()
+            member=Membre.objects.get(idMember=idMember)
+            calendar, created = ClandrierMembre.objects.get_or_create(membre=member)
+            print(calendar.idCland)
+            if created:
+                calendar.events.add(event)
+                calendar.save()
+            else:
+                calendar.events.add(event)
+                calendar.save()
+            data=json.dumps({'message':'True'})
      else:
-       data=json.dumps({'message':'event does not exist'})
-     member=Membre.objects.get(idMember=idMember)
-     calendar, created = ClandrierMembre.objects.get_or_create(membre=member)
-     if created:
-        calendar.events.add(event)
-        calendar.save()
-     else:
-        # Le calendrier existe déjà, ajouter simplement l'événement
-        calendar.events.add(event)
-    
-    # Sauvegarder les modifications du calendrier
-     calendar.save()  
-     from django.db.models import F
+        data=json.dumps({'message':'event does not exist'})
      return HttpResponse(data,content_type='application/json')
 @api_view(['GET'])
 def getBestEvents(request,idClub):
@@ -481,13 +486,42 @@ def getMemberClubs(request,idMember):
        data=json.dumps({'message':'member not found'})  
     return HttpResponse(data,content_type='application/json')
 @api_view(['GET'])
-def getMembreInfo(request,id):
+def getMembreInfo(request,idMember):
     try:
-        member=Membre.objects.get(idMember=id)
+        member=Membre.objects.get(idMember=idMember)
         data=json.dumps({
-          'firstName': member.firstName,
-          'photo':member.photo.url if member.photo else None,
-        })
+            'email': member.email,
+            'password':member.password,
+            'firstName': member.firstName,
+            'familyName': member.familyName,
+            'photo': member.photo.url if member.photo else [],
+            })
     except:
-       data=json.dumps({'message':'member not found'})  
-    return HttpResponse(data,content_type='application/json')
+       data=json.dumps({'message':'member not found'}) 
+    return HttpResponse(data, content_type='application/json')
+@api_view(['GET'])
+def getInfoClub(request,idClub):
+    try:
+        club=Club.objects.get(idClub=idClub)
+        data=json.dumps({
+            'name': club.name,
+            'photo':club.photo.url if club.photo else [],
+            'nbMembers': club.nbMembers,
+            'nbEvents': club.nbEvents,
+            })
+    except:
+       data=json.dumps({'message':'club not found'}) 
+    return HttpResponse(data, content_type='application/json')
+@api_view(['GET'])
+def finishedEvent(request,idEvent):
+    event=Event.objects.get(idEvent=idEvent)
+    date=datetime.combine(event.dateEvent, event.heureEvent)
+    current_datetime = datetime.now()
+    if date<= current_datetime:
+        data=json.dumps({'message':'True'}) 
+    else:
+        data=json.dumps({'message':'False'}) 
+    return HttpResponse(data, content_type='application/json')
+
+
+
