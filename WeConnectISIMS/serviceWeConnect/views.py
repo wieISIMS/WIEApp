@@ -264,7 +264,33 @@ def getAllNotif(request,idMember):
     except Membre.DoesNotExist:
         data=json.dumps({'message':'member not found'})
     return HttpResponse(data,content_type='application/json')
-    
+@api_view(['GET'])
+def getInfoClub(request,idClub):
+    try:
+        club=Club.objects.get(idClub=idClub)
+        data=json.dumps({
+            'name': club.name,
+            'photo':club.photo.url if club.photo else [],
+            'nbMembers': club.nbMembers,
+            'nbEvents': club.nbEvents,
+            })
+    except:
+       data=json.dumps({'message':'club not found'}) 
+    return HttpResponse(data, content_type='application/json')
+@api_view(['GET'])
+def getMemberInfo(request,idMember):
+    try:
+        member=Membre.objects.get(idMember=idMember)
+        data=json.dumps({
+            'email': member.email,
+            'password':member.password,
+            'firstName': member.firstName,
+            'familyName': member.familyName,
+            'photo': member.photo.url if member.photo else [],
+            })
+    except:
+       data=json.dumps({'message':'member not found'}) 
+    return HttpResponse(data, content_type='application/json')    
 
 @api_view(['GET'])
 def verifParticipate(request,idEvent,idMember):
