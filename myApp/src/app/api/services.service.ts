@@ -39,4 +39,8 @@ searchEvent(title:any):Observable<any[]>{
  }
   return this.http.post<any>(apiUrl+'/searchE/',data);
 }
+getEventDetail(id:string):Observable<any>{
+
+  return this.http.get<any>(apiUrl+'/EventDetails/'+id);
+}
 }

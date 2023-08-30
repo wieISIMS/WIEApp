@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   
   {
-    path: 'event',
+    path: 'event/:id',
     loadChildren: () => import('./event/event.module').then( m => m.EventPageModule)
   },
   {
@@ -45,7 +45,8 @@ const routes: Routes = [
   {
     path: 'activities',
     loadChildren: () => import('./activities/activities.module').then( m => m.ActivitiesPageModule)
-  },  {
+  },
+  {
     path: 'forgot-password',
     loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
