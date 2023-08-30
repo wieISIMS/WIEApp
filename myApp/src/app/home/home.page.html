@@ -23,7 +23,7 @@
 </div >
 
 <div *ngIf="cardsOn" >
-  <ion-card class="card1" *ngFor="let group of cardsSearched" (click)="goToEvent(group)">
+  <ion-card class="card1" *ngFor="let group of cardsSearched" (click)="goToEvent(group.idEvent)">
     <div class="img-container">
       <img [src]="'http://127.0.0.1:8000' + group.photo" class="images" />
     </div>
@@ -43,7 +43,7 @@
     <h4>Last Events</h4>
     <div class="horizontal-scroll">
 
-    <ion-card class="card1" *ngFor="let group of LastEvents" (click)="goToEvent(group)">
+    <ion-card class="card1" *ngFor="let group of LastEvents" (click)="goToEvent(group.idEvent)">
       <div class="img-container">
         <img [src]="'http://127.0.0.1:8000' + group.photo" class="images" />
       </div>

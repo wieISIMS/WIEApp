@@ -66,8 +66,8 @@ export class HomePage implements OnInit {
   profile() {
     this.router.navigate(['/activities']);
   }
-  goToEvent(group:any){
-    this.router.navigate(['/event'], { state: { group: group } });
+  goToEvent(id:any){
+    this.router.navigate(['/event/'+id]);
   }
   goToClub(group:any){
     this.router.navigate(['/club'], { state: { club: group } });
