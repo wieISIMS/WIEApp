@@ -22,7 +22,7 @@ urlpatterns = [
     path('memberEvents/<int:idMember>',views.getMemberEvents,name='memberEvents'),
     path('memberClubs/<int:idMember>',views.getMemberClubs,name='memberClubs'),
     path('signUp/',views.signUp,name='signUp'),
-    path('infomembre/<id>/',views.getMembreInfo,name='infoMembre'),
+    path('infomembre/<idMember>/',views.getMembreInfo,name='infoMembre'),
     path('infoClub/<int:idClub>',views.getInfoClub,name='infoClub'),
     path('finishedEvent/<int:idEvent>',views.finishedEvent,name='finishedEvent')
     ]

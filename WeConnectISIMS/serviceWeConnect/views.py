@@ -304,8 +304,9 @@ def getMemberInfo(request,idMember):
 def verifParticipate(request,idEvent,idMember):
     try:
         member = Membre.objects.get(idMember=idMember)
+        print(member.firstName)
         idCland=member.idCland.idCland
-        cland = CalandrierEvent.objects.get(idCland=idCland)
+        cland = ClandrierMembre.objects.get(idCland=idCland)
         events=cland.events.all()
         event=Event.objects.get(idEvent=idEvent)
         print(event)
@@ -316,33 +317,28 @@ def verifParticipate(request,idEvent,idMember):
     except Event.DoesNotExist:
         data=json.dumps({'message':'event does not exist'})
     except Membre.DoesNotExist:
-        data=json.dumps({'message':'event does not exist'})
+        data=json.dumps({'message':'member does not exist'})
     return HttpResponse(data,content_type='application/json')
 
 @api_view(['POST'])
 def participateEvent(request):
-     idEvent=request.data.get('ide')
-     idMember=request.data.get('idm')
-     event=Event.objects.get(idEvent=idEvent)
-     print(event.title)
-     if event:
-         nb=event.nbparticipant+1
-         if (nb>event.nbMax):
-            data=json.dumps({'message':'False'})
-         else:
+     try:
+        idEvent=request.data.get('ide')
+        idMember=request.data.get('idm')
+        event=Event.objects.get(idEvent=idEvent)
+        nb=event.nbparticipant
+        if (nb<event.nbMax):
             event.nbparticipant+=1    
             event.save()
             member=Membre.objects.get(idMember=idMember)
             calendar, created = ClandrierMembre.objects.get_or_create(membre=member)
             print(calendar.idCland)
-            if created:
-                calendar.events.add(event)
-                calendar.save()
-            else:
-                calendar.events.add(event)
-                calendar.save()
+            calendar.events.add(event)
+            calendar.save()
             data=json.dumps({'message':'True'})
-     else:
+        else:
+             data=json.dumps({'message':'False'})
+     except:
         data=json.dumps({'message':'event does not exist'})
      return HttpResponse(data,content_type='application/json')
 @api_view(['GET'])
