@@ -300,24 +300,28 @@ def getMemberInfo(request,idMember):
        data=json.dumps({'message':'member not found'}) 
     return HttpResponse(data, content_type='application/json')    
 
-@api_view(['GET'])
-def verifParticipate(request,idEvent,idMember):
+@api_view(['POST'])
+def verifParticipate(request):
+    idEvent=request.data.get('ide')
+    idMember=request.data.get('idm')
     try:
+        complet=False
         member = Membre.objects.get(idMember=idMember)
-        print(member.firstName)
         idCland=member.idCland.idCland
-        cland = ClandrierMembre.objects.get(idCland=idCland)
+        cland = CalandrierEvent.objects.get(idCland=idCland)
         events=cland.events.all()
         event=Event.objects.get(idEvent=idEvent)
-        print(event)
-        if event in events:
-            data=json.dumps({'message':'True'})
+        if event.nbMax==event.nbparticipant:
+            complet=True
+        if event not in events:
+            print("Hellooooooo")
+            data=json.dumps({'message':'True','complete':complet})
         else:
-            data=json.dumps({'message':'False'})
+            data=json.dumps({'message':'False','complete':complet})
     except Event.DoesNotExist:
         data=json.dumps({'message':'event does not exist'})
     except Membre.DoesNotExist:
-        data=json.dumps({'message':'member does not exist'})
+        data=json.dumps({'message':'event does not exist'})
     return HttpResponse(data,content_type='application/json')
 
 @api_view(['POST'])
@@ -327,17 +331,21 @@ def participateEvent(request):
         idMember=request.data.get('idm')
         event=Event.objects.get(idEvent=idEvent)
         nb=event.nbparticipant
-        if (nb<event.nbMax):
-            event.nbparticipant+=1    
-            event.save()
-            member=Membre.objects.get(idMember=idMember)
-            calendar, created = ClandrierMembre.objects.get_or_create(membre=member)
-            print(calendar.idCland)
-            calendar.events.add(event)
-            calendar.save()
-            data=json.dumps({'message':'True'})
-        else:
-             data=json.dumps({'message':'False'})
+        member=Membre.objects.get(idMember=idMember)
+        calendar, created = ClandrierMembre.objects.get_or_create(membre=member)
+        allEvens=calendar.events.all()
+        if(event not in allEvens):                        
+            if (nb<event.nbMax):
+                event.nbparticipant+=1    
+                event.save()
+                
+            
+                print(calendar.idCland)
+                calendar.events.add(event)
+                calendar.save()
+                data=json.dumps({'message':'True'})
+            else:
+                data=json.dumps({'message':'False'})
      except:
         data=json.dumps({'message':'event does not exist'})
      return HttpResponse(data,content_type='application/json')
@@ -514,9 +522,9 @@ def finishedEvent(request,idEvent):
     date=datetime.combine(event.dateEvent, event.heureEvent)
     current_datetime = datetime.now()
     if date<= current_datetime:
-        data=json.dumps({'message':'True'}) 
+        data=json.dumps({'message':"False"}) 
     else:
-        data=json.dumps({'message':'False'}) 
+        data=json.dumps({'message':"True"}) 
     return HttpResponse(data, content_type='application/json')
 
 
