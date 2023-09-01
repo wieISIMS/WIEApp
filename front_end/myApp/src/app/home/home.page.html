@@ -32,7 +32,7 @@
         <h1>{{group.title}}</h1>
       </ion-label>
       <div class="card-description1">
-        <p>{{group.desc}}</p>
+        <p>{{group.description}}</p>
       </div>
     </div>
   </ion-card>
@@ -42,7 +42,7 @@
   <div class="events">
     <h4>Last Events</h4>
     <div class="horizontal-scroll">
-
+      <div class="horizontal-scroll-container">
     <ion-card class="card1" *ngFor="let group of LastEvents" (click)="goToEvent(group)">
       <div class="img-container">
         <img [src]="'http://127.0.0.1:8000' + group.photo" class="images" />
@@ -52,16 +52,16 @@
           <h1>{{group.title}}</h1>
         </ion-label>
         <div class="card-description1">
-          <p>{{group.desc}}</p>
+          <p>{{group.description}}</p>
         </div>
       </div>
     </ion-card>
-   
+      </div>
   </div>
 
     <h4>Our Clubs</h4>
     <div class="horizontal-scroll">
-    
+      <div class="horizontal-scroll-container">
    <ion-card  class="card2" *ngFor="let c of clubs" (click)="goToClub(c)">
     <div class="img-container2">
        <ion-thumbnail slot="start">
@@ -77,7 +77,7 @@
        </div>
       </ion-label>
   </ion-card>
-  
+      </div>
   </div>
 
 
@@ -92,7 +92,7 @@
     </ion-thumbnail>
   </div>
     <ion-label>
-      <p>{{l.nom }}-{{l.nom_du_club}} </p>
+      <p class="eventClub">{{l.nom }} - {{l.nom_du_club}} </p>
       <h2>{{l.description}}</h2>
     </ion-label>
 </ion-card>
