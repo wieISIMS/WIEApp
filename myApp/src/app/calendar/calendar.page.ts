@@ -16,6 +16,7 @@ export class CalendarPage implements OnInit {
     trainer: string;
     place: string;
     club: string;
+    clubimg:any;
     date: Date;
   }[] = [];
   //events: string[] = [];
@@ -54,6 +55,7 @@ export class CalendarPage implements OnInit {
         trainer: 'Mr.Mohammed Bouaziz',
         place: 'Salle2-ISIMS',
         club:'IEEE WIE Affinity group ISIMS',
+        clubimg:"../../assets/Wie.jpg",
         date: day.date,
       },
       {
@@ -63,6 +65,7 @@ export class CalendarPage implements OnInit {
         trainer: 'Wie Act',
         place: 'Online',
         club:'IEEE WIE Affinity group ISIMS',
+        clubimg:"../../assets/Wie.jpg",
         date: day.date,
       },
       {
@@ -71,7 +74,8 @@ export class CalendarPage implements OnInit {
         endTime: '20:00',
         trainer: 'Stand',
         place: 'ISIMS',
-        club:'IEEE ISIMS SB',
+        club:'IEEE RAS ISIMS',
+        clubimg:"../../assets/Ras.jpg",
         date: day.date,
       },
     ];
