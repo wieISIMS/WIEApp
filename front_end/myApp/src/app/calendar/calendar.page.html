@@ -1,0 +1,39 @@
+<ion-content class="ion-padding">
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>
+
+  <div class="today">
+    <div class="currentD">
+    <p class="day">{{ currentDate | date: 'd' }}</p>
+    <div class="dayMonth">
+      <p class="day-name">{{ currentDate | date: 'E' }}</p>
+      <p class="month-year">{{ currentDate | date: 'MMM yyyy' }}</p>
+    </div>
+  </div>
+    <p class="todayB">Today</p>
+  </div>
+
+  <div class="weekdays">
+    <ion-button
+      *ngFor="let day of weekdays"
+      (click)="getEventsForDay(day)"
+      class="custom-button"
+    >
+    <div class="btn">
+      <div class="day-name">{{ day.name }}</div>
+      <div class="date">{{ day.date.getDate() }}</div>
+    </div>
+    </ion-button>
+  </div>
+
+  <div class="events">
+    <ion-list>
+      <ion-item *ngFor="let event of events">
+        {{ event }}
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,103 @@
+<ion-content [fullscreen]="true">
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>
+
+  <div class="fixed">
+  <div class="header">
+    
+    <div class="info">
+      <h3>Hello {{username}} !</h3>
+      <ion-avatar class="img">
+        <ion-img src={{img}} (click)="profile()"></ion-img>
+      </ion-avatar>
+    </div>
+    
+  </div>
+  <div>
+    <ion-searchbar placeholder="Search events" (ionCancel)="hideSearch()" (ionChange)="ionChange($event)" class="custom-searchbar"></ion-searchbar>
+  </div>
+
+</div >
+
+<div *ngIf="cardsOn" >
+  <ion-card class="card1" *ngFor="let group of cardsSearched" (click)="goToEvent(group)">
+    <div class="img-container">
+      <img [src]="'http://127.0.0.1:8000' + group.photo" class="images" />
+    </div>
+    <div class="card-content">
+      <ion-label>
+        <h1>{{group.title}}</h1>
+      </ion-label>
+      <div class="card-description1">
+        <p>{{group.desc}}</p>
+      </div>
+    </div>
+  </ion-card>
+</div>
+
+<div *ngIf="!(cardsOn)">
+  <div class="events">
+    <h4>Last Events</h4>
+    <div class="horizontal-scroll">
+
+    <ion-card class="card1" *ngFor="let group of LastEvents" (click)="goToEvent(group)">
+      <div class="img-container">
+        <img [src]="'http://127.0.0.1:8000' + group.photo" class="images" />
+      </div>
+      <div class="card-content">
+        <ion-label>
+          <h1>{{group.title}}</h1>
+        </ion-label>
+        <div class="card-description1">
+          <p>{{group.desc}}</p>
+        </div>
+      </div>
+    </ion-card>
+   
+  </div>
+
+    <h4>Our Clubs</h4>
+    <div class="horizontal-scroll">
+    
+   <ion-card  class="card2" *ngFor="let c of clubs" (click)="goToClub(c)">
+    <div class="img-container2">
+       <ion-thumbnail slot="start">
+        <img [src]="'http://127.0.0.1:8000' + c.logo" class="images" />
+
+      </ion-thumbnail>
+    </div>
+      <ion-label >
+        <h2>{{c.nameC}}</h2>
+        <div class="align">
+        <ion-icon name="people-outline" class="icon3"></ion-icon>
+        <h5>{{c.nbMembers}}</h5>
+       </div>
+      </ion-label>
+  </ion-card>
+  
+  </div>
+
+
+   
+    <h4>Latest News</h4>
+    <div class="scrollable-cards">
+      <!--card1-->
+<ion-card  class="card3" *ngFor="let l of LatestNews">
+  <div class="img-container3">
+     <ion-thumbnail slot="start">
+      <img [src]="'http://127.0.0.1:8000' + l.photo"  class="images3" />
+    </ion-thumbnail>
+  </div>
+    <ion-label>
+      <p>{{l.title}}</p>
+      <h2>{{l.desc}}</h2>
+    </ion-label>
+</ion-card>
+
+</div>
+</div>
+</div>
+</ion-content>

@@ -1,0 +1,45 @@
+
+<ion-buttons class="icon1" slot="start">
+  <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+</ion-buttons>
+<ion-content [fullscreen]="true" >
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>  
+  <ion-avatar class="imag">
+  <ion-img  src="../assets/img/ang.jpeg"></ion-img>
+</ion-avatar>
+<p class="changePic" (click)="changePic()" >Change Picture</p>
+
+
+<div class="container">
+    <div class="input">
+      <ion-label>Password</ion-label>
+      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+    </div>
+    <div class="input">
+      <ion-label>Password</ion-label>
+      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+    </div>
+    <div class="input">
+      <ion-label>Phone Number</ion-label>
+      <ion-input type="tel" placeholder="99 999 999" [ngModel]="phoneNumber"  required></ion-input>
+      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+    </div>
+    <div class="input">
+      <ion-label>Password</ion-label>
+      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+    </div>
+    <div class="input">
+      <ion-label>Confirm password</ion-label>
+      <ion-input type="password" placeholder="********" [(ngModel)]="confirmPassword" #passwordInput="ngModel" required></ion-input>
+      <div *ngIf="errormessage" class="errorMessage" >{{errormessage}}</div>
+    </div>
+  </div>
+  <button class="button" (click)="onUpdateInfoClick()">Update</button>
+</ion-content>

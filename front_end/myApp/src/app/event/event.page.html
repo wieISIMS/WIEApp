@@ -1,0 +1,46 @@
+<ion-buttons class="icon1" slot="start">
+  <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+</ion-buttons>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>
+
+ 
+  <div class="head">
+  <ion-img [src]="'http://127.0.0.1:8000' + group.photoC" class="img"></ion-img>
+  <div class="header-text">
+    {{group.club}}
+  </div>
+  </div>
+  <div class="subtitle" >{{group.title}}</div>
+  <div class="class">
+<div *ngIf="!eventFinished">
+    <p class="upcoming-events">upcoming event</p>
+    <div *ngIf="full">
+      <p *ngIf="eventPart" class="participate">Already participated </p>
+      <p>This session is full</p>
+    </div>
+    <div *ngIf="!full">
+      <button *ngIf="!eventPart" class="participate" (click)="participateEvent()"  >Participate</button>
+      <p *ngIf="eventPart" class="participate">Already participated </p>
+    </div>
+  </div>
+  <div *ngIf="eventFinished">
+    <p  class="upcoming-events">This event is Finished</p>
+
+  </div>
+
+</div>
+  <p class="Date">Date:{{group.dateE}}  </p>
+
+  <ion-img class="imgE" [src]="'http://127.0.0.1:8000' + group.photo" ></ion-img>
+  
+  <div class="parag">
+    <p>{{group.description}}</p>
+  </div>
+</ion-content>

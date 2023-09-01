@@ -1,0 +1,83 @@
+<!--icons-->
+<ion-buttons class="icon1" slot="start">
+  <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+</ion-buttons>
+<ion-buttons class="icon2">
+  <ion-icon name="settings" (click)="toggleSettingsMenu()"></ion-icon>
+</ion-buttons>
+
+<div id="settings-menu" [ngClass]="{ 'hidden': !isSettingsMenuOpen }">
+  <ion-list>
+    <ion-item class="options" (click)="update()">Edit</ion-item>
+    <ion-item class="options" (click)="signOut()">Sign Out</ion-item>
+  </ion-list>
+</div>
+<!--Avatar-->
+<ion-content [fullscreen]="true">
+  <div class="background">
+    <div class="element-2"></div>
+    <div class="element-1"></div>
+    <div class="element-3"></div>
+  </div>
+  <ion-avatar class="avatar">
+    <ion-img  src="../../assets/mimi.jpg"></ion-img>
+  </ion-avatar>
+  <!--main_buttons-->
+  <h3 class="user">Mariem Mnif</h3>
+<div class="btnp">
+  <div class="btnp">
+    <ion-button (click)="showEvents()" fill="clear" [ngClass]="{'active-button': showEventsPage, 'button-with-margin': true, 'underline-on-click': showEventsPage}">events</ion-button>
+    <ion-button (click)="showClubs()" fill="clear" [ngClass]="{'active-button': showClubsPage, 'button-with-margin': true, 'underline-on-click': showClubsPage}">clubs</ion-button>
+  </div>   
+</div>
+  <!--events-->
+  <div class="cards_container" *ngIf="showEventsPage">
+    <div class="text">
+      <h5>Events</h5>
+    </div>
+    <div class="scrollable-cards">
+      <ng-container *ngIf="events.length > 0; else noEvents">
+      <ion-card  class="card" *ngFor="let group of events" (click)="goToEvent(group)">
+        <div class="img-container">
+          <ion-thumbnail slot="start">
+            <img src="{{group.image}}"  class="images" />
+          </ion-thumbnail>
+        </div>
+          <ion-label>
+            <p>{{group.title}} - {{group.club}}</p>
+            <h2>{{group.desc}}</h2>
+          </ion-label>
+      </ion-card>
+      </ng-container>
+      <ng-template #noEvents>
+        <p class="messageVide">No events available at the moment.</p>
+      </ng-template>
+</div>
+</div>
+<!--clubs-->
+<div class="cards_container" *ngIf="showClubsPage">
+  <div class="text">
+    <h5>Clubs</h5>
+  </div>
+  <ng-container *ngIf="club.length > 0; else noClub">
+   <ion-card  class="card" *ngFor="let c of club" (click)="goToClub(c)">
+    <div class="img-container">
+       <ion-thumbnail slot="start">
+        <img src="{{c.logo}}" class="images" />
+      </ion-thumbnail>
+    </div>
+      <ion-label >
+        <h2>{{c.nameC}}</h2>
+        <div class="align">
+        <ion-icon name="people-outline" class="icon3"></ion-icon>
+        <h5>{{c.nbMembers}}</h5>
+       </div>
+      </ion-label>
+  </ion-card>
+</ng-container>
+<ng-template #noClub>
+  <p class="messageVide">You are not a member of any clubs yet.</p>
+</ng-template>
+</div>
+ 
+</ion-content>
