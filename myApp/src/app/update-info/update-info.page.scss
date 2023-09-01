@@ -72,11 +72,15 @@
     margin-right: auto;
     align-items: center;
   }
+  
 ion-label{
-    font-family: "Poppins", sans-serif;
-    font-size:large;
-    font-weight: bolder;
-    color: black;
+  font-family: "Poppins", sans-serif;
+  
+  margin-bottom: 25px;
+  font-size: 140%;
+  font-weight: bolder;
+  color: black;
+  margin-left: 10px;
   }
   ion-input {
     // Remove default border and box shadow
@@ -90,9 +94,9 @@ ion-label{
     --color: black;
   
     // Remove default highlight on focus
-    --highlight-color-focused: transparent;
-    --highlight-color-invalid: transparent;
-    --highlight-color-valid: transparent;
+    --highlight-color-focused: #c092fa;
+    --highlight-color-invalid: #c092fa;
+    --highlight-color-valid: #c092fa;
   
     // Remove default caret color
     --caret-color: inherit;
@@ -104,36 +108,41 @@ ion-label{
     --placeholder-color:#838383 ;
     --placeholder-font-style: normal;
   
+  
   }
-.input{
+  .input{
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
+    margin-bottom: 6%;
     margin-top: 5px;
     border: none;
-    border-radius: 20px;
+    border-radius: 13px;
     background-color:white;
+    height: 40px;
     padding-left: 10px;
-
-  }   
+  
+  }     
   .errorMessage{
     color: red;
     font-size: 14px;
     opacity: 1;
-    transition: opacity 0.5s ease-in-out;}
-.button{
-        background-color: #c092fa!important;
-        font-family: "Poppins", sans-serif;
-        font-size: 140%;
-        font-weight: bolder;
-        border-radius: 25px;
-        width:95%;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        margin-top: 40px;
-      }
+    transition: opacity 0.5s ease-in-out;
+    margin-top: -10px;
+    margin-bottom: 5%;
+  }
+  .button{
+    background-color: #c092fa!important;
+    font-family: "Poppins", sans-serif;
+    font-size: 140%;
+    font-weight: bolder;
+    border-radius: 25px;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 20%;
+  }
 
 
