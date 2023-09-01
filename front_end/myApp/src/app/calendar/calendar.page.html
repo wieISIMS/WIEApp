@@ -7,33 +7,74 @@
 
   <div class="today">
     <div class="currentD">
-    <p class="day">{{ currentDate | date: 'd' }}</p>
-    <div class="dayMonth">
-      <p class="day-name">{{ currentDate | date: 'E' }}</p>
-      <p class="month-year">{{ currentDate | date: 'MMM yyyy' }}</p>
+      <p class="day">{{ currentDate | date: 'd' }}</p>
+      <div class="dayMonth">
+        <p class="day-name">{{ currentDate | date: 'E' }}</p>
+        <p class="month-year">{{ currentDate | date: 'MMM yyyy' }}</p>
+      </div>
     </div>
-  </div>
     <p class="todayB">Today</p>
   </div>
 
-  <div class="weekdays">
-    <ion-button
-      *ngFor="let day of weekdays"
-      (click)="getEventsForDay(day)"
-      class="custom-button"
-    >
+  <ion-button
+    *ngFor="let day of weekdays"
+    (click)="getEventsForDay(day)"
+    class="custom-button"
+    [ngClass]="{'current-day-button': day.date.toDateString() === selectedDate.toDateString()}">
+  
     <div class="btn">
-      <div class="day-name">{{ day.name }}</div>
-      <div class="date">{{ day.date.getDate() }}</div>
-    </div>
-    </ion-button>
+    <div class="day-name">{{ day.name }}</div>
+    <div class="date">{{ day.date.getDate() }}</div>
   </div>
+</ion-button>
 
-  <div class="events">
-    <ion-list>
-      <ion-item *ngFor="let event of events">
-        {{ event }}
-      </ion-item>
+<div class="line-days"></div>
+
+<div class="events">
+  <ion-list class="aa">
+
+    <div class="time-events-header">
+      <p class="time-label">Time</p>
+      <p class="events-label">Events</p>
+    </div>
+
+    
+
+    <ng-container *ngFor="let event of events">
+      <div class="event-wrapper">
+
+        <div class="event-times">
+          <p class="start-time">{{ event.startTime }}</p>
+          <p class="end-time">{{ event.endTime }}</p>
+        </div>
+
+        <ion-card
+          class="event-card"
+          [ngClass]="{
+            'current-day-card': selectedDate === event.date,
+            'event-card': selectedDate !== event.date
+              }">        
+          <ion-card-content>
+            <p class="event-title">{{ event.title }}</p>
+            
+            <div class="infos">
+              <ion-icon size="small" class="place" name="location-sharp"></ion-icon>
+                <p class="detail">{{ event.place }}</p>
+            </div>
+
+            <div class="infos">
+              <img
+                width="20"
+                src="{{ event.clubimg }}"
+                alt="{{ event.place }}"
+                />
+              <p class="detail">{{ event.club }}</p>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ng-container>
+
     </ion-list>
   </div>
 </ion-content>

@@ -9,7 +9,17 @@ export class CalendarPage implements OnInit {
 
   currentDate: Date = new Date();
   selectedDate: Date = new Date();
-  events: string[] = [];
+  events: {
+    title: string;
+    startTime: string;
+    endTime: string;
+    trainer: string;
+    place: string;
+    club: string;
+    clubimg:any;
+    date: Date;
+  }[] = [];
+  //events: string[] = [];
   weekdays: { name: string; date: Date }[] = [];
 
   constructor() {
@@ -17,6 +27,9 @@ export class CalendarPage implements OnInit {
   }
 
   ngOnInit() {
+    //this.getEventsForDay({ name: this.currentDate.toLocaleDateString('en-US', { weekday: 'short' }).charAt(0), date: this.currentDate });
+    this.selectedDate = new Date(); // Set the selectedDate to the current date
+    this.getEventsForDay({ name: '', date: this.selectedDate }); // Load events for the current date
   }
   private initializeWeekdays() {
     const today = new Date(this.currentDate);
@@ -35,9 +48,36 @@ export class CalendarPage implements OnInit {
   getEventsForDay(day: { name: string; date: Date }) {
     // Mocking events for demonstration purposes.
     this.events = [
-      `Event 1 on ${day.date.toDateString()}`,
-      `Event 2 on ${day.date.toDateString()}`,
-      `Event 3 on ${day.date.toDateString()}`,
+      {
+        title: 'Flutter training session',
+        startTime: '10:00',
+        endTime: '11:30',
+        trainer: 'Mr.Mohammed Bouaziz',
+        place: 'Salle2-ISIMS',
+        club:'IEEE WIE Affinity group ISIMS',
+        clubimg:"../../assets/Wie.jpg",
+        date: day.date,
+      },
+      {
+        title: 'Info session',
+        startTime: '14:00',
+        endTime: '16:00',
+        trainer: 'Wie Act',
+        place: 'Online',
+        club:'IEEE WIE Affinity group ISIMS',
+        clubimg:"../../assets/Wie.jpg",
+        date: day.date,
+      },
+      {
+        title: 'Integration day',
+        startTime: '17:00',
+        endTime: '20:00',
+        trainer: 'Stand',
+        place: 'ISIMS',
+        club:'IEEE RAS ISIMS',
+        clubimg:"../../assets/Ras.jpg",
+        date: day.date,
+      },
     ];
     this.selectedDate = day.date;
   }
