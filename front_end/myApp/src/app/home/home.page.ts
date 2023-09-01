@@ -38,6 +38,7 @@ export class HomePage implements OnInit {
   getOurClub(){
     this.service.getOurClub().subscribe(data=>{
       this.clubs = data;
+      console.log(data)
    
     })
   }
@@ -48,8 +49,9 @@ export class HomePage implements OnInit {
   }
   getLatestNews(){
     this.service.getLatestNews().subscribe(data=>{
-      this.LatestNews = data;
       console.log(data)
+      this.LatestNews = data;
+    
     })
   }
   getMemberInfo(){

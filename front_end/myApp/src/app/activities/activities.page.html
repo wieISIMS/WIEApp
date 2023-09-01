@@ -20,10 +20,10 @@
     <div class="element-3"></div>
   </div>
   <ion-avatar class="avatar">
-    <ion-img  src="../../assets/mimi.jpg"></ion-img>
+    <ion-img  src= {{img}}></ion-img>
   </ion-avatar>
   <!--main_buttons-->
-  <h3 class="user">Mariem Mnif</h3>
+  <h3 class="user">{{name}} {{fname}}</h3>
 <div class="btnp">
   <div class="btnp">
     <ion-button (click)="showEvents()" fill="clear" [ngClass]="{'active-button': showEventsPage, 'button-with-margin': true, 'underline-on-click': showEventsPage}">events</ion-button>
@@ -36,19 +36,19 @@
       <h5>Events</h5>
     </div>
     <div class="scrollable-cards">
-      <ng-container *ngIf="events.length > 0; else noEvents">
+      <!--ng-container *ngIf="events.length > 0; else noEvents"-->
       <ion-card  class="card" *ngFor="let group of events" (click)="goToEvent(group)">
         <div class="img-container">
           <ion-thumbnail slot="start">
-            <img src="{{group.image}}"  class="images" />
+            <img [src]="'http://127.0.0.1:8000' + group.photo"  class="images" />
           </ion-thumbnail>
         </div>
           <ion-label>
-            <p>{{group.title}} - {{group.club}}</p>
-            <h2>{{group.desc}}</h2>
+            <p>{{group.nom}} - {{group.nom_du_club}}</p>
+            <h2>{{group.description}}</h2>
           </ion-label>
       </ion-card>
-      </ng-container>
+      <!--/ng-container-->
       <ng-template #noEvents>
         <p class="messageVide">No events available at the moment.</p>
       </ng-template>
@@ -63,7 +63,7 @@
    <ion-card  class="card" *ngFor="let c of club" (click)="goToClub(c)">
     <div class="img-container">
        <ion-thumbnail slot="start">
-        <img src="{{c.logo}}" class="images" />
+        <img [src]="'http://127.0.0.1:8000' + c.logo" class="images" />
       </ion-thumbnail>
     </div>
       <ion-label >

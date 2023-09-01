@@ -55,9 +55,15 @@ verifParticipate(ide:any,idm:any):Observable<any>{
   }
   return this.http.post<any>(apiUrl+'/verifPar/',data);
 }
-
 finishedEvent(id:any):Observable<any>{
+  return this.http.get<any>(apiUrl+'/memberEvents/'+id);
+}
 
-  return this.http.get<any>(apiUrl+'/finishedEvent/'+id);
+//activities services
+getMemberEvents(id:any):Observable<any>{
+  return this.http.get<any>(apiUrl+'/memberEvents/'+id);
+}
+getMemberClubs(id:any):Observable<any>{
+  return this.http.get<any>(apiUrl+'/memberClubs/'+id);
 }
 }

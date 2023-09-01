@@ -200,7 +200,7 @@ def getLatestNews(request):
     data = event_list
     if not data:
         data = json.dumps([{"message": "No upcoming events"}])
-    return HttpResponse(data, content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 @api_view(["POST"])
@@ -533,7 +533,7 @@ def getMemberEvents(request, idMember):
         data = finished_events + upcoming_events
     except:
         data = json.dumps({"message": "member not found"})
-    return HttpResponse(data, content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 @api_view(["GET"])
@@ -550,10 +550,10 @@ def getMemberClubs(request, idMember):
                 "nbMembers": club.nbMembers,
                 "nbEvents": club.nbEvents,
             }
-        data.append(club_data)
+            data.append(club_data)
     except:
         data = json.dumps({"message": "member not found"})
-    return HttpResponse(data, content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 @api_view(["GET"])
@@ -597,7 +597,7 @@ def finishedEvent(request, idEvent):
     date = datetime.combine(event.dateEvent, event.heureEvent)
     current_datetime = datetime.now()
     if date <= current_datetime:
-        data = json.dumps({"message": "False"})
-    else:
         data = json.dumps({"message": "True"})
+    else:
+        data = json.dumps({"message": "False"})
     return HttpResponse(data, content_type="application/json")

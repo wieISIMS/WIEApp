@@ -20,6 +20,7 @@ export class EventPage implements OnInit {
   
    this.service.participateEvent(this.ide,this.idm).subscribe(data=>{
    window.location.reload();
+   this.eventPart = true;
    })
  }
  finishedEvent(){
@@ -52,7 +53,7 @@ export class EventPage implements OnInit {
     this.idm = localStorage.getItem('token')
     this.verifParticipate();
     this.finishedEvent( );
-    console.log(this.group)
+    console.log(this.group);
   }
   goBack() {
     this.navCtrl.back(); // Cette ligne effectue le retour à la page précédente

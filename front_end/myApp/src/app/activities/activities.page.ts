@@ -1,21 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { ServicesService } from '../api/services.service'; 
 import { Router } from '@angular/router';
-interface CardEvent {
-  idEvent:any;
-  image: any;
-  club:any;
-  title:any;
-  desc:any;
-} 
 
-interface CardClub {
-  idC: any;
-  nameC:any;
-  logo:any;
-  nbMembers:any;
-  nbEvents:any;
-}
 @Component({
   selector: 'app-activities',
   templateUrl: './activities.page.html',
@@ -23,44 +11,12 @@ interface CardClub {
 })
 
 export class ActivitiesPage implements OnInit {
-
-  events: CardEvent[] = [
-    {
-    idEvent:1,
-    image: '../../assets/Ras.jpg',
-    club: 'IEEE ISIMS SB',
-    title:'TSYP X',
-    desc:'10Th IEEE Tunisian Students and Young Professionals TSYP Congress organized by IEEE Esprit Student Branch.',
-  },
-  {
-    idEvent:2,
-    image: '../../assets/ias-tam.jpg',
-    club: 'Microsoft ISIMS',
-    title:'IAS TAM 3.0',
-    desc:'IEEE Industry Applications Society Tunisia Annual Meeting organized by IEEE ENETCOM Student Branch.',
-    }
-  ]; 
-
-  club: CardClub[] = []
-
- /* club: CardClub[] = [
-    {
-      idC: 1,
-      nameC:'IEEE WIE AF',
-      logo:'../../assets/Wie.jpg',
-      nbMembers:110,
-      nbEvents:10
-    },
-  {
-      idC: 2,
-      nameC:'Microsoft Tech Club',
-      logo:'../../assets/microsoft.jpg',
-      nbMembers:200,
-      nbEvents:55
-
-  }
-  ]; */
-
+  club:any;
+  name='';
+  fname='';
+  img ='';
+  idm:any;
+  events:any;
   showEventsPage: boolean = true;
   showClubsPage: boolean = false;
   isSettingsMenuOpen = false;
@@ -68,7 +24,8 @@ export class ActivitiesPage implements OnInit {
     
   constructor(
     private navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private service:ServicesService
   ) {}
   goBack() {
     this.navCtrl.back(); // Cette ligne effectue le retour à la page précédente
@@ -80,16 +37,35 @@ export class ActivitiesPage implements OnInit {
    }
 
   ngOnInit() {
+    this.getMemberInfo();
+    this.showEvents();
+    this.idm = localStorage.getItem('token')
+    console.log(this.idm)
   }
-
+  getMemberInfo(){
+    this.service.getMemberInfo(localStorage.getItem('token')).subscribe(data=>{
+      this.name=data.firstName;
+      this.fname=data.familyName;
+      this.img="http://127.0.0.1:8000"+data.photo;
+      console.log(data);
+    })
+  }
   showEvents() {
+    this.service.getMemberEvents(this.idm).subscribe(data=>{
     this.showEventsPage = true;
     this.showClubsPage = false;
+    console.log(data);
+    this.events=data;
+    })
   }
 
   showClubs() {
+    this.service.getMemberClubs(this.idm).subscribe(data=>{
     this.showEventsPage = false;
     this.showClubsPage = true;
+    console.log(data);
+    this.club=data;
+    })
   }
 
   toggleSettingsMenu() {
