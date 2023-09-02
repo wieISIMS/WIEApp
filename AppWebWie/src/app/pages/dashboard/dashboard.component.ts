@@ -71,10 +71,8 @@ export interface productsData {
   id: number;
   imagePath: string;
   uname: string;
-  position: string;
-  productName: string;
-  budget: number;
-  priority: string;
+  participation:string;
+ 
 }
 
 // ecommerce card
@@ -91,37 +89,29 @@ const ELEMENT_DATA: productsData[] = [
     id: 1,
     imagePath: 'assets/images/profile/user-1.jpg',
     uname: 'Sunil Joshi',
-    position: 'Web Designer',
-    productName: 'Elite Admin',
-    budget: 3.9,
-    priority: 'low',
+    participation:'5',
+   
   },
   {
     id: 2,
     imagePath: 'assets/images/profile/user-2.jpg',
     uname: 'Andrew McDownland',
-    position: 'Project Manager',
-    productName: 'Real Homes Theme',
-    budget: 24.5,
-    priority: 'medium',
+    participation:'2',
+    
   },
   {
     id: 3,
     imagePath: 'assets/images/profile/user-3.jpg',
     uname: 'Christopher Jamil',
-    position: 'Project Manager',
-    productName: 'MedicalPro Theme',
-    budget: 12.8,
-    priority: 'high',
+    participation:'1',
+ 
   },
   {
     id: 4,
     imagePath: 'assets/images/profile/user-4.jpg',
     uname: 'Nirav Joshi',
-    position: 'Frontend Engineer',
-    productName: 'Hosting Press HTML',
-    budget: 2.4,
-    priority: 'critical',
+    participation:'0',
+  
   },
 ];
 
@@ -137,7 +127,7 @@ export class AppDashboardComponent {
   public yearlyChart!: Partial<yearlyChart> | any;
   public monthlyChart!: Partial<monthlyChart> | any;
 
-  displayedColumns: string[] = ['assigned', 'name', 'priority', 'budget'];
+  displayedColumns: string[] = ['assigned', 'name','participation'];
   dataSource = ELEMENT_DATA;
 
   months: month[] = [
@@ -323,7 +313,7 @@ export class AppDashboardComponent {
         },
         height: 130,
       },
-      colors: ['#5D87FF', '#ECF2FF', '#F9F9FD'],
+      colors: ['#838383', '#ECF2FF', '#F9F9FD'],
       plotOptions: {
         pie: {
           startAngle: 0,

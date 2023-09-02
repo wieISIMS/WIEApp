@@ -1,8 +1,7 @@
 <div mat-subheader *ngIf="item.navCap" class="nav-caption">
   {{ item.navCap }}
 </div>
-<a
-  mat-list-item
+<a mat-list-item sty
   (click)="onItemSelected(item)"
   [ngClass]="{
     'mat-toolbar mat-primary activeMenu': item.route
