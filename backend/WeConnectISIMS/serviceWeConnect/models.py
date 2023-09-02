@@ -25,12 +25,13 @@ class Club(models.Model):
 class Event(models.Model):
     idEvent = models.AutoField(primary_key=True, unique=True, blank=True)
     title = models.CharField(max_length=100, null=True)
-    description = models.CharField(max_length=500, null=True)
+    description = models.CharField(max_length=6000, null=True)
     nbparticipant = models.IntegerField(null=True)
     nbMax = models.IntegerField(null=True)
     photo = models.ImageField(upload_to="images/events/", null=True)
     dateEvent = models.DateField(null=True)
     heureEvent = models.TimeField(null=True)
+    place = models.CharField(max_length=100, null=True)
     club = models.ForeignKey(Club, on_delete=models.CASCADE, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 

@@ -74,14 +74,14 @@ def getLastEvents(request):
     last_events = []
     for event in past_events:
         event_data = {
-            "idEvent": event.idEvent,
+            "id": event.idEvent,
             "photo": event.photo.url,
-            "title": event.title,
-            "dateE": event.dateEvent.strftime("%Y-%m-%d"),
+            "nom": event.title,
+            "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
             "description": event.description,
-            "club": event.club.name,
+            "nom_du_club": event.club.name,
             "idClub": event.club.idClub,
-            "photoC": event.club.photo.url,
+            "photo_du_club": event.club.photo.url,
         }
         last_events.append(event_data)
     return HttpResponse(json.dumps(last_events), content_type="application/json")
@@ -601,3 +601,36 @@ def finishedEvent(request, idEvent):
     else:
         data = json.dumps({"message": "False"})
     return HttpResponse(data, content_type="application/json")
+
+@api_view(['POST'])
+def updateProfile(request):
+    try:
+        idMember=request.data.get('idMember')
+        member = Membre.objects.get(idMember=idMember)
+        print(member.phoneNumber)
+        new_email = request.data.get('email')
+        new_pwd = request.data.get('password')
+        new_phoneNumber = request.data.get('phoneNumber')
+        new_photo = request.data.get('photo')
+
+        if new_email:
+            member.email = new_email
+    
+        if new_phoneNumber:
+            member.phoneNumber = new_phoneNumber
+    
+        if new_photo:
+            format, imgstr = new_photo.split(';base64,')
+            ext = format.split('/')[-1]
+            image_data = base64.b64decode(imgstr)
+            img = ContentFile(image_data, name=member.firstName + '.' + ext)
+            member.photo = img
+
+        if new_pwd:
+            member.password=new_pwd
+        member.save()
+        data=json.dumps({'message': 'Member profile updated successfully'})
+    except:
+        data=json.dumps({'message': 'Member not found'})
+
+    return HttpResponse(data, content_type='application/json')

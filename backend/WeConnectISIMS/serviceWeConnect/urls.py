@@ -24,6 +24,7 @@ urlpatterns = [
     path('signUp/',views.signUp,name='signUp'),
     path('infomembre/<idMember>/',views.getMembreInfo,name='infoMembre'),
     path('infoClub/<int:idClub>',views.getInfoClub,name='infoClub'),
-    path('finishedEvent/<int:idEvent>',views.finishedEvent,name='finishedEvent')
+    path('finishedEvent/<int:idEvent>',views.finishedEvent,name='finishedEvent'),
+    path('updateProfile/',views.updateProfile,name='updateProfile')
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 
