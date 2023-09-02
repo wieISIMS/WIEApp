@@ -85,7 +85,7 @@
     <h4>Latest News</h4>
     <div class="scrollable-cards">
       <!--card1-->
-<ion-card  class="card3" *ngFor="let l of LatestNews">
+<ion-card  class="card3" *ngFor="let l of LatestNews" (click)="goToEvent(l)">
   <div class="img-container3">
      <ion-thumbnail slot="start">
       <img [src]="'http://127.0.0.1:8000' + l.photo"  class="images3" />

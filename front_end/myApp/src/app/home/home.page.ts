@@ -45,11 +45,13 @@ export class HomePage implements OnInit {
   getLastEvent(){
     this.service.getLastEvent().subscribe(data=>{
       this.LastEvents = data;
+      console.log("last events:",data)
+
     })
   }
   getLatestNews(){
     this.service.getLatestNews().subscribe(data=>{
-      console.log(data)
+      console.log("latest news:",data)
       this.LatestNews = data;
     
     })

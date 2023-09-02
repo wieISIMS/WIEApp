@@ -18,24 +18,24 @@
   </div>
   </div>
   <div class="subtitle" >{{group.title}}</div>
+
+
+
+
+
+
   <div class="class">
-<div *ngIf="!eventFinished">
-    <p class="upcoming-events">upcoming event</p>
-    <div *ngIf="full">
-      <p *ngIf="eventPart" class="participate">Already participated </p>
-      <p>This session is full</p>
-    </div>
-    <div *ngIf="!full">
-      <button *ngIf="!eventPart" class="participate" (click)="participateEvent()"  >Participate</button>
-      <p *ngIf="eventPart" class="participate">Already participated </p>
-    </div>
-  </div>
-  <div *ngIf="eventFinished">
-    <p  class="upcoming-events">This event is Finished</p>
+    <p *ngIf="!eventFinished" class="upcoming-events">Upcoming event</p>
+    <p *ngIf="eventFinished && !full" class="finished-events">Finished event</p>
+    <p *ngIf="eventFinished && full" class="full-events">Full event</p>
 
+    <div *ngIf="!eventFinished && !full && !eventPart" class="participate" (click)="participateEvent()" >Participate</div>
+    <div *ngIf="!eventFinished && !full && eventPart" class="participate">Participated</div>
   </div>
+  
 
-</div>
+
+
   <p class="Date">Date:{{group.dateE}}  </p>
 
   <ion-img class="imgE" [src]="'http://127.0.0.1:8000' + group.photo" ></ion-img>
