@@ -165,14 +165,14 @@ def searchEvent(request):
     event_list = []
     for event in events:
         event_data = {
-            "idEvent": event.idEvent,
+            "id": event.idEvent,
             "photo": event.photo.url,
-            "title": event.title,
-            "dateE": event.dateEvent.strftime("%Y-%m-%d"),
+            "nom": event.title,
+            "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
             "description": event.description,
-            "club": event.club.name,
+            "nom_du_club": event.club.name,
             "idClub": event.club.idClub,
-            "photoC": event.club.photo.url,
+            "photo_du_club": event.club.photo.url,
         }
         event_list.append(event_data)
 
@@ -192,7 +192,7 @@ def getLatestNews(request):
             "description": event.description,
             "nbParticipant": event.nbparticipant,
             "nom_du_club": event.club.name,
-            "photo": event.photo.url,
+            "photo_du_club": event.photo.url,
             "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
             "heureEvent": event.heureEvent.strftime("%H:%M:%S"),
         }
@@ -300,8 +300,8 @@ def getAllNotif(request, idMember):
                     if notifications_data:
                         club_data.append(
                             {
-                                "nameclub": club.name,
-                                "photo": club.photo.url if member.photo else None,
+                                "nom_du_club": club.name,
+                                "photo_du_club": club.photo.url if member.photo else None,
                                 "notifications": notifications_data,
                             }
                         )
@@ -318,7 +318,7 @@ def getInfoClub(request, idClub):
         data = json.dumps(
             {
                 "name": club.name,
-                "photo": club.photo.url if club.photo else [],
+                "photo_du_club": club.photo.url if club.photo else [],
                 "nbMembers": club.nbMembers,
                 "nbEvents": club.nbEvents,
             }
@@ -493,7 +493,9 @@ def getCalender(request):
                 "nom_du_club": event.club.name,
                 "photo": event.photo.url,
                 "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                "heureEvent": event.heureEvent.strftime("%H:%M:%S"),
+                "heureEventStart": event.heureEventStart.strftime("%H:%M:%S"),
+                "heureEventFinished": event.heureEventFinished.strftime("%H:%M:%S"),
+                "place": event.place
             }
             data.append(event_info)
         if not data:
