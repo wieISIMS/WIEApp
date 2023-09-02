@@ -10,14 +10,14 @@ export class CalendarPage implements OnInit {
   currentDate: Date = new Date();
   selectedDate: Date = new Date();
   events: {
-    title: string;
+    nom: string;
     startTime: string;
     endTime: string;
     trainer: string;
     place: string;
-    club: string;
-    clubimg:any;
-    date: Date;
+    nom_du_club: string;
+    photo_du_club:any;
+    dateEvent: Date;
   }[] = [];
   //events: string[] = [];
   weekdays: { name: string; date: Date }[] = [];
@@ -45,38 +45,41 @@ export class CalendarPage implements OnInit {
     }
   }
 
+
+
+
   getEventsForDay(day: { name: string; date: Date }) {
     // Mocking events for demonstration purposes.
     this.events = [
       {
-        title: 'Flutter training session',
+        nom: 'Flutter training session',
         startTime: '10:00',
         endTime: '11:30',
         trainer: 'Mr.Mohammed Bouaziz',
         place: 'Salle2-ISIMS',
-        club:'IEEE WIE Affinity group ISIMS',
-        clubimg:"../../assets/Wie.jpg",
-        date: day.date,
+        nom_du_club:'IEEE WIE Affinity group ISIMS',
+        photo_du_club:"../../assets/Wie.jpg",
+        dateEvent: day.date,
       },
       {
-        title: 'Info session',
+        nom: 'Info session',
         startTime: '14:00',
         endTime: '16:00',
         trainer: 'Wie Act',
         place: 'Online',
-        club:'IEEE WIE Affinity group ISIMS',
-        clubimg:"../../assets/Wie.jpg",
-        date: day.date,
+        nom_du_club:'IEEE WIE Affinity group ISIMS',
+        photo_du_club:"../../assets/Wie.jpg",
+        dateEvent: day.date,
       },
       {
-        title: 'Integration day',
+        nom: 'Integration day',
         startTime: '17:00',
         endTime: '20:00',
         trainer: 'Stand',
         place: 'ISIMS',
-        club:'IEEE RAS ISIMS',
-        clubimg:"../../assets/Ras.jpg",
-        date: day.date,
+        nom_du_club:'IEEE RAS ISIMS',
+        photo_du_club:"../../assets/Ras.jpg",
+        dateEvent: day.date,
       },
     ];
     this.selectedDate = day.date;

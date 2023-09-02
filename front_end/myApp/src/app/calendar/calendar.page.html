@@ -1,4 +1,5 @@
 <ion-content class="ion-padding">
+
   <div class="background">
     <div class="element-2"></div>
     <div class="element-1"></div>
@@ -30,7 +31,7 @@
 
 <div class="line-days"></div>
 
-<div class="events">
+<div class="events"*ngIf="events.length > 0; else noEvents">
   <ion-list class="aa">
 
     <div class="time-events-header">
@@ -51,11 +52,12 @@
         <ion-card
           class="event-card"
           [ngClass]="{
-            'current-day-card': selectedDate === event.date,
-            'event-card': selectedDate !== event.date
-              }">        
+            'current-day-card': selectedDate === event.dateEvent,
+            'event-card': selectedDate !== event.dateEvent
+              }"
+              >        
           <ion-card-content>
-            <p class="event-title">{{ event.title }}</p>
+            <p class="event-title">{{ event.nom }}</p>
             
             <div class="infos">
               <ion-icon size="small" class="place" name="location-sharp"></ion-icon>
@@ -65,10 +67,10 @@
             <div class="infos">
               <img
                 width="20"
-                src="{{ event.clubimg }}"
+                src="{{ event.photo_du_club}}"
                 alt="{{ event.place }}"
                 />
-              <p class="detail">{{ event.club }}</p>
+              <p class="detail">{{ event.nom_du_club }}</p>
             </div>
           </ion-card-content>
         </ion-card>
@@ -76,5 +78,8 @@
     </ng-container>
 
     </ion-list>
-  </div>
+</div>
+
+<ng-template #noEvents>
+  <p class="no-events-message">No events scheduled for this date.</p></ng-template>
 </ion-content>
