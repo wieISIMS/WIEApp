@@ -23,13 +23,13 @@
 </div >
 
 <div *ngIf="cardsOn" >
-  <ion-card class="card1" *ngFor="let group of cardsSearched" (click)="goToEvent(group)">
+  <ion-card class="cardIf" *ngFor="let group of cardsSearched" (click)="goToEvent(group)">
     <div class="img-container">
       <img [src]="'http://127.0.0.1:8000' + group.photo" class="images" />
     </div>
     <div class="card-content">
       <ion-label>
-        <h1>{{group.title}}</h1>
+        <h1>{{group.nom}}</h1>
       </ion-label>
       <div class="card-description1">
         <p>{{group.description}}</p>
@@ -49,7 +49,7 @@
       </div>
       <div class="card-content">
         <ion-label>
-          <h1>{{group.title}}</h1>
+          <h1>{{group.nom}}</h1>
         </ion-label>
         <div class="card-description1">
           <p>{{group.description}}</p>
