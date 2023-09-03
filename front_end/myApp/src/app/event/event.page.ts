@@ -18,13 +18,13 @@ export class EventPage implements OnInit {
   eventFinished:boolean=false;
   participateEvent(){
   
-   this.service.participateEvent(this.ide,this.idm).subscribe(data=>{
+   this.service.participateEvent(this.group.id,this.idm).subscribe(data=>{
    window.location.reload();
    this.eventPart = true;
    })
  }
  finishedEvent(){
-    this.service.finishedEvent(this.group.idEvent).subscribe(data=>{
+    this.service.finishedEvent(this.group.id).subscribe(data=>{
       if(data.message=="True"){
         this.eventFinished = true;
       }
@@ -33,8 +33,9 @@ export class EventPage implements OnInit {
   }
  verifParticipate(){
   
-  this.service.verifParticipate(this.ide,this.idm).subscribe(data=>{
+  this.service.verifParticipate(this.group.id,this.idm).subscribe(data=>{
   console.log(data)
+  console.log(this.group.id,this.idm)
   if(data.message=="True"){
     this.eventPart = true;
   }
@@ -49,11 +50,9 @@ export class EventPage implements OnInit {
   ) {}
   ngOnInit() {
     this.group = history.state.group;
-    this.ide = history.state.group.idEvent;
     this.idm = localStorage.getItem('token')
     this.verifParticipate();
-    this.finishedEvent( );
-    console.log(this.group);
+    this.finishedEvent();
   }
   goBack() {
     this.navCtrl.back(); // Cette ligne effectue le retour à la page précédente

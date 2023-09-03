@@ -38,8 +38,8 @@ export class ActivitiesPage implements OnInit {
 
   ngOnInit() {
     this.getMemberInfo();
-    this.showEvents();
     this.idm = localStorage.getItem('token')
+    this.showEvents();
     console.log(this.idm)
   }
   getMemberInfo(){
@@ -65,6 +65,9 @@ export class ActivitiesPage implements OnInit {
     this.showClubsPage = true;
     console.log(data);
     this.club=data;
+    if (data.message==""){
+
+    }
     })
   }
 
