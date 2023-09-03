@@ -1,6 +1,6 @@
 from django.shortcuts import render 
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from rest_framework.decorators import api_view
 from .models import *
 import base64
@@ -8,6 +8,7 @@ from django.core.files.base import ContentFile
 import uuid
 from datetime import datetime,timezone
 from django.db.models import F
+from datetime import date
 @api_view(['POST'])
 def inscriptionClub(request):
         name=request.data['name']
@@ -370,12 +371,13 @@ def getBestEvents(request,idClub):
 @api_view(['GET'])
 def getClubEvents(request,idClub):
     try:
-        club=Club.objects.get(idClub=idClub)
-        calendarClub, created= ClandrierClub.objects.get_or_create(club=club)
-        events=calendarClub.events.all()if not created else []
-        upcoming_events=[]
-        finished_events=[]
+        club = Club.objects.get(idClub=idClub)
+        print(club)
+        events = Event.objects.filter(club=club)        
+        upcoming_events = []
+        finished_events = []
         current_datetime = datetime.now()
+
         for event in events:
             event_info = {
                 'id': event.idEvent,
@@ -384,21 +386,23 @@ def getClubEvents(request,idClub):
                 'nbParticipant': event.nbparticipant,
                 'nom_du_club': event.club.name,
                 'photo': event.photo.url,  
-                'dateEvent':event.dateEvent.strftime('%Y-%m-%d'),
-                'heureEvent':event.heureEvent.strftime('%H:%M:%S')
+                'dateEvent': event.dateEvent.strftime('%Y-%m-%d'),
+                'heureEvent': event.heureEvent.strftime('%H:%M:%S')
             }
-            date=datetime.combine(event.dateEvent, event.heureEvent)
-            if date<= current_datetime:
+
+            date = datetime.combine(event.dateEvent, event.heureEvent)
+            if date <= current_datetime:
                 event_info['finished'] = True
                 finished_events.append(event_info)
             else:
                 event_info['finished'] = False
                 upcoming_events.append(event_info)
 
-        data =finished_events+upcoming_events
-    except:
-       data=json.dumps({'message':'club not found'}) 
-    return HttpResponse(data,content_type='application/json')
+        data = json.dumps(finished_events + upcoming_events)
+    except Club.DoesNotExist:
+        data = json.dumps({'message': 'Club not found'})
+
+    return HttpResponse(data, content_type='application/json')
 @api_view(['POST'])
 def getCalender(request):
     idMember=request.data.get('idMember')
@@ -530,5 +534,49 @@ def finishedEvent(request,idEvent):
         data=json.dumps({'message':'False'}) 
     return HttpResponse(data, content_type='application/json')
 
+@api_view(['GET'])
+def club_stats(request, idClub):
+    club = Club.objects.get(idClub=idClub)
+    num_members = club.nbMembers
+    num_events = club.nbEvents
+    last_event = Event.objects.filter(club=club, dateEvent__lte=date.today()).order_by('-dateEvent', '-heureEvent').first()
+    last_event_data = {
+        'title': last_event.title if last_event else None,
+        'participants': last_event.nbparticipant if last_event else None
+    }
 
+    upcoming_event = Event.objects.filter(club=club, dateEvent__gt=date.today()).order_by('dateEvent', 'heureEvent').first()
+    upcoming_event_data = {
+        'title': upcoming_event.title if upcoming_event else None,
+        'participants': upcoming_event.nbparticipant if upcoming_event else None
+    }
+    club_data = {
+        'id': club.idClub,
+        'name': club.name,
+        'num_members': num_members,
+        'num_events': num_events,
+        'last_event': last_event_data,
+        'upcoming_event': upcoming_event_data
+    }
+    return JsonResponse(club_data)
+@api_view(['GET'])
+def club_members(request, idClub):
+    club = Club.objects.get(idClub=idClub)
+    members = Membre.objects.filter(clubs=club)
+    member_list = []
+
+    for member in members:
+        events_participated = member.clandriermembre_set.filter(events__club=club)
+        total_participations = events_participated.count()
+        member_data = {
+            'idMember': member.idMember,
+            'Name': member.firstName+' '+member.familyName,
+            'total_participations': total_participations
+        }
+        member_list.append(member_data)
+    response_data = {
+        'members': member_list
+    }
+
+    return JsonResponse(response_data, safe=False)
 

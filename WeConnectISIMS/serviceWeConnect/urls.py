@@ -25,7 +25,9 @@ urlpatterns = [
     path('infomembre/<idMember>/',views.getMembreInfo,name='infoMembre'),
     path('infoClub/<int:idClub>',views.getInfoClub,name='infoClub'),
     path('memberInfo/<int:idMember>',views.getMemberInfo,name='memberInfo'),
-    
-    path('finishedEvent/<int:idEvent>',views.finishedEvent,name='finishedEvent')
+    path('finishedEvent/<int:idEvent>',views.finishedEvent,name='finishedEvent'),
+    path('statClub/<int:idClub>',views.club_stats,name='statClub'),
+    path('membersClub/<int:idClub>',views.club_members,name='membersClub')
+
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 
