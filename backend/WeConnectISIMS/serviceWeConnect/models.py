@@ -7,6 +7,13 @@ class CalandrierEvent(models.Model):
     def __str__(self):
         return str(self.idCland)
 
+class ClandrierClub(models.Model):
+    idCland = models.AutoField(primary_key=True, unique=True, blank=True)
+    events = models.ManyToManyField("Event", blank=True)
+    clubs = models.ManyToManyField("Club", blank=True)
+    def __str__(self):
+        return str(self.idCland)
+
 class Club(models.Model):
     idClub = models.AutoField(primary_key=True, unique=True, blank=True)
     name = models.CharField(max_length=100, null=True)
@@ -15,11 +22,34 @@ class Club(models.Model):
     photo = models.ImageField(upload_to="images/clubs/", null=True)
     nbEvents=models.IntegerField(null=True)
     nbMembers=models.IntegerField(null=True)
-    idCland = models.ForeignKey(CalandrierEvent, on_delete=models.CASCADE, blank=True, null=True)
+    ClandC = models.ForeignKey(ClandrierClub, on_delete=models.CASCADE, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+
+class ClandrierMembre(models.Model):
+    idCland = models.AutoField(primary_key=True, unique=True, blank=True)
+    events = models.ManyToManyField("Event", blank=True)
+    member = models.ManyToManyField("Membre", blank=True)
+    def __str__(self):
+        return str(self.idCland)
+
+class Membre(models.Model):
+    idMember = models.AutoField(primary_key=True, unique=True, blank=True)
+    email= models.CharField(max_length=100, null=True)
+    userName=models.CharField(max_length=100,null=True)
+    firstName = models.CharField(max_length=100,null=True)
+    familyName = models.CharField(max_length=100,null=True)
+    photo = models.ImageField(upload_to="images/clubs/")
+    password = models.CharField(max_length=500,null=True)
+    phoneNumber=models.CharField(max_length=8,null=True)
+    clubs = models.ManyToManyField('Club', blank=True)
+    ClandM = models.ForeignKey(ClandrierMembre, on_delete=models.CASCADE, blank=True, null=True)
+    def __str__(self):
+        return str(self.firstName)
+
 
 
 class Event(models.Model):
@@ -40,35 +70,8 @@ class Event(models.Model):
         return self.title
 
 
-class ClandrierClub(models.Model):
-    idCland = models.AutoField(primary_key=True, unique=True, blank=True)
-    events = models.ManyToManyField("Event", blank=True)
-    club = models.ForeignKey(Club, on_delete=models.CASCADE, blank=True, null=True)
-    def __str__(self):
-        return str(self.idCland)
 
 
-class Membre(models.Model):
-    idMember = models.AutoField(primary_key=True, unique=True, blank=True)
-    email= models.CharField(max_length=100, null=True)
-    userName=models.CharField(max_length=100,null=True)
-    firstName = models.CharField(max_length=100,null=True)
-    familyName = models.CharField(max_length=100,null=True)
-    photo = models.ImageField(upload_to="images/clubs/")
-    password = models.CharField(max_length=500,null=True)
-    phoneNumber=models.CharField(max_length=8,null=True)
-    clubs = models.ManyToManyField('Club', blank=True)
-    idCland = models.ForeignKey(CalandrierEvent, on_delete=models.CASCADE, blank=True, null=True)
-    def __str__(self):
-        return str(self.firstName)
-
-
-class ClandrierMembre(models.Model):
-    idCland = models.AutoField(primary_key=True, unique=True, blank=True)
-    events = models.ManyToManyField("Event", blank=True)
-    membre = models.ForeignKey(Membre, on_delete=models.CASCADE, blank=True, null=True)
-    def __str__(self):
-        return str(self.idCland)
 
 
 class Notification(models.Model):

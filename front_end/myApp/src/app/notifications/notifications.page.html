@@ -5,22 +5,22 @@
     <div class="element-3"></div>
   </div>
    
-  <ng-container *ngIf="notificationsList.length > 0; else noNotifications">
+  <ng-container *ngIf="notificationsList else noNotifications">
   <h1 class="title">Notifications</h1>
   
   <ion-card class="ic" *ngFor="let group of notificationsList" (click)="goToEvent(group)">
     <ion-card-content>
         <div >
           <ion-avatar class="im" slot="start" size="large">
-            <ion-img  src="../{{group.image}}"></ion-img>
+            <ion-img  [src]="'http://127.0.0.1:8000' + group.photo_du_club"></ion-img>
           </ion-avatar>
         <ion-label class="ion-text-wrap" >
           
-        <h3 style=" color:#000000; font-weight: bold;">{{group.club}}</h3>
+        <h3 style=" color:#000000; font-weight: bold;">{{group.nom_du_club}}</h3>
         <h1 aria-disabled="false" style="height: 5px;"></h1>
-        <h4 style="color: gray; font-weight: normal; font-size: small;">{{group.notification.title}}</h4>
+        <h4 style="color: gray; font-weight: normal; font-size: small;">{{group.notification[0].title}}</h4>
         <h1 aria-disabled="false" style="height: 5px;"></h1>
-        <h6 style="color: gray; font-weight:lighter; font-size: 11px;">{{group.notification.time}}</h6>
+        <h6 style="color: gray; font-weight:lighter; font-size: 11px;">{{group.notification}}</h6>
       
         </ion-label>
       </div>

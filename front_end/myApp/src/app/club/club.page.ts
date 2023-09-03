@@ -1,74 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ServicesService } from '../api/services.service'; 
 
-interface event {
-  idEvent:any;
-  image: any;
-  club:any;
-  title:any;
-  date:any;
-} 
 @Component({
   selector: 'app-club',
   templateUrl: './club.page.html',
   styleUrls: ['./club.page.scss'],
 })
 export class ClubPage implements OnInit {
-  BestEventList: event[] = [
-    {
-    idEvent:1,
-    image: '../../assets/cleaning_day.jpg',
-    club: 'Microsoft ISIMS',
-    title:'Picnic Touta Garden',
-    date: '20/07/23',
-  },
-  {
-    idEvent:2,
-    image: '../../assets/Picnic.jpg',
-    club: 'Microsoft ISIMS',
-    title:'Cleaning day',
-    date: '25/09/23',},
-    {
-      idEvent:1,
-      image: '../../assets/cleaning_day.jpg',
-      club: 'Microsoft ISIMS',
-      title:'Picnic Touta Garden',
-      date: '20/07/23',
-    },
-  ]; 
-
-  LatestEventList: event[] = [
-    {
-    idEvent:1,
-    image: '../../assets/cleaning_day.jpg',
-    club: 'Microsoft ISIMS',
-    title:'Cleaning day',
-    date: '25/09/23',},
-
-  {
-    idEvent:2,
-    image: 'assets/microsoft.jpg',
-    club: 'Microsoft ISIMS',
-
-    title:'New event',
-    date: '2 hours ago',}
-  ]; 
+  BestEventList: any;
+  LatestEventList:any;
   
   constructor(
     private navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private service:ServicesService
   ) {}
-  currentDate: Date = new Date(); // Get the current date
-
+  currentDate:any=new Date;
+  getBestEvents(){
+    console.log(this.club.idC)
+    this.service.getBestEvents(this.club.idC).subscribe(data=>{
+    this.BestEventList=data;
+    })
+  }
+  getClubEvents(){
+    console.log(this.club.idC)
+    this.service.getClubEvents(this.club.idC).subscribe(data=>{
+    console.log(data);
+    this.LatestEventList=data;
+ 
+    })
+  }
   isUpcomingEvent(eventDate: string): boolean {
     // Convert the 'eventDate' string to a Date object for comparison
-    const eventDateParts = eventDate.split('/');
-    const eventYear = parseInt(eventDateParts[2], 10) + 2000; // Convert 'YY' to 'YYYY'
-    const eventMonth = parseInt(eventDateParts[1], 10) - 1; // Adjust month to be zero-based
-    const eventDay = parseInt(eventDateParts[0], 10);
+    console.log(eventDate)
+    const eventDateParts = eventDate.split('-');
+    const eventDay = parseInt(eventDateParts[2], 10) ; // Convert 'YY' to 'YYYY'
+    const eventMonth = parseInt(eventDateParts[1], 10); // Adjust month to be zero-based
+    const eventYear = parseInt(eventDateParts[0], 10);
+    console.log(eventYear, eventMonth, eventDay)
     const eventDateObj = new Date(eventYear, eventMonth, eventDay);
-
+    console.log(eventDateObj,this.currentDate)
     // Compare 'eventDateObj' with 'currentDate'
     return eventDateObj > this.currentDate;
   }
@@ -76,6 +49,8 @@ export class ClubPage implements OnInit {
   club:any;
   ngOnInit() {
     this.club = history.state.club;
+    this.getBestEvents();
+    this.getClubEvents();
   }
 
   goBack() {

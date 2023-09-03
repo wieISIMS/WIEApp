@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { ServicesService } from '../api/services.service';
 
 @Component({
   selector: 'app-notifications',
@@ -8,33 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./notifications.page.scss'],
 })
 export class NotificationsPage implements OnInit {
-  notificationsList: any[] = []; 
-  /*notificationsList: any[] = [
-    {
-      club: 'IEEE WIE Affinity Group',
-      image: 'assets/Wie.jpg',
-      notification: {
-        idEvent: 1,
-        title: 'New event',
-        time: '45 minutes ago'
-      }
-  },
-  {
-    club: 'Microsoft ISIMS',
-    image: 'assets/microsoft.jpg',
-    notification: {
-      idEvent: 2,
-      title: 'New event',
-      time: '2 hours ago'
-    }
-    }
-  ]; */
-  
-  constructor(private router: Router) { }
+  notificationsList: any; 
+
+  constructor(private router: Router,
+    private service:ServicesService) { }
 
   ngOnInit() {
+    this.getAllNotif();
   }
   goToEvent(group:any){
     this.router.navigate(['/event'], { state: { group: group } });
+  }
+  getAllNotif(){
+    this.service.getAllNotif(localStorage.getItem('token')).subscribe(data=>{
+      this.notificationsList=data
+      console.log(this.notificationsList.title);
+    })
   }
 }

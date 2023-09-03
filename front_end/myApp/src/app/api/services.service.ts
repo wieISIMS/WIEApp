@@ -66,4 +66,24 @@ getMemberEvents(id:any):Observable<any>{
 getMemberClubs(id:any):Observable<any>{
   return this.http.get<any>(apiUrl+'/memberClubs/'+id);
 }
+
+//Club services
+getBestEvents(id:any):Observable<any>{
+  return this.http.get<any>(apiUrl+'/bestEvents/'+id);
+}
+getClubEvents(id:any):Observable<any>{
+  return this.http.get<any>(apiUrl+'/clubEvents/'+id);
+}
+//calander
+getCalender(idMember:any,date:any):Observable<any>{
+  let data={
+    "idMember":idMember,
+    "date":date
+  }
+  return this.http.post<any>(apiUrl+'/calendEvents/',data);
+}
+//Notifications
+getAllNotif(id:any):Observable<any>{
+  return this.http.get<any>(apiUrl+'/allNotif/'+id);
+}
 }

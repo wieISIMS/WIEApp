@@ -82,6 +82,7 @@ def getLastEvents(request):
             "nom_du_club": event.club.name,
             "idClub": event.club.idClub,
             "photo_du_club": event.club.photo.url,
+            "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
         }
         last_events.append(event_data)
     return HttpResponse(json.dumps(last_events), content_type="application/json")
@@ -105,7 +106,7 @@ def getEventDetails(request, idEvent):
         "description": event.description,
         "photo": event.photo.url,
         "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-        "heureEvent": event.heureEvent.strftime("%H:%M:%S"),
+        "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
     }
     date = datetime.combine(event.dateEvent, event.heureEvent)
     current_datetime = datetime.now()
@@ -173,6 +174,7 @@ def searchEvent(request):
             "nom_du_club": event.club.name,
             "idClub": event.club.idClub,
             "photo_du_club": event.club.photo.url,
+            "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
         }
         event_list.append(event_data)
 
@@ -195,7 +197,7 @@ def getLatestNews(request):
             "nom_du_club": event.club.name,
             "photo_du_club": event.photo.url,
             "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-            #"heureEvent": event.heureEvent.strftime("%H:%M:%S"),
+            "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
         }
         event_list.append(event_data)
     data = event_list
@@ -296,9 +298,10 @@ def getAllNotif(request, idMember):
                             {
                                 "idEvent": notification.event.idEvent,
                                 "title": notification.titre,
-                                "durée": duree,
+                                "duree": duree,
                             }
                         )
+                        json.dumps(notifications_data)
                     if notifications_data:
                         club_data.append(
                             {
@@ -310,7 +313,7 @@ def getAllNotif(request, idMember):
                 data = club_data
     except Membre.DoesNotExist:
         data = json.dumps({"message": "member not found"})
-    return HttpResponse(data, content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 @api_view(["GET"])
@@ -355,17 +358,17 @@ def verifParticipate(request):
     try:
         complet = False
         member = Membre.objects.get(idMember=idMember)
-        cland = member.idCland
+        cland = member.ClandM
         events = cland.events.all()
         event = Event.objects.get(pk=idEvent)
-
+        print(event)
         if event.nbMax == event.nbparticipant:
             complet = True
 
         if event not in events:
-            data = json.dumps({"message": "True", "complete": complet})
-        else:
             data = json.dumps({"message": "False", "complete": complet})
+        else:
+            data = json.dumps({"message": "True", "complete": complet})
     except Event.DoesNotExist:
         data = json.dumps({"message": "Event does not exist"})
     except Membre.DoesNotExist:
@@ -429,7 +432,7 @@ def getBestEvents(request, idClub):
                     "nom_du_club": event.club.name,
                     "photo": event.photo.url,
                     "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                    "heureEvent": event.heureEvent.strftime("%H:%M:%S"),
+                    "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
                 }
                 best_events_info.append(event_info)
         data = best_events_info
@@ -438,7 +441,7 @@ def getBestEvents(request, idClub):
             data = json.dumps({"message": "no events"})
     except:
         data = json.dumps({"message": "club not found"})
-    return HttpResponse(data, content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 @api_view(["GET"])
@@ -459,9 +462,9 @@ def getClubEvents(request, idClub):
                 "nom_du_club": event.club.name,
                 "photo": event.photo.url,
                 "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                "heureEvent": event.heureEvent.strftime("%H:%M:%S"),
+                "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
             }
-            date = datetime.combine(event.dateEvent, event.heureEvent)
+            date = datetime.combine(event.dateEvent, event.heureEventStart)
             if date <= current_datetime:
                 event_info["finished"] = True
                 finished_events.append(event_info)
@@ -472,36 +475,41 @@ def getClubEvents(request, idClub):
         data = finished_events + upcoming_events
     except:
         data = json.dumps({"message": "club not found"})
-    return HttpResponse(data, content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
 
 @api_view(["POST"])
 def getCalender(request):
     idMember = request.data.get("idMember")
     date = request.data.get("date")
+    date=date.strip()
+    date_format = "%Y-%m-%d"
+    date_date = datetime.strptime(date, date_format).date()
     try:
         member = Membre.objects.get(idMember=idMember)
-        print(member)
-        idCland = member.idCland.idCland
+        idCland = member.ClandM.idCland
         cland, created = ClandrierMembre.objects.get_or_create(idCland=idCland)
-        events = cland.events.filter(dateEvent=date) if not created else []
-        data = []
-        for event in events:
-            event_info = {
-                "id": event.idEvent,
-                "nom": event.title,
-                "description": event.description,
-                "nbParticipant": event.nbparticipant,
-                "nom_du_club": event.club.name,
-                "photo": event.photo.url,
-                "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                "heureEventStart": event.heureEventStart.strftime("%H:%M:%S"),
-                "heureEventFinished": event.heureEventFinished.strftime("%H:%M:%S"),
-                "place": event.place
-            }
-            data.append(event_info)
-        if not data:
-            data = json.dumps({"message": "no events in this date"})
+        if cland:
+            events = cland.events.all()
+            data = []
+            for event in events:
+                if (event.dateEvent == date_date):
+                    event_info = {
+                        "id": event.idEvent,
+                        "nom": event.title,
+                        "description": event.description,
+                        "nbParticipant": event.nbparticipant,
+                        "nom_du_club": event.club.name,
+                        "photo": event.photo.url,
+                        "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
+                        "heureEventStart": event.heureEventStart.strftime("%H:%M:%S"),
+                        "heureEventFinished": event.heureEventFinished.strftime("%H:%M:%S"),
+                        "place": event.place
+                    }
+
+                    data.append(event_info)
+            if not data:
+                data = json.dumps({"message": "no events in this date"})
     except:
         data = json.dumps({"message": "member not found"})
     return HttpResponse(data, content_type="application/json")
@@ -528,7 +536,7 @@ def getMemberEvents(request, idMember):
                 "nom_du_club": event.club.name,
                 "photo": event.photo.url,
                 "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                #"heureEvent": event.heureEvent.strftime("%H:%M:%S"),
+                "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
             }
             data.append(event_info)
         #     date = datetime.combine(event.dateEvent, event.heureEvent)

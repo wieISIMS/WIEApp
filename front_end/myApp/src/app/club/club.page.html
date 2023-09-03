@@ -10,7 +10,7 @@
   <div class="fixed">
   <div class="header">
     <ion-avatar class="log">
-      <ion-img src="'http://127.0.0.1:8000' + club.logo"  ></ion-img>
+      <ion-img [src]="'http://127.0.0.1:8000' + club.logo "  ></ion-img>
     </ion-avatar>
     <div class="info">
       <h3 class="name">{{club.nameC}}</h3>
@@ -37,10 +37,10 @@
     <div class="horizontal-scroll">
     <ion-card class="card1" *ngFor="let group of BestEventList" (click)="goToEvent(group)">
       <div class="img-container">
-          <img src="{{group.image}}" />
+        <img [src]="'http://127.0.0.1:8000' + group.photo"/>
       </div>
       <ion-label>
-        <h1>{{group.title}}</h1>
+        <h1>{{group.nom}}</h1>
       </ion-label>
     </ion-card>
   </div>
@@ -48,12 +48,12 @@
     <h4>Latest</h4>
     <ion-card class="card2" *ngFor="let group of LatestEventList" (click)="goToEvent(group)">
       <div class="img-container">
-          <img src="{{group.image}}" />
+          <img [src]="'http://127.0.0.1:8000' + group.photo"/>
       </div>
       <ion-label>
         <div>
-        <h1>{{group.title}}</h1>
-        <p class="upcoming-events" *ngIf="isUpcomingEvent(group.date); else finished">Upcoming Event</p>
+        <h1>{{group.nom}}</h1>
+        <p class="upcoming-events" *ngIf="isUpcomingEvent(group.dateEvent); else finished">Upcoming Event</p>
     <ng-template #finished>
       <p class="finished-events">Finished Event</p>
     </ng-template>

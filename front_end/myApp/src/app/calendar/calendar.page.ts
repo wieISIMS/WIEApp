@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicesService } from '../api/services.service'; 
 
 @Component({
   selector: 'app-calendar',
@@ -9,27 +10,23 @@ export class CalendarPage implements OnInit {
 
   currentDate: Date = new Date();
   selectedDate: Date = new Date();
-  events: {
-    nom: string;
-    startTime: string;
-    endTime: string;
-    trainer: string;
-    place: string;
-    nom_du_club: string;
-    photo_du_club:any;
-    dateEvent: Date;
-  }[] = [];
+  idMember:any;
+  events:any;
   //events: string[] = [];
   weekdays: { name: string; date: Date }[] = [];
 
-  constructor() {
+  constructor(
+    private service:ServicesService
+  ) {
     this.initializeWeekdays();
+    
   }
 
   ngOnInit() {
     //this.getEventsForDay({ name: this.currentDate.toLocaleDateString('en-US', { weekday: 'short' }).charAt(0), date: this.currentDate });
     this.selectedDate = new Date(); // Set the selectedDate to the current date
-    this.getEventsForDay({ name: '', date: this.selectedDate }); // Load events for the current date
+    this.getCalender({ name: '', date: this.selectedDate }); // Load events for the current date
+    this.idMember=localStorage.getItem('token');
   }
   private initializeWeekdays() {
     const today = new Date(this.currentDate);
@@ -46,43 +43,13 @@ export class CalendarPage implements OnInit {
   }
 
 
-
-
-  getEventsForDay(day: { name: string; date: Date }) {
-    // Mocking events for demonstration purposes.
-    this.events = [
-      {
-        nom: 'Flutter training session',
-        startTime: '10:00',
-        endTime: '11:30',
-        trainer: 'Mr.Mohammed Bouaziz',
-        place: 'Salle2-ISIMS',
-        nom_du_club:'IEEE WIE Affinity group ISIMS',
-        photo_du_club:"../../assets/Wie.jpg",
-        dateEvent: day.date,
-      },
-      {
-        nom: 'Info session',
-        startTime: '14:00',
-        endTime: '16:00',
-        trainer: 'Wie Act',
-        place: 'Online',
-        nom_du_club:'IEEE WIE Affinity group ISIMS',
-        photo_du_club:"../../assets/Wie.jpg",
-        dateEvent: day.date,
-      },
-      {
-        nom: 'Integration day',
-        startTime: '17:00',
-        endTime: '20:00',
-        trainer: 'Stand',
-        place: 'ISIMS',
-        nom_du_club:'IEEE RAS ISIMS',
-        photo_du_club:"../../assets/Ras.jpg",
-        dateEvent: day.date,
-      },
-    ];
+  getCalender(day: { name: string; date: Date }){
+    console.log(day.date)
+    this.service.getCalender(day.date,this.idMember).subscribe(data=>{
+    this.events=data;
     this.selectedDate = day.date;
-  }
+    console.log(data);
+})
+}
 
 }

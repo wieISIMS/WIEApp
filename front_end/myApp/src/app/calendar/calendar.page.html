@@ -19,7 +19,7 @@
 
   <ion-button
     *ngFor="let day of weekdays"
-    (click)="getEventsForDay(day)"
+    (click)="getCalender(day)"
     class="custom-button"
     [ngClass]="{'current-day-button': day.date.toDateString() === selectedDate.toDateString()}">
   
