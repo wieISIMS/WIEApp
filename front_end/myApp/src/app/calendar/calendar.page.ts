@@ -45,10 +45,14 @@ export class CalendarPage implements OnInit {
 
   getCalender(day: { name: string; date: Date }){
     console.log(day.date)
-    this.service.getCalender(day.date,this.idMember).subscribe(data=>{
+    // Formate la date au format 'YYYY-MM-DD'
+    const formattedDate = day.date.toISOString().split('T')[0];
+    console.log(formattedDate);
+
+    this.service.getCalender(formattedDate,this.idMember).subscribe(data=>{
     this.events=data;
-    this.selectedDate = day.date;
     console.log(data);
+    this.selectedDate = day.date;
 })
 }
 

@@ -18,21 +18,24 @@
   </div>
 
   <ion-button
-    *ngFor="let day of weekdays"
-    (click)="getCalender(day)"
-    class="custom-button"
-    [ngClass]="{'current-day-button': day.date.toDateString() === selectedDate.toDateString()}">
-  
-    <div class="btn">
-    <div class="day-name">{{ day.name }}</div>
-    <div class="date">{{ day.date.getDate() }}</div>
-  </div>
+  *ngFor="let day of weekdays"
+  (click)="getCalender(day)"
+  class="custom-button"
+  [ngClass]="{'current-day-button': day.date.toDateString() === selectedDate.toDateString()}">
+
+  <div class="btn">
+  <div class="day-name">{{ day.name }}</div>
+  <div class="date">{{ day.date.getDate() }}</div>
+</div>
 </ion-button>
+
+
+
 
 <div class="line-days"></div>
 
-<div class="events"*ngIf="events.length > 0; else noEvents">
-  <ion-list class="aa">
+<div class="events" *ngIf="events?.length > 0; else noEvents">
+    <ion-list class="aa">
 
     <div class="time-events-header">
       <p class="time-label">Time</p>
