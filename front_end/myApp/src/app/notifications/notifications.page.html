@@ -18,10 +18,11 @@
           
         <h3 style=" color:#000000; font-weight: bold;">{{group.nom_du_club}}</h3>
         <h1 aria-disabled="false" style="height: 5px;"></h1>
-        <h4 style="color: gray; font-weight: normal; font-size: small;">{{group.notification[0].title}}</h4>
+        <div *ngFor="let g of group.notifications">
+        <h4 style="color: gray; font-weight: normal; font-size: small;">{{g.title}}</h4>
         <h1 aria-disabled="false" style="height: 5px;"></h1>
-        <h6 style="color: gray; font-weight:lighter; font-size: 11px;">{{group.notification}}</h6>
-      
+        <h6 style="color: gray; font-weight:lighter; font-size: 11px;">{{g.duree}}</h6>
+        </div>
         </ion-label>
       </div>
     </ion-card-content>

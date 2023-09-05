@@ -18,25 +18,25 @@
     
       <ion-label>Email Adress</ion-label>
       <div class="input">
-      <ion-input type="Email" name="email" placeholder="sahnounemna@gmail.com" [(ngModel)]="email" #passwordInput="ngModel" required></ion-input>
+      <ion-input type="Email" name="email" [(ngModel)]="email" #passwordInput="ngModel" required></ion-input>
       <div *ngIf="errormessageemail" class="errorMessage" >{{errormessageemail}}</div>
     </div>
     
       <ion-label>Phone Number</ion-label>
       <div class="input">
-      <ion-input type="Number" placeholder="99 999 999" [ngModel]="phoneNumber"  required></ion-input>
+      <ion-input type="Number" [ngModel]="phoneNumber"  required></ion-input>
       <div *ngIf="errormessagephone" class="errorMessage" >{{errormessagephone}}</div>
     </div>
     
       <ion-label>Password</ion-label>
       <div class="input">
-      <ion-input type="password" placeholder="********" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
+      <ion-input type="password" [(ngModel)]="password" #passwordInput="ngModel" required></ion-input>
       <div *ngIf="errormessagepassword" class="errorMessage" >{{errormessagepassword}}</div>
     </div>
     
       <ion-label>Confirm password</ion-label>
       <div class="input">
-      <ion-input type="password" placeholder="********" [(ngModel)]="confirmPassword" #passwordInput="ngModel" required></ion-input>
+      <ion-input type="password" [(ngModel)]="confirmPassword" #passwordInput="ngModel" required></ion-input>
       <div *ngIf="errormessagepassword" class="errorMessage" >{{errormessagepassword}}</div>
     </div>
   </div>

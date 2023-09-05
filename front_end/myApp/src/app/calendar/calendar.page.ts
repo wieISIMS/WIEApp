@@ -48,12 +48,10 @@ export class CalendarPage implements OnInit {
     // Formate la date au format 'YYYY-MM-DD'
     const formattedDate = day.date.toISOString().split('T')[0];
     console.log(formattedDate);
-
-    this.service.getCalender(formattedDate,this.idMember).subscribe(data=>{
+    this.service.getCalender(this.idMember,formattedDate).subscribe(data=>{
     this.events=data;
     console.log(data);
     this.selectedDate = day.date;
 })
 }
-
 }

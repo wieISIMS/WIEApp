@@ -42,11 +42,11 @@ export class UpdateInfoPage implements OnInit {
       const phonePattern = /^\[1-9]\d{7}$/;
       return phonePattern.test(phoneNumber);
     }
-  
+    
     checkInputFieldsNotEmpty() {
       this.errormessageemail ='';
-  this.errormessagephone='';
-  this.errormessagepassword ='';
+      this.errormessagephone='';
+      this.errormessagepassword ='';
       let test: boolean = true;
 
       if (!this.email || !this.isValidEmail(this.email)){

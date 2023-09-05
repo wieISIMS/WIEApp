@@ -301,7 +301,7 @@ def getAllNotif(request, idMember):
                                 "duree": duree,
                             }
                         )
-                        json.dumps(notifications_data)
+
                     if notifications_data:
                         club_data.append(
                             {
@@ -512,7 +512,7 @@ def getCalender(request):
                 data = json.dumps({"message": "no events in this date"})
     except:
         data = json.dumps({"message": "member not found"})
-    return HttpResponse(data, content_type="application/json")
+    return JsonResponse(data, safe=False)
 
 
 @api_view(["GET"])
@@ -627,22 +627,14 @@ def updateProfile(request):
         new_pwd = request.data.get('password')
         new_phoneNumber = request.data.get('phoneNumber')
         new_photo = request.data.get('photo')
-
-        if new_email:
-            member.email = new_email
-    
-        if new_phoneNumber:
-            member.phoneNumber = new_phoneNumber
-    
-        if new_photo:
-            format, imgstr = new_photo.split(';base64,')
-            ext = format.split('/')[-1]
-            image_data = base64.b64decode(imgstr)
-            img = ContentFile(image_data, name=member.firstName + '.' + ext)
-            member.photo = img
-
-        if new_pwd:
-            member.password=new_pwd
+        member.email = new_email
+        member.phoneNumber = new_phoneNumber
+        format, imgstr = new_photo.split(';base64,')
+        ext = format.split('/')[-1]
+        image_data = base64.b64decode(imgstr)
+        img = ContentFile(image_data, name=member.firstName + '.' + ext)
+        member.photo = img
+        member.password=new_pwd
         member.save()
         data=json.dumps({'message': 'Member profile updated successfully'})
     except:

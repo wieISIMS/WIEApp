@@ -9,7 +9,7 @@ import { ServicesService } from '../api/services.service';
 })
 export class NotificationsPage implements OnInit {
   notificationsList: any; 
-
+  i: any;
   constructor(private router: Router,
     private service:ServicesService) { }
 
@@ -22,7 +22,7 @@ export class NotificationsPage implements OnInit {
   getAllNotif(){
     this.service.getAllNotif(localStorage.getItem('token')).subscribe(data=>{
       this.notificationsList=data
-      console.log(this.notificationsList.title);
+
     })
   }
 }

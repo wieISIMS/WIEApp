@@ -34,11 +34,17 @@ export class LoginPage implements OnInit {
     if (this.password === '') {
       this.errormessagePass = 'Password is required.';
     }
+
     else{
     this.service.login(this.email,this.password).subscribe(data=>{
-      console.log(data)
-      localStorage.setItem('token',data.id)
-      this.router.navigate(['/tablinks'])
+      if (data.message=="member not found"){
+        this.errormessagemail = 'Password or username not correct';
+        this.errormessagePass = 'Password or username not correct';
+      }
+      else{
+        localStorage.setItem('token',data.id)
+        this.router.navigate(['/tablinks'])
+      }
     })
    
   }
