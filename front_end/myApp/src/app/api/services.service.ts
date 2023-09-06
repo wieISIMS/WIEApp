@@ -86,4 +86,15 @@ getCalender(idMember:any,date:any):Observable<any>{
 getAllNotif(id:any):Observable<any>{
   return this.http.get<any>(apiUrl+'/allNotif/'+id);
 }
+
+updateProfile(idMember:any,new_email:any,new_pwd:any,new_photo:any,new_phoneNumber:any):Observable<any>{
+  let data={
+    "idMember":idMember,
+    "new_email":new_email,
+    "new_pwd":new_pwd,
+    "new_photo":new_photo,
+    "new_phoneNumber":new_phoneNumber
+  }
+  return this.http.post<any>(apiUrl+'/updateProfile/',data);
+}
 }

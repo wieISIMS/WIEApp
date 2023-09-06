@@ -8,7 +8,7 @@
     <div class="element-3"></div>
   </div>  
   <ion-avatar class="imag">
-  <ion-img  src="../assets/img/ang.jpeg"></ion-img>
+  <ion-img  src={{img}} ></ion-img>
 </ion-avatar>
 <p class="changePic" (click)="changePic()" >Change Picture</p>
 
@@ -24,7 +24,7 @@
     
       <ion-label>Phone Number</ion-label>
       <div class="input">
-      <ion-input type="Number" [ngModel]="phoneNumber"  required></ion-input>
+      <ion-input type="Number" [ngModel]="phoneNumber" required></ion-input>
       <div *ngIf="errormessagephone" class="errorMessage" >{{errormessagephone}}</div>
     </div>
     
@@ -40,5 +40,5 @@
       <div *ngIf="errormessagepassword" class="errorMessage" >{{errormessagepassword}}</div>
     </div>
   </div>
-  <button class="button" (click)="onUpdateInfoClick()">Update</button>
+  <button class="button" (click)="updateProfile()">Update</button>
 </ion-content>

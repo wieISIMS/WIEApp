@@ -334,9 +334,11 @@ def getInfoClub(request, idClub):
 
 
 @api_view(["GET"])
-def getMemberInfo(request, idMember):
+def getMembreInfo(request, idMember):
     try:
         member = Membre.objects.get(idMember=idMember)
+        print(member.phoneNumber,"AAAAA")
+        print("AAA")
         data = json.dumps(
             {
                 "email": member.email,
@@ -344,6 +346,8 @@ def getMemberInfo(request, idMember):
                 "firstName": member.firstName,
                 "familyName": member.familyName,
                 "photo": member.photo.url if member.photo else [],
+                "number":member.phoneNumber
+                
             }
         )
     except:

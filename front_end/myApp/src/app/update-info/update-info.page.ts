@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+import { ServicesService } from '../api/services.service'; 
 
 @Component({
   selector: 'app-update-info',
@@ -11,16 +12,29 @@ export class UpdateInfoPage implements OnInit {
   errormessageemail: string ='';
   errormessagephone: string ='';
   errormessagepassword: string ='';
+  img:any;
   email!: string ;
   phoneNumber!: string ;
   password!: string;
   confirmPassword!: string;
   constructor(    
     private navCtrl: NavController,
+    private service:ServicesService,
     private alertController: AlertController) { }
 
+    getMemberInfo(){
+      this.service.getMemberInfo(localStorage.getItem('token')).subscribe(data=>{
+        console.log(data)
+        this.email=data.email;
+        this.phoneNumber=data.number;
+        console.log(this.phoneNumber);
+        this.password=data.password;
+        this.img="http://127.0.0.1:8000"+data.photo;
+      })
+    }
 
-    async onUpdateInfoClick() {
+    async updateProfile() {
+      this.service.getMemberInfo(localStorage.getItem('token')).subscribe(async data=>{
       const inputFieldsNotEmpty = this.checkInputFieldsNotEmpty(); // Fonction pour vérifier les champs non vides
       
       if (inputFieldsNotEmpty) {
@@ -32,7 +46,8 @@ export class UpdateInfoPage implements OnInit {
     
         await alert.present();
       }
-    }
+    })
+  }
     
     isValidEmail(email: string) : boolean {
       const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -68,6 +83,7 @@ export class UpdateInfoPage implements OnInit {
     
 
   ngOnInit() {
+    this.getMemberInfo();
   }
   goBack() {
     this.navCtrl.back(); // Cette ligne effectue le retour à la page précédente
