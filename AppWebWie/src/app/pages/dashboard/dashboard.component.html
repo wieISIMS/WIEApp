@@ -16,7 +16,7 @@
             <mat-card-title>Membres</mat-card-title>
             <div class="row m-t-24">
               <div class="col-7">
-                <h4 class="mat-headline-5">10</h4>
+                <h4 class="mat-headline-5">{{this.statClubs.num_members}}</h4>
                 <div class="d-flex align-items-center m-t-16">
                   <button
                     mat-mini-fab
@@ -57,7 +57,7 @@
             <mat-card-title>Events</mat-card-title>
             <div class="row m-t-24">
               <div class="col-7">
-                <h4 class="mat-headline-5">7</h4>
+                <h4 class="mat-headline-5">{{this.statClubs.num_events}}</h4>
                 <div class="d-flex align-items-center m-t-16">
                   <button
                     mat-mini-fab
@@ -98,7 +98,7 @@
             <mat-card-title>Last Event</mat-card-title>
             <div class="row m-t-24">
               <div class="col-7">
-                <h4 class="mat-headline-5">5</h4>
+                <h4 class="mat-headline-5">{{this.statClubs.last_event.participants}}</h4>
                 <div class="d-flex align-items-center m-t-16">
                   <button
                     mat-mini-fab
@@ -139,7 +139,7 @@
             <mat-card-title>Upcoming Event</mat-card-title>
             <div class="row m-t-24">
               <div class="col-7">
-                <h4 class="mat-headline-5">35</h4>
+                <h4 class="mat-headline-5">{{this.statClubs.upcoming_event.participants}}</h4>
                 <div class="d-flex align-items-center m-t-16">
                   <button
                     mat-mini-fab

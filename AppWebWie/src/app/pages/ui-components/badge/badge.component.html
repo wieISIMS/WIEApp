@@ -59,7 +59,7 @@
   <div
     class="position-relative row w-100 h-100 bg-gredient justify-content-center"
   >
-    <div class="col-lg-4 d-flex align-items-center">
+    <div class="col-lg-4 d-flex align-items-center" >
       <mat-card class="cardWithShadow boxed-auth"  style="background: rgba(255, 255, 255, 0.64) !important;">
         <mat-card-content class="p-32">
           <div >
@@ -82,7 +82,7 @@
               >Event Description</mat-label
             >
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <textarea matInput rows="9" ></textarea>
+              <textarea matInput rows="5" ></textarea>
             </mat-form-field>
             <!-- email
               <mat-form-field appearance="outline" class="w-100" color="primary">
@@ -90,45 +90,37 @@
             </mat-form-field>>-->
             <!-- password -->
             <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
-              >Confirm your Password</mat-label
+              >Event photo</mat-label
             >
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput type="password" />
+              <input matInput type="'file'" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" />
             </mat-form-field>
 
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+            >Event date</mat-label
+          >
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="date"  />
+          </mat-form-field>
+
+         <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+            >Event time</mat-label
+          >
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="time"  />
+          </mat-form-field>
 
             <!--button sign up-->
             <button mat-stroked-button class="w-100 m-b-12" style="background-color: #CEBBFA;">
               <div class="d-flex align-items-center" style="color: #ffffff;"[routerLink]="['/']">
-                Sign up 
+                Create event
               </div>
             </button>
             
-            <button mat-stroked-button class="w-100">
-              <div class="d-flex align-items-center">
-                <img
-                  src="/assets/images/svgs/google-icon.svg"
-                  alt="google"
-                  width="16"
-                  class="m-r-8"
-                />
-                Sign up with Google
-              </div>
-            </button>
+        
             <!-- input -->
           </form>
-          <span class="d-block f-w-500 text-center m-t-24"
-          style="color: #838383 !important;"
-            >Already have an Account?
-
-            <a
-              [routerLink]="['/authentication/login']"
-              class="text-decoration-none text-primary f-w-500 f-s-14"
-              style="color: #C092FA !important ;"
-            >
-              Sign In</a
-            >
-          </span>
+          
         </mat-card-content>
       </mat-card>
     </div>
