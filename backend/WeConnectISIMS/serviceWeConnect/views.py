@@ -434,6 +434,7 @@ def getBestEvents(request, idClub):
                     "description": event.description,
                     "nbParticipant": event.nbparticipant,
                     "nom_du_club": event.club.name,
+                    "photo_du_club":event.club.photo.url if event.club.photo else [],
                     "photo": event.photo.url,
                     "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
                     "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
@@ -464,6 +465,7 @@ def getClubEvents(request, idClub):
                 "description": event.description,
                 "nbParticipant": event.nbparticipant,
                 "nom_du_club": event.club.name,
+                "photo_du_club":event.club.photo.url if event.club.photo else [],
                 "photo": event.photo.url,
                 "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
                 "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
@@ -587,6 +589,7 @@ def getMembreInfo(request, idMember):
                 "firstName": member.firstName,
                 "familyName": member.familyName,
                 "photo": member.photo.url if member.photo else [],
+                "phoneNumber":member.phoneNumber
             }
         )
     except:
