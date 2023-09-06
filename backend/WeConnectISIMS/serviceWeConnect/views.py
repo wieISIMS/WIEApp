@@ -629,11 +629,10 @@ def updateProfile(request):
     try:
         idMember=request.data.get('idMember')
         member = Membre.objects.get(idMember=idMember)
-        print(member.phoneNumber)
-        new_email = request.data.get('email')
-        new_pwd = request.data.get('password')
-        new_phoneNumber = request.data.get('phoneNumber')
-        new_photo = request.data.get('photo')
+        new_email = request.data.get('new_email')
+        new_pwd = request.data.get('new_pwd')
+        new_photo = request.data.get('new_photo')
+        new_phoneNumber = request.data.get('new_phoneNumber')
         member.email = new_email
         member.phoneNumber = new_phoneNumber
         format, imgstr = new_photo.split(';base64,')
@@ -647,4 +646,4 @@ def updateProfile(request):
     except:
         data=json.dumps({'message': 'Member not found'})
 
-    return HttpResponse(data, content_type='application/json')
+    return JsonResponse(data, safe=False)
