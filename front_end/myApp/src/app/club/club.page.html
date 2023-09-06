@@ -31,7 +31,11 @@
     </div>
   </div>
 </div>
-  <div class="events">
+
+
+
+
+  <div class="events" *ngIf="LatestEventList?.length > 0; else noEvents">
     <h4>Best Events</h4>
 
     <div class="horizontal-scroll">
@@ -43,7 +47,7 @@
         <h1>{{group.nom}}</h1>
       </ion-label>
     </ion-card>
-  </div>
+    </div>
 
     <h4>Latest</h4>
     <ion-card class="card2" *ngFor="let group of LatestEventList" (click)="goToEvent(group)">
@@ -61,9 +65,8 @@
         
       </ion-label>
     </ion-card>
-
-
-
-
   </div>
+  <ng-template #noEvents>
+    <p class="messageVide">No events available at the moment.</p>
+  </ng-template>
 </ion-content>

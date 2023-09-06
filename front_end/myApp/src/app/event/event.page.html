@@ -17,17 +17,16 @@
     {{group.nom_du_club}}
   </div>
   </div>
+
+  
   <div class="subtitle" >{{group.nom}}</div>
 
 
-
-
-
-
   <div class="class">
-    <p *ngIf="!eventFinished" class="upcoming-events">Upcoming event</p>
-    <p *ngIf="eventFinished && !full" class="finished-events">Finished event</p>
-    <p *ngIf="eventFinished && full" class="full-events">Full event</p>
+    <p *ngIf="eventFinished" class="finished-events">Finished event</p>
+    <p *ngIf="!eventFinished && !full" class="upcoming-events">Upcoming event</p>
+    <p *ngIf="!eventFinished && full" class="full-events">Full event</p>
+
 
     <div *ngIf="!eventFinished && !full && !eventPart" class="participate" (click)="participateEvent()" >Participate</div>
     <div *ngIf="!eventFinished && !full && eventPart" class="participate">Participated</div>

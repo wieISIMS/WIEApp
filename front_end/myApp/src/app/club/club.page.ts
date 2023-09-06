@@ -19,7 +19,6 @@ export class ClubPage implements OnInit {
   ) {}
   currentDate:any=new Date;
   getBestEvents(){
-    console.log(this.club.idC)
     this.service.getBestEvents(this.club.idC).subscribe(data=>{
     this.BestEventList=data;
     })
@@ -27,7 +26,6 @@ export class ClubPage implements OnInit {
   getClubEvents(){
     console.log(this.club.idC)
     this.service.getClubEvents(this.club.idC).subscribe(data=>{
-    console.log(data);
     this.LatestEventList=data;
  
     })
@@ -58,5 +56,6 @@ export class ClubPage implements OnInit {
   }
   goToEvent(group:any){
     this.router.navigate(['/event'], { state: { group: group } });
+    console.log(group)
   }
 }
