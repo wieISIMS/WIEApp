@@ -233,37 +233,28 @@ def login(request):
 
 @api_view(["POST"])
 def signUp(request):
-    email = request.data.get("email")
-    password = request.data.get("password")
-    phoneNumber = request.data.get("phoneNumber")
-    firstName = request.data.get("firstName")
-    familyName = request.data.get("familyName")
-    photo = request.data.get("photo")
+    email=request.data.get('email')
+    password=request.data.get('password')
+    phoneNumber=request.data.get('phoneNumber')
+    firstName=request.data.get('firstName')
+    familyName=request.data.get('familyName')
+    photo=request.data.get('photo')
     if photo:
-        format, imgstr = photo.split(";base64,")
-        ext = format.split("/")[-1]
+        format, imgstr = photo.split(';base64,')
+        ext = format.split('/')[-1]
         image_data = base64.b64decode(imgstr)
-        img = ContentFile(image_data, name=firstName + "." + ext)
-    username = email.split("@")[0]
+        img = ContentFile(image_data, name=firstName + '.' + ext)
+    username = email.split('@')[0]
     existingM = Membre.objects.filter(userName=username).first()
     if existingM:
-        data = json.dumps({"message": "member exists."})
-        return HttpResponse(data, content_type="application/json")
+        data=json.dumps({'message':'member exists.'})
+        return HttpResponse(data,content_type='application/json')
     else:
-        newMember = Membre.objects.create(
-            userName=username,
-            email=email,
-            phoneNumber=phoneNumber,
-            password=password,
-            firstName=firstName,
-            familyName=familyName,
-            photo=img,
-        )
+        newMember = Membre.objects.create(userName=username, email=email,phoneNumber=phoneNumber, password=password, firstName=firstName, familyName=familyName,photo=img)
         newMember.full_clean()
         newMember.save()
-        data = json.dumps({"message": True})
-        return HttpResponse(data, content_type="application/json")
-
+        data=json.dumps({'message':True,'id':newMember.idMember})
+        return HttpResponse(data,content_type='application/json')
 
 @api_view(["GET"])
 def getAllNotif(request, idMember):
