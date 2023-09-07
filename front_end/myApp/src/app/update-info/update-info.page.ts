@@ -35,6 +35,19 @@ export class UpdateInfoPage implements OnInit {
         this.img="http://127.0.0.1:8000"+data.photo;
       })
     }
+    toDataURL(url:any, callback:any) {
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+          callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+      };
+      xhr.open('GET', url);
+      xhr.responseType = 'blob';
+      xhr.send();
+    }
     updateEmail(email:any){
       this.new_email = email.detail.value
     }
@@ -60,20 +73,24 @@ export class UpdateInfoPage implements OnInit {
       if(this.new_photo==undefined){
         this.new_photo=this.img;
       }
-      console.log(this.new_email,this .new_pwd,this.new_photo,this.new_phoneNumber);
+      console.log(this.new_email,this .new_pwd,this.new_photo,this.new_phoneNumber); 
+      this.toDataURL(this.new_photo, (dataUrl: any) => {
+      this.new_photo = dataUrl;
       this.service.updateProfile(localStorage.getItem('token'),this.new_email,this.new_pwd,this.new_photo,this.new_phoneNumber).subscribe(async data=>{
-      const inputFieldsNotEmpty = this.checkInputFieldsNotEmpty(); // Fonction pour vérifier les champs non vides
+        const inputFieldsNotEmpty = this.checkInputFieldsNotEmpty(); // Fonction pour vérifier les champs non vides
+        
+        if (inputFieldsNotEmpty) {
+          const alert = await this.alertController.create({
+            header: 'Update Info',
+            message: 'Your information has been updated.',
+            buttons: ['OK']
+          });
       
-      if (inputFieldsNotEmpty) {
-        const alert = await this.alertController.create({
-          header: 'Update Info',
-          message: 'Your information has been updated.',
-          buttons: ['OK']
-        });
-    
-        await alert.present();
-      }
-    })
+          await alert.present();
+        }
+      })
+})
+
   }
     
     isValidEmail(email: string) : boolean {

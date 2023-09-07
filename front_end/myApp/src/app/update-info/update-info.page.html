@@ -10,6 +10,7 @@
   <ion-avatar class="imag">
   <ion-img  src={{img}} ></ion-img>
 </ion-avatar>
+
 <p class="changePic" (click)="updatePhoto(img)" >Change Picture</p>
 
 
@@ -18,6 +19,7 @@
     
       <ion-label>Email Adress</ion-label>
       <div class="input">
+        
       <ion-input (ionChange)="updateEmail($event)" type="Email" name="email" [(ngModel)]="email" #passwordInput="ngModel" required></ion-input>
       <div *ngIf="errormessageemail" class="errorMessage" >{{errormessageemail}}</div>
     </div>
