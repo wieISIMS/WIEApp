@@ -22,6 +22,7 @@ export class NotificationsPage implements OnInit {
   getAllNotif(){
     this.service.getAllNotif(localStorage.getItem('token')).subscribe(data=>{
       this.notificationsList=data
+      console.log("notif",data)
 
     })
   }

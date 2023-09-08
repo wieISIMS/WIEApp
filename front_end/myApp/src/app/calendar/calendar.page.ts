@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ServicesService } from '../api/services.service'; 
 
 @Component({
@@ -16,6 +17,7 @@ export class CalendarPage implements OnInit {
   weekdays: { name: string; date: Date }[] = [];
 
   constructor(
+    private router: Router,
     private service:ServicesService
   ) {
     this.initializeWeekdays();
@@ -41,10 +43,12 @@ export class CalendarPage implements OnInit {
       this.weekdays.push({ name: dayName, date: date });
     }
   }
-
+  goToEvent(group:any){
+    this.router.navigate(['/event'], { state: { group: group } });
+    console.log(group)
+  }
 
   getCalender(day: { name: string; date: Date }){
-    console.log(day.date)
     // Formate la date au format 'YYYY-MM-DD'
     const formattedDate = day.date.toISOString().split('T')[0];
     console.log(formattedDate);
