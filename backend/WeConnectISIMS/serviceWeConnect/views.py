@@ -61,6 +61,8 @@ def OurClubs(request):
             "logo": club.photo.url if club.photo else [],
             "nbMembers": club.nbMembers,
             "nbEvents": club.nbEvents,
+            "linkFb":club.linkFb,
+            "linkInsta":club.linkInsta
         }
         club_list.append(club_data)
     return HttpResponse(json.dumps(club_list), content_type="application/json")
@@ -82,7 +84,7 @@ def getLastEvents(request):
             "nom_du_club": event.club.name,
             "idClub": event.club.idClub,
             "photo_du_club": event.club.photo.url,
-            "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
+            "heureEvent": event.heureEventStart.strftime("%H:%M"),
         }
         last_events.append(event_data)
     return HttpResponse(json.dumps(last_events), content_type="application/json")
@@ -106,7 +108,7 @@ def getEventDetails(request, idEvent):
         "description": event.description,
         "photo": event.photo.url,
         "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-        "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
+        "heureEvent": event.heureEventStart.strftime("%H:%M"),
     }
     date = datetime.combine(event.dateEvent, event.heureEvent)
     current_datetime = datetime.now()
@@ -174,7 +176,7 @@ def searchEvent(request):
             "nom_du_club": event.club.name,
             "idClub": event.club.idClub,
             "photo_du_club": event.club.photo.url,
-            "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
+            "heureEvent": event.heureEventStart.strftime("%H:%M"),
         }
         event_list.append(event_data)
 
@@ -195,9 +197,9 @@ def getLatestNews(request):
             "photo": event.photo.url,
             "nbParticipant": event.nbparticipant,
             "nom_du_club": event.club.name,
-            "photo_du_club": event.photo.url,
+            "photo_du_club": event.club.photo.url,
             "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-            "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
+            "heureEvent": event.heureEventStart.strftime("%H:%M"),
         }
         event_list.append(event_data)
     data = event_list
@@ -209,10 +211,10 @@ def getLatestNews(request):
 
 @api_view(["POST"])
 def login(request):
-    username = request.data["username"]
+    email = request.data["email"]
     password = request.data["password"]
     try:
-        member = Membre.objects.get(userName=username, password=password)
+        member = Membre.objects.get(email=email, password=password)
         data_list = []
         token = str(uuid.uuid4())
         if member is not None:
@@ -328,8 +330,6 @@ def getInfoClub(request, idClub):
 def getMembreInfo(request, idMember):
     try:
         member = Membre.objects.get(idMember=idMember)
-        print(member.phoneNumber,"AAAAA")
-        print("AAA")
         data = json.dumps(
             {
                 "email": member.email,
@@ -428,7 +428,7 @@ def getBestEvents(request, idClub):
                     "photo_du_club":event.club.photo.url if event.club.photo else [],
                     "photo": event.photo.url,
                     "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                    "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
+                    "heureEvent": event.heureEventStart.strftime("%H:%M"),
                 }
                 best_events_info.append(event_info)
         data = best_events_info
@@ -459,7 +459,7 @@ def getClubEvents(request, idClub):
                 "photo_du_club":event.club.photo.url if event.club.photo else [],
                 "photo": event.photo.url,
                 "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
+                "heureEvent": event.heureEventStart.strftime("%H:%M"),
             }
             date = datetime.combine(event.dateEvent, event.heureEventStart)
             if date <= current_datetime:
@@ -496,17 +496,18 @@ def getCalender(request):
                         "nom": event.title,
                         "description": event.description,
                         "nbParticipant": event.nbparticipant,
-                        "nom_du_club": event.club.name,
                         "photo": event.photo.url,
                         "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                        "heureEventStart": event.heureEventStart.strftime("%H:%M:%S"),
-                        "heureEventFinished": event.heureEventFinished.strftime("%H:%M:%S"),
-                        "place": event.place
+                        "heureEventStart": event.heureEventStart.strftime("%H:%M"),
+                        "heureEventFinished": event.heureEventFinished.strftime("%H:%M"),
+                        "place": event.place,
+                        "nom_du_club": event.club.name,
+                        "photo_du_club":event.club.photo.url
                     }
 
                     data.append(event_info)
             if not data:
-                data = json.dumps({"message": "no events in this date"})
+                data = json.dumps([])
     except:
         data = json.dumps({"message": "member not found"})
     return JsonResponse(data, safe=False)
@@ -531,9 +532,9 @@ def getMemberEvents(request, idMember):
                 "description": event.description,
                 "nbParticipant": event.nbparticipant,
                 "nom_du_club": event.club.name,
-                "photo": event.photo.url,
+                "photo_du_club": event.club.photo.url,
                 "dateEvent": event.dateEvent.strftime("%Y-%m-%d"),
-                "heureEvent": event.heureEventStart.strftime("%H:%M:%S"),
+                "heureEvent": event.heureEventStart.strftime("%H:%M"),
             }
             data.append(event_info)
         #     date = datetime.combine(event.dateEvent, event.heureEvent)
@@ -562,6 +563,8 @@ def getMemberClubs(request, idMember):
                 "logo": club.photo.url if club.photo else [],
                 "nbMembers": club.nbMembers,
                 "nbEvents": club.nbEvents,
+                "linkFb":club.linkFb,
+                "linkInsta":club.linkInsta
             }
             data.append(club_data)
     except:
