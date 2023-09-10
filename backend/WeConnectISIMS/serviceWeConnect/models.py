@@ -22,6 +22,8 @@ class Club(models.Model):
     photo = models.ImageField(upload_to="images/clubs/", null=True)
     nbEvents=models.IntegerField(null=True)
     nbMembers=models.IntegerField(null=True)
+    linkFb=models.URLField(null=True,blank=True)
+    linkInsta=models.URLField(null=True,blank=True)
     ClandC = models.ForeignKey(ClandrierClub, on_delete=models.CASCADE, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 

@@ -48,16 +48,13 @@
       <div class="event-wrapper">
 
         <div class="event-times">
-          <p class="start-time">{{ event.startTime }}</p>
-          <p class="end-time">{{ event.endTime }}</p>
+          <p class="start-time">{{ event.heureEventStart}}</p>
+          <p class="end-time">{{ event.heureEventFinished}}</p>
         </div>
 
         <ion-card
-          class="event-card"
-          [ngClass]="{
-            'current-day-card': selectedDate === event.dateEvent,
-            'event-card': selectedDate !== event.dateEvent
-              }"
+          class="current-day-card"
+          (click)="goToEvent(event)"
               >        
           <ion-card-content>
             <p class="event-title">{{ event.nom }}</p>
@@ -70,7 +67,7 @@
             <div class="infos">
               <img
                 width="20"
-                src="{{ event.photo_du_club}}"
+                [src]="'http://127.0.0.1:8000' + event.photo_du_club" 
                 alt="{{ event.place }}"
                 />
               <p class="detail">{{ event.nom_du_club }}</p>

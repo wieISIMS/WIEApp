@@ -35,6 +35,8 @@ export class UpdateInfoPage implements OnInit {
         this.img="http://127.0.0.1:8000"+data.photo;
       })
     }
+
+
     toDataURL(url:any, callback:any) {
       var xhr = new XMLHttpRequest();
       xhr.onload = function() {
@@ -48,6 +50,9 @@ export class UpdateInfoPage implements OnInit {
       xhr.responseType = 'blob';
       xhr.send();
     }
+
+
+
     updateEmail(email:any){
       this.new_email = email.detail.value
     }
@@ -66,6 +71,26 @@ export class UpdateInfoPage implements OnInit {
         this.new_photo=event.target!.result
       }
       console.log(this.new_photo)
+    }
+
+    
+    onFileSelected(event: Event) {
+      const input = event.target as HTMLInputElement;
+      const file = input.files?.[0];
+  
+      if (file) {
+        // Traitez le fichier sélectionné, par exemple :
+        // - Téléchargez le fichier
+        // - Affichez un aperçu de l'image
+        // - Faites autre chose en fonction de vos besoins
+      }
+    }
+    openFileSelector() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*'; // Accepte uniquement les fichiers d'image
+      input.addEventListener('change', this.onFileSelected.bind(this));
+      input.click();
     }
     updateProfile() {
       if(this.new_email==undefined){

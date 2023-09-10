@@ -149,7 +149,16 @@ ion-content {
           object-fit: cover;
         }
       }
-
+      .messageVide{
+        color: #000000; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 150px;
+        font-size: 17px;
+        font-family: "Poppins", sans-serif;
+      }
+      
       ion-label {
         
         margin: 7px;
