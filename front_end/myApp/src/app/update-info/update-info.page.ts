@@ -57,8 +57,15 @@ export class UpdateInfoPage implements OnInit {
     updatePhone(phoneNumber:any){
       this.new_phoneNumber= phoneNumber.detail.value
     }
-    updatePhoto(img:any){
-      this.new_photo = img.detail.value
+    updatePhoto(event:any){
+      
+      this.new_photo = event.target.files[0]
+      let reader=new FileReader()
+      reader.readAsDataURL(this.new_photo)
+      reader.onload=(event)=>{
+        this.new_photo=event.target!.result
+      }
+      console.log(this.new_photo)
     }
     updateProfile() {
       if(this.new_email==undefined){
@@ -78,7 +85,7 @@ export class UpdateInfoPage implements OnInit {
       this.new_photo = dataUrl;
       this.service.updateProfile(localStorage.getItem('token'),this.new_email,this.new_pwd,this.new_photo,this.new_phoneNumber).subscribe(async data=>{
         const inputFieldsNotEmpty = this.checkInputFieldsNotEmpty(); // Fonction pour vérifier les champs non vides
-        
+        this.getMemberInfo();
         if (inputFieldsNotEmpty) {
           const alert = await this.alertController.create({
             header: 'Update Info',
@@ -90,7 +97,6 @@ export class UpdateInfoPage implements OnInit {
         }
       })
 })
-
   }
     
     isValidEmail(email: string) : boolean {
