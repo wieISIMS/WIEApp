@@ -122,13 +122,25 @@ const ELEMENT_DATA: productsData[] = [
 })
 export class AppDashboardComponent implements OnInit{
   statClubs:any;
+  dataSource: any[] = [];
+  dataEvents:any[];
   ngOnInit(): void {
     this.service.getStatClub("3").subscribe(data=>{
       console.log(data);
       this.statClubs=data;
 
+    });
+    this.service.getMemberClub("3").subscribe(data=>{
+      this.dataSource=data.members;
+    });
+    this.service.getClubEvents("3").subscribe(data=>{
+      console.log(data)
+      this.dataEvents=data;
+      console.log(this.dataEvents)
     })
+
   }
+
   @ViewChild('chart') chart: ChartComponent = Object.create(null);
 
   public salesOverviewChart!: Partial<salesOverviewChart> | any;
@@ -136,7 +148,7 @@ export class AppDashboardComponent implements OnInit{
   public monthlyChart!: Partial<monthlyChart> | any;
 
   displayedColumns: string[] = ['assigned', 'name','participation'];
-  dataSource = ELEMENT_DATA;
+
 
   months: month[] = [
     { value: 'mar', viewValue: 'March 2023' },

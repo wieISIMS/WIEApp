@@ -18,5 +18,10 @@ export class NavService {
     getStatClub(id:string):Observable<any>{
         return this.http.get<any>("http://127.0.0.1:8000/statClub/"+id);
     }
-
+    getMemberClub(id:string):Observable<any>{
+        return this.http.get<any>("http://127.0.0.1:8000/membersClub/"+id);
+    }
+    getClubEvents(id:string):Observable<any[]>{
+        return this.http.get<any[]>("http://127.0.0.1:8000/clubEvents/"+id);
+    }
 }
