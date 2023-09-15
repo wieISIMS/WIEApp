@@ -124,20 +124,23 @@ export class AppDashboardComponent implements OnInit{
   statClubs:any;
   dataSource: any[] = [];
   dataEvents:any[];
+  
   ngOnInit(): void {
-    this.service.getStatClub("3").subscribe(data=>{
+    this.service.getStatClub(localStorage.getItem("token")).subscribe(data=>{
       console.log(data);
       this.statClubs=data;
 
     });
-    this.service.getMemberClub("3").subscribe(data=>{
+    this.service.getMemberClub(localStorage.getItem("token")).subscribe(data=>{
       this.dataSource=data.members;
     });
-    this.service.getClubEvents("3").subscribe(data=>{
+    this.service.getClubEvents(localStorage.getItem("token")).subscribe(data=>{
       console.log(data)
       this.dataEvents=data;
       console.log(this.dataEvents)
-    })
+    });
+   
+
 
   }
 

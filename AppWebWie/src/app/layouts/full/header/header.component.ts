@@ -4,8 +4,10 @@ import {
   EventEmitter,
   Input,
   ViewEncapsulation,
+  OnInit,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { NavService } from 'src/app/services/nav.service';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './header.component.html',
   encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input() showToggle = true;
   @Input() toggleChecked = false;
   @Output() toggleMobileNav = new EventEmitter<void>();
@@ -21,6 +23,14 @@ export class HeaderComponent {
   @Output() toggleCollapsed = new EventEmitter<void>();
 
   showFiller = false;
-
-  constructor(public dialog: MatDialog) {}
+  name:string;
+  photo:string;
+  constructor(public dialog: MatDialog, private service:NavService) {}
+   
+  ngOnInit(): void {
+    this.service.infoClub(localStorage.getItem("token")).subscribe(data=>{
+      this.name=data.name;
+      this.photo=data.photo;
+    })
+  }
 }

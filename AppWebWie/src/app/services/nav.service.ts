@@ -15,13 +15,19 @@ export class NavService {
             }
         });
     }
-    getStatClub(id:string):Observable<any>{
+    getStatClub(id:any):Observable<any>{
         return this.http.get<any>("http://127.0.0.1:8000/statClub/"+id);
     }
-    getMemberClub(id:string):Observable<any>{
+    getMemberClub(id:any):Observable<any>{
         return this.http.get<any>("http://127.0.0.1:8000/membersClub/"+id);
     }
-    getClubEvents(id:string):Observable<any[]>{
+    getClubEvents(id:any):Observable<any[]>{
         return this.http.get<any[]>("http://127.0.0.1:8000/clubEvents/"+id);
+    }
+    loginClub(name:string,password:string):Observable<any>{
+        return this.http.post<any>("http://127.0.0.1:8000/loginClub/",{name:name,password:password});
+    }
+    infoClub(id:any){
+        return this.http.get<any>("http://127.0.0.1:8000/getInfoClub/"+id);
     }
 }

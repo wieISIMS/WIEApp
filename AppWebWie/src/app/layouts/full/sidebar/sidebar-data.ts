@@ -37,30 +37,7 @@ export const navItems: NavItem[] = [
     iconName: 'tooltip',
     route: '/ui-components/tooltips',
   },
-  {
-    navCap: 'Auth',
-  },
-  {
-    displayName: 'Login',
-    iconName: 'lock',
-    route: '/authentication/login',
-  },
-  {
-    displayName: 'Register',
-    iconName: 'user-plus',
-    route: '/authentication/register',
-  },
-  {
-    navCap: 'Extra',
-  },
-  {
-    displayName: 'Icons',
-    iconName: 'mood-smile',
-    route: '/extra/icons',
-  },
-  {
-    displayName: 'Sample Page',
-    iconName: 'aperture',
-    route: '/extra/sample-page',
-  },
+  
+  
+ 
 ];
