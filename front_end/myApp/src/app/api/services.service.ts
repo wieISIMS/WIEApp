@@ -14,9 +14,9 @@ export class ServicesService {
   getOurClub():Observable<any[]>{
     return this.http.get<any[]>(apiUrl+'/clubs/');
   }
-  login(username:string,password:string){
+  login(email:string,password:string){
     let data={
-      "username":username,
+      "email":email,
       "password":password
     }
     return this.http.post<any>(apiUrl+ '/login/', data)

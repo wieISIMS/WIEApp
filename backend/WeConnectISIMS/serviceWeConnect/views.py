@@ -281,7 +281,13 @@ def getAllNotif(request, idMember):
                         )
                         minutes = (time_difference.seconds % 3600) // 60
                         seconds = time_difference.seconds % 60
-                        if hours > 0:
+                        if hours >= 24:
+                            days = hours // 24
+                            hours = hours % 24
+
+                        if days > 0:
+                            duree = f"{days} jours"
+                        elif hours > 0:
                             duree = f"{hours} heures"
                         elif minutes > 0:
                             duree = f"{minutes} minutes"
