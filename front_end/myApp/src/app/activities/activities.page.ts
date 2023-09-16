@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { ServicesService } from '../api/services.service'; 
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-activities',
   templateUrl: './activities.page.html',
@@ -88,6 +89,9 @@ export class ActivitiesPage implements OnInit {
 
   signOut() {
     // Code pour déconnecter l'utilisateur
+    console.log('out')
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }
 
