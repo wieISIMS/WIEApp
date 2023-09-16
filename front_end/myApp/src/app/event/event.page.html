@@ -12,7 +12,9 @@
 
  
   <div class="head">
-  <ion-img [src]="'http://127.0.0.1:8000' + group.photo_du_club" class="img"></ion-img>
+    <div class="img-container">
+       <ion-img [src]="'http://127.0.0.1:8000' + group.photo_du_club" class="img"></ion-img>
+    </div>
   <div class="header-text">
     {{group.nom_du_club}}
   </div>

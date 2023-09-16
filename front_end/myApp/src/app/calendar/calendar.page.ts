@@ -15,7 +15,7 @@ export class CalendarPage implements OnInit {
   events:any;
   //events: string[] = [];
   weekdays: { name: string; date: Date }[] = [];
-
+  extendedWeekdays: { name: string; date: Date }[] = [];
   constructor(
     private router: Router,
     private service:ServicesService
@@ -36,11 +36,22 @@ export class CalendarPage implements OnInit {
     const sunday = new Date(today);
     sunday.setDate(today.getDate() - dayOfWeek);
   
+    this.extendedWeekdays = [];
+  
+    // Calculate dates for the current week
     for (let i = 0; i < 7; i++) {
       const date = new Date(sunday);
       date.setDate(sunday.getDate() + i);
       const dayName = date.toLocaleDateString('en-US', { weekday: 'short' }).charAt(0);
-      this.weekdays.push({ name: dayName, date: date });
+      this.extendedWeekdays.push({ name: dayName, date: date });
+    }
+  
+    // Calculate dates for one week later than the current week
+    for (let i = 7; i < 14; i++) {
+      const date = new Date(sunday);
+      date.setDate(sunday.getDate() + i);
+      const dayName = date.toLocaleDateString('en-US', { weekday: 'short' }).charAt(0);
+      this.extendedWeekdays.push({ name: dayName, date: date });
     }
   }
   goToEvent(group:any){
@@ -53,7 +64,12 @@ export class CalendarPage implements OnInit {
     const formattedDate = day.date.toISOString().split('T')[0];
     console.log(formattedDate);
     this.service.getCalender(this.idMember,formattedDate).subscribe(data=>{
-    this.events=data;
+    if (Array.isArray(data) && data.length !== 0) {
+      this.events=data;
+    }
+    else{
+      this.events=[];
+    }
     console.log(data);
     this.selectedDate = day.date;
 })

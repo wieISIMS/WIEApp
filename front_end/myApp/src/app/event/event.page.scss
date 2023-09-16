@@ -65,12 +65,12 @@ ion-content {
   }
   .img {
     float: left;
-    height: 90px;
-    width: 90px;
-    border-radius: 50%; /* Use 50% for a circular shape */
-    overflow: hidden;
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
-    object-position: center center; /* Center the image within the container */
+  height: 90px;
+  width: 90px; /* Set a fixed width and height to create a circular shape */
+  border-radius: 50%; /* Use 50% for a circular shape */
+  overflow: hidden;
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  object-position: center center; /* Center the image within the container */
   }
 
 

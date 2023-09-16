@@ -263,3 +263,16 @@ img{
     margin-top: 250px;
     font-size: 20px;
  }
+ .weekdays-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  /* Hide the scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer/Edge */
+
+  /* For WebKit-based browsers like Chrome and Safari */
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
