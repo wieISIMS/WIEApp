@@ -2,7 +2,7 @@ ion-content {
   --background: linear-gradient(to left bottom, #e6d4ff, #ebd8ff, #f0dcff, #f5e0ff, #f4e0ff, #f9e1ff, #fee3ff, #ffe5ff);
 }
 .container{
-  margin-top: 25%;
+  margin-top: 50px;
   max-width: 95%;
   margin-left: auto;
   margin-right: auto;
@@ -11,12 +11,16 @@ ion-content {
 .photo {
   position: relative;
   text-align: center;
-  margin-top: -15%;
+  padding-bottom: 200px;
 }
 
 .person {
-  font-size: 1000%;
-  color: #838383;
+  position: absolute;
+  top: 50%; /* Adjust this value if needed */
+  left: 50%; /* Adjust this value if needed */
+  transform: translate(-50%, -50%);
+  width: 105px; 
+  height: 105px;
 }
 
 .add {
