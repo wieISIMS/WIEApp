@@ -97,4 +97,17 @@ updateProfile(idMember:any,new_email:any,new_pwd:any,new_photo:any,new_phoneNumb
   }
   return this.http.post<any>(apiUrl+'/updateProfile/',data);
 }
+//Sing up
+signUp(email:any,password:any,phoneNumber:any,firstName:any,familyName:any,photo:any){
+  let data={
+    "email":email,
+    "password":password,
+    "phoneNumber":phoneNumber,
+    "firstName":firstName,
+    "familyName":familyName,
+    "photo":photo
+  }
+  console.log(data);
+  return this.http.post<any>(apiUrl+ '/signUp/', data)
+}
 }
