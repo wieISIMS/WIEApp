@@ -1,42 +1,34 @@
 import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
-  {
-    navCap: 'Home',
-  },
+ 
   {
     displayName: 'Dashboard',
     iconName: 'layout-dashboard',
     route: '/dashboard',
   },
-  {
-    navCap: 'Ui Components',
-  },
+  
   {
     displayName: 'Badge',
     iconName: 'rosette',
     route: '/ui-components/badge',
   },
   {
-    displayName: 'Chips',
-    iconName: 'poker-chip',
+    displayName: 'Members',
+    iconName: 'users',
     route: '/ui-components/chips',
   },
   {
-    displayName: 'Lists',
-    iconName: 'list',
+    displayName: 'Events',
+    iconName: 'notebook',
     route: '/ui-components/lists',
   },
   {
-    displayName: 'Menu',
-    iconName: 'layout-navbar-expand',
+    displayName: 'Calender',
+    iconName: 'calendar-event',
     route: '/ui-components/menu',
   },
-  {
-    displayName: 'Tooltips',
-    iconName: 'tooltip',
-    route: '/ui-components/tooltips',
-  },
+ 
   
   
  
